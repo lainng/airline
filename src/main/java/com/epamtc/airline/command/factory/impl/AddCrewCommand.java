@@ -1,0 +1,74 @@
+package com.epamtc.airline.command.factory.impl;
+
+import com.epamtc.airline.command.Command;
+import com.epamtc.airline.command.CommandResult;
+import com.epamtc.airline.command.InfoKey;
+import com.epamtc.airline.command.RouteType;
+import com.epamtc.airline.entity.dto.CrewCreationDto;
+import com.epamtc.airline.entity.dto.UserCreationDto;
+import com.epamtc.airline.resource.Pages;
+import com.epamtc.airline.resource.RequestAttribute;
+import com.epamtc.airline.resource.RequestParameter;
+import com.epamtc.airline.resource.SessionAttribute;
+import com.epamtc.airline.service.CrewService;
+import com.epamtc.airline.service.ServiceFactory;
+import com.epamtc.airline.service.exception.ServiceException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+import java.util.Optional;
+
+public class AddCrewCommand implements Command {
+    private static final char AMPERSAND = '&';
+    private static final char EQUAL = '=';
+
+    @Override
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
+        HttpSession session = request.getSession();
+        CrewService crewService = ServiceFactory.getInstance().getCrewService();
+
+        Optional<String> optionalFlightID = Optional.ofNullable(request.getParameter(RequestParameter.FLIGHT_ID));
+        String crewID = request.getParameter(RequestParameter.CREW_ID);
+        Optional<String[]> optionalUsersID = Optional.ofNullable(request.getParameterValues(RequestParameter.USER_ID));
+
+        CrewCreationDto crewCreationDto = new CrewCreationDto();
+        if (optionalUsersID.isPresent() && optionalFlightID.isPresent()) {
+            crewCreationDto.setMembers(toLongArrayParameter(optionalUsersID.get()));
+            crewCreationDto.setAssignedFlightID(Long.parseLong(optionalFlightID.get()));
+        } else {
+            session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_CREW_PARAMETERS);
+            String redirectPath = Pages.STAFF_ACTION_PAGE_REDIRECT;
+            if (optionalFlightID.isPresent()) {
+                redirectPath = buildRedirectPath(optionalFlightID.get());
+            }
+            return new CommandResult(redirectPath, RouteType.REDIRECT);
+        }
+
+        if (crewID.isEmpty()) {
+            crewService.createCrew(crewCreationDto);
+            session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_ADDED_CREW);
+        } else {
+            crewCreationDto.setID(Long.parseLong(crewID));
+            crewService.updateCrew(crewCreationDto);
+            session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_UPDATED_CREW);
+        }
+        return new CommandResult(Pages.CREW_ACTION_PAGE_REDIRECT, RouteType.REDIRECT);
+    }
+
+    private long[] toLongArrayParameter(String[] stringParameters) {
+        long[] longParameters = new long[stringParameters.length];
+        for (int i = 0; i < stringParameters.length; i++) {
+            longParameters[i] = Long.parseLong(stringParameters[i]);
+        }
+        return longParameters;
+    }
+
+    private String buildRedirectPath(String flightID) {
+        return Pages.STAFF_ACTION_PAGE_REDIRECT
+                + AMPERSAND
+                + RequestParameter.FLIGHT_ID
+                + EQUAL
+                + Long.parseLong(flightID);
+    }
+}

@@ -1,0 +1,60 @@
+package com.epamtc.airline.entity;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
+
+public class Crew implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private long ID;
+    private Flight assignedFlight;
+    private List<User> members;
+
+    public long getID() {
+        return ID;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
+    }
+
+    public Flight getAssignedFlight() {
+        return assignedFlight;
+    }
+
+    public void setAssignedFlight(Flight assignedFlight) {
+        this.assignedFlight = assignedFlight;
+    }
+
+    public List<User> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<User> members) {
+        this.members = members;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Crew crew = (Crew) o;
+        return ID == crew.ID
+                && Objects.equals(assignedFlight, crew.assignedFlight)
+                && Objects.equals(members, crew.members);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID, assignedFlight, members);
+    }
+
+    @Override
+    public String toString() {
+        return "Crew{" +
+                "ID=" + ID +
+                ", assignedFlight=" + assignedFlight +
+                ", members=" + members.toString() +
+                '}';
+    }
+}

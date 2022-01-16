@@ -1,0 +1,12 @@
+const emailMsg = 'Некорректный адрес электронной почты.';
+const requiredMsg = 'Это поле обязательно для заполнения.';
+const equalToMsg = 'Пароли не совпадают.';
+const validNamesMsg = 'Поле не должно содержать цифры, пробелы или знаки препинания.';
+const validDateMsg = 'Неверный формат даты.';
+const minLengthTwoMsg = 'Необходимо ввести как минимум 2 символа.';
+const minLengthSixMsg = 'Необходимо ввести как минимум 6 символов.';
+const greaterZeroMsg = 'Введите значение больше нуля.';
+const zeroOrPositiveMsg = 'Значение должно быть нулем или положительным числом.';
+const noFlightsMsg = 'Не выбран рейс.';
+const noPilotsMsg = 'Не выбран ни один пилот.';
+const noAttendantsMsg = 'Не выбран ни один бортпроводник.';
