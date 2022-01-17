@@ -2,7 +2,6 @@ package com.epamtc.airline.dao.builder;
 
 
 import com.epamtc.airline.dao.builder.impl.*;
-import com.epamtc.airline.dao.builder.impl.PositionBuilder;
 
 public class EntityBuilderFactory {
     private final CityBuilder cityBuilder = new CityBuilder();

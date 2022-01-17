@@ -7,7 +7,6 @@ import com.epamtc.airline.entity.City;
 import com.epamtc.airline.resource.Pages;
 import com.epamtc.airline.resource.RequestAttribute;
 import com.epamtc.airline.service.CityService;
-import com.epamtc.airline.service.RouteService;
 import com.epamtc.airline.service.ServiceFactory;
 import com.epamtc.airline.service.exception.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;

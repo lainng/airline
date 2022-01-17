@@ -2,9 +2,9 @@ package com.epamtc.airline.controller.listener;
 
 import com.epamtc.airline.dao.connection.ConnectionPool;
 import com.epamtc.airline.dao.exception.ConnectionPoolException;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
+import jakarta.servlet.annotation.WebListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

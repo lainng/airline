@@ -1,9 +1,6 @@
 package com.epamtc.airline.dao;
 
 import com.epamtc.airline.dao.exception.DaoException;
-import com.epamtc.airline.entity.Crew;
-import com.epamtc.airline.entity.Flight;
-import com.epamtc.airline.entity.Position;
 import com.epamtc.airline.entity.User;
 import com.epamtc.airline.entity.dto.UserCreationDto;
 

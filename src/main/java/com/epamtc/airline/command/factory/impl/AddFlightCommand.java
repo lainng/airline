@@ -4,7 +4,6 @@ import com.epamtc.airline.command.*;
 import com.epamtc.airline.entity.FlightStatus;
 import com.epamtc.airline.entity.dto.FlightDto;
 import com.epamtc.airline.resource.Pages;
-import com.epamtc.airline.resource.RequestAttribute;
 import com.epamtc.airline.resource.RequestParameter;
 import com.epamtc.airline.resource.SessionAttribute;
 import com.epamtc.airline.service.FlightService;

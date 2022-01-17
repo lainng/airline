@@ -4,7 +4,6 @@ import com.epamtc.airline.dao.AbstractDao;
 import com.epamtc.airline.dao.RouteDao;
 import com.epamtc.airline.dao.builder.EntityBuilderFactory;
 import com.epamtc.airline.dao.exception.DaoException;
-import com.epamtc.airline.entity.Route;
 import com.epamtc.airline.entity.dto.RouteDto;
 
 import java.util.List;

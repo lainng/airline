@@ -5,7 +5,6 @@ import com.epamtc.airline.dao.AbstractDao;
 import com.epamtc.airline.dao.FlightDao;
 import com.epamtc.airline.dao.builder.EntityBuilderFactory;
 import com.epamtc.airline.dao.exception.DaoException;
-import com.epamtc.airline.entity.Flight;
 import com.epamtc.airline.entity.dto.FlightDto;
 import com.epamtc.airline.entity.dto.SearchQuery;
 

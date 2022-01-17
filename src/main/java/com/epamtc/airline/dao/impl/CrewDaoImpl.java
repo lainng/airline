@@ -1,6 +1,9 @@
 package com.epamtc.airline.dao.impl;
 
-import com.epamtc.airline.dao.*;
+import com.epamtc.airline.dao.AbstractDao;
+import com.epamtc.airline.dao.BasicQuery;
+import com.epamtc.airline.dao.BatchQuery;
+import com.epamtc.airline.dao.CrewDao;
 import com.epamtc.airline.dao.builder.EntityBuilderFactory;
 import com.epamtc.airline.dao.exception.DaoException;
 import com.epamtc.airline.entity.dto.CrewCreationDto;
@@ -8,7 +11,6 @@ import com.epamtc.airline.entity.dto.CrewDto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class CrewDaoImpl extends AbstractDao<CrewDto> implements CrewDao {
     private static final String QUERY_GET_CREW_BY_FLIGHT = "SELECT C.flight_id, EC.crew_id, E.employee_id, E.first_name, E.last_name, P.position_id, P.name, E.email, E.password, P.role_id " +
