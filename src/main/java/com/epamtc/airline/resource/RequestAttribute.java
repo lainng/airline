@@ -26,5 +26,7 @@ public final class RequestAttribute {
     public static final String PLANE = "plane";
     public static final String CITIES = "cities";
     public static final String CITY = "city";
+    public static final String FLIGHT_STATUS = "flightStatus";
+
     private RequestAttribute() {}
 }

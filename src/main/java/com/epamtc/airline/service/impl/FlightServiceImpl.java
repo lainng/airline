@@ -3,11 +3,9 @@ package com.epamtc.airline.service.impl;
 import com.epamtc.airline.command.UserRole;
 import com.epamtc.airline.dao.DaoFactory;
 import com.epamtc.airline.dao.FlightDao;
+import com.epamtc.airline.dao.FlightStatusDao;
 import com.epamtc.airline.dao.exception.DaoException;
-import com.epamtc.airline.entity.Flight;
-import com.epamtc.airline.entity.Plane;
-import com.epamtc.airline.entity.Route;
-import com.epamtc.airline.entity.User;
+import com.epamtc.airline.entity.*;
 import com.epamtc.airline.entity.dto.FlightDto;
 import com.epamtc.airline.entity.dto.SearchQuery;
 import com.epamtc.airline.service.FlightService;
@@ -177,6 +175,18 @@ public class FlightServiceImpl implements FlightService {
         }
         return searchResult;
     }
+    @Override
+    public FlightStatus takeFlightStatus(long statusID) throws ServiceException {
+        FlightStatusDao flightStatusDao = DaoFactory.getInstance().getFlightStatusDao();
+        FlightStatus status;
+        try {
+            status = flightStatusDao.takeFlightStatusByID(statusID);
+        } catch (DaoException e) {
+            LOGGER.error("Unable to get a flight status. {}", e.getMessage());
+            throw new ServiceException("Unable to get a a flight status.", e);
+        }
+        return status;
+    }
 
     private Flight toEntity(FlightDto dto) throws ServiceException {
         if (dto == null) {
@@ -198,6 +208,7 @@ public class FlightServiceImpl implements FlightService {
 
         return flight;
     }
+
     private boolean isFlightAssignedEmployee(User user, long flightID) throws ServiceException {
         if (user.getPosition().getRoleID() != UserRole.USER) {
             return true;
@@ -210,6 +221,7 @@ public class FlightServiceImpl implements FlightService {
         }
         return false;
     }
+
     private void calculateDestinationTime(Flight flight) {
         Calendar destinationTime = Calendar.getInstance();
         Calendar duration = Calendar.getInstance();

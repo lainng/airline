@@ -16,7 +16,6 @@ import java.util.List;
 public class QueryExecutor<T> {
     private static final ConnectionPool POOL = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final long NO_ID = -1L;
     protected EntityBuilder<T> builder;
 
     public QueryExecutor(EntityBuilder<T> builder) {
@@ -55,7 +54,6 @@ public class QueryExecutor<T> {
     public int executeUpdate(String query, Object... parameters) throws DaoException {
         Connection connection = POOL.getConnection();
         PreparedStatement statement = null;
-        ResultSet resultSet = null;
         int affectedRowCount;
         try {
             connection.setAutoCommit(false);
@@ -70,7 +68,7 @@ public class QueryExecutor<T> {
             throw new DaoException("Invalid SQL statement.", e);
         } finally {
             switchAutoCommit(connection);
-            POOL.releaseConnection(connection, statement, resultSet);
+            POOL.releaseConnection(connection, statement);
         }
         return affectedRowCount;
     }

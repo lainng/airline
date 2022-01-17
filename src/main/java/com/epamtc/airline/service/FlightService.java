@@ -1,6 +1,7 @@
 package com.epamtc.airline.service;
 
 import com.epamtc.airline.entity.Flight;
+import com.epamtc.airline.entity.FlightStatus;
 import com.epamtc.airline.entity.User;
 import com.epamtc.airline.entity.dto.FlightDto;
 import com.epamtc.airline.entity.dto.SearchQuery;
@@ -98,4 +99,12 @@ public interface FlightService {
      * @throws ServiceException
      */
     List<Flight> searchFlights(SearchQuery query) throws ServiceException;
+
+    /**
+     *
+     * @param statusID
+     * @return
+     * @throws ServiceException
+     */
+    FlightStatus takeFlightStatus(long statusID) throws ServiceException;
 }

@@ -10,6 +10,7 @@ public class DaoFactory {
     private final CityDao cityDao = new CityDaoImpl();
     private final PositionDao positionDao = new PositionDaoImpl();
     private final CrewDao crewDao = new CrewDaoImpl();
+    private final FlightStatusDao flightStatusDao = new FlightStatusDaoImpl();
 
     private static class Holder {
         static final DaoFactory INSTANCE = new DaoFactory();
@@ -35,5 +36,8 @@ public class DaoFactory {
     }
     public CrewDao getCrewDao() {
         return crewDao;
+    }
+    public FlightStatusDao getFlightStatusDao() {
+        return flightStatusDao;
     }
 }
