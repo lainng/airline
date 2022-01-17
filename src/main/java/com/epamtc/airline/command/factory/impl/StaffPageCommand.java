@@ -18,9 +18,9 @@ public class StaffPageCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         UserService userService = ServiceFactory.getInstance().getUserService();
-        //todo на jsp проверять должность и в зависимости от нее убирать кнопки
         List<User> employees = userService.takeAllUsers();
         request.setAttribute(RequestAttribute.EMPLOYEES, employees);
+
         return new CommandResult(Pages.STAFF_PAGE, RouteType.FORWARD);
     }
 }

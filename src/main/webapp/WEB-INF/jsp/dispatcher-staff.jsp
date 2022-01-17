@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
+<%@ page import="com.epamtc.airline.command.UserRole" %>
 
 <fmt:setLocale value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}"/>
 <fmt:bundle basename="labels"/>
@@ -42,9 +43,11 @@
                     <td>${employee.position.name}</td>
                     <td>${employee.email}</td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/controller?command=crews-page&user-id=${employee.ID}" class="mx-2">
-                            <i class="bi bi-people link-dark text-decoration-none" data-toggle="tooltip" title="<fmt:message key="dispatcher.staff.crewsTooltip"/>"></i>
-                        </a>
+                        <c:if test="${employee.position.ID eq UserRole.USER}">
+                            <a href="${pageContext.request.contextPath}/controller?command=crews-page&user-id=${employee.ID}" class="mx-2">
+                                <i class="bi bi-people link-dark text-decoration-none" data-toggle="tooltip" title="<fmt:message key="dispatcher.staff.crewsTooltip"/>"></i>
+                            </a>
+                        </c:if>
                     </td>
                 </tr>
             </c:forEach>
