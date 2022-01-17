@@ -41,7 +41,9 @@ public class CrewDto implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CrewDto crewDto = (CrewDto) o;
-        return ID == crewDto.ID && assignedFlightID == crewDto.assignedFlightID && Objects.equals(members, crewDto.members);
+        return ID == crewDto.ID
+                && assignedFlightID == crewDto.assignedFlightID
+                && Objects.equals(members, crewDto.members);
     }
 
     @Override
@@ -51,10 +53,12 @@ public class CrewDto implements Serializable {
 
     @Override
     public String toString() {
-        return "CrewDto{" +
-                "ID=" + ID +
-                ", assignedFlightID=" + assignedFlightID +
-                ", members=" + members +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append(getClass().getName()).append('@');
+        builder.append("ID=").append(ID);
+        builder.append(", assignedFlightID=").append(assignedFlightID);
+        builder.append(", members=").append(members);
+
+        return builder.toString();
     }
 }

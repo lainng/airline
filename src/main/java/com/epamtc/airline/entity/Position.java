@@ -6,16 +6,10 @@ import java.util.Objects;
 public class Position implements Serializable {
     private static final long serialVersionUID = 1L;
     private long ID;
-    private String title;
+    private String name;
     private long roleID;
 
     public Position() {}
-
-    public Position(long ID, String title, long roleID) {
-        this.ID = ID;
-        this.title = title;
-        this.roleID = roleID;
-    }
 
     public long getID() {
         return ID;
@@ -25,12 +19,12 @@ public class Position implements Serializable {
         this.ID = ID;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public long getRoleID() {
@@ -48,21 +42,22 @@ public class Position implements Serializable {
         Position that = (Position) o;
         return ID == that.ID
                 && roleID == that.roleID
-                && title.equals(that.title);
+                && name.equals(that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, title, roleID);
+        return Objects.hash(ID, name, roleID);
     }
 
     @Override
     public String toString() {
-        //TODO Stringbuilder!
-        return "Position{" +
-                "ID=" + ID +
-                ", position='" + title + '\'' +
-                ", roleID=" + roleID +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append(getClass().getName()).append("@");
+        builder.append("ID=").append(ID);
+        builder.append(", name=").append(name);
+        builder.append(", roleID=").append(roleID);
+
+        return builder.toString();
     }
 }

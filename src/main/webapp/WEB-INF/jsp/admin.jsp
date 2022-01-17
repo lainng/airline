@@ -22,7 +22,7 @@
     <div class="container pt-4 pb-5">
         <div class="d-flex flex-column my-2 ps-5 ms-5">
             <h2><fmt:message key="user.welcome"/> ${sessionScope.user.firstName}</h2>
-            <h5><fmt:message key="user.position"/>: ${sessionScope.user.position.title}</h5>
+            <h5><fmt:message key="user.position"/>: ${sessionScope.user.position.name}</h5>
             <h3 class="pt-4"><fmt:message key="admin.actions"/>:</h3>
             <a class="link-dark my-2" href="${pageContext.request.contextPath}/controller?command=flights-page"><fmt:message key="admin.flights"/></a>
             <a class="link-dark my-2" href="${pageContext.request.contextPath}/controller?command=routes-page"><fmt:message key="admin.routes"/></a>

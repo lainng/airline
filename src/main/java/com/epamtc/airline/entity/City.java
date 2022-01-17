@@ -31,7 +31,8 @@ public class City implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         City city = (City) o;
-        return ID == city.ID && Objects.equals(name, city.name);
+        return ID == city.ID
+                && Objects.equals(name, city.name);
     }
 
     @Override
@@ -41,8 +42,11 @@ public class City implements Serializable {
 
     @Override
     public String toString() {
-        return "City{" +
-                "ID=" + ID +
-                ", name='" + name + '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append(getClass().getName()).append('@');
+        builder.append("ID=").append(ID);
+        builder.append(", name=").append(name);
+
+        return builder.toString();
     }
 }

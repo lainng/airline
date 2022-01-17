@@ -51,19 +51,19 @@
                     <td>${flight.plane.model}</td>
                     <c:choose>
                         <c:when test="${flight.flightStatus.ID eq FlightCondition.SCHEDULED}">
-                            <td class="text-darkorange">${flight.flightStatus.designation}</td>
+                            <td class="text-darkorange">${flight.flightStatus.name}</td>
                         </c:when>
                         <c:when test="${flight.flightStatus.ID eq FlightCondition.READY}">
-                            <td class="text-success">${flight.flightStatus.designation}</td>
+                            <td class="text-success">${flight.flightStatus.name}</td>
                         </c:when>
                         <c:when test="${flight.flightStatus.ID eq FlightCondition.CANCELED}">
-                            <td class="text-danger">${flight.flightStatus.designation}</td>
+                            <td class="text-danger">${flight.flightStatus.name}</td>
                         </c:when>
                         <c:when test="${flight.flightStatus.ID eq FlightCondition.DEPARTED}">
-                            <td class="text-primary">${flight.flightStatus.designation}</td>
+                            <td class="text-primary">${flight.flightStatus.name}</td>
                         </c:when>
                         <c:otherwise>
-                            <td>${flight.flightStatus.designation}</td>
+                            <td>${flight.flightStatus.name}</td>
                         </c:otherwise>
                     </c:choose>
                     <td>

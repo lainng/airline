@@ -2,6 +2,7 @@ package com.epamtc.airline.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 public class Flight implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -72,15 +73,36 @@ public class Flight implements Serializable {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Flight flight = (Flight) o;
+        return ID == flight.ID
+                && isConfirmed == flight.isConfirmed
+                && Objects.equals(route, flight.route)
+                && Objects.equals(plane, flight.plane)
+                && Objects.equals(departureTime, flight.departureTime)
+                && Objects.equals(destinationTime, flight.destinationTime)
+                && Objects.equals(flightStatus, flight.flightStatus);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID, route, plane, departureTime, destinationTime, flightStatus, isConfirmed);
+    }
+
+    @Override
     public String toString() {
-        return "Flight{" +
-                "ID=" + ID +
-                ", route=" + route +
-                ", plane=" + plane +
-                ", departureTime=" + departureTime +
-                ", destinationTime=" + destinationTime +
-                ", flightStatus=" + flightStatus +
-                ", isConfirmed=" + isConfirmed +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append(getClass().getName()).append('@');
+        builder.append("ID=").append(ID);
+        builder.append(", route=").append(route);
+        builder.append(", plane=").append(plane);
+        builder.append(", departureTime=").append(departureTime);
+        builder.append(", destinationTime=").append(destinationTime);
+        builder.append(", flightStatus=").append(flightStatus);
+        builder.append(", isConfirmed=").append(isConfirmed);
+
+        return builder.toString();
     }
 }

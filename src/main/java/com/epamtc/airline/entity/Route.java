@@ -83,13 +83,14 @@ public class Route implements Serializable {
 
     @Override
     public String toString() {
-        return "Route{" +
-                "ID=" + ID +
-                ", number='" + number + '\'' +
-                ", departurePoint='" + departure + '\'' +
-                ", destination='" + destination + '\'' +
-                ", distance=" + distance +
-                ", duration=" + duration +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append(getClass().getName()).append('@');
+        builder.append("ID=").append(ID);
+        builder.append(", departurePoint=").append(departure);
+        builder.append(", destination=").append(destination);
+        builder.append(", distance=").append(distance);
+        builder.append(", duration=").append(duration);
+
+        return builder.toString();
     }
 }

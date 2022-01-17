@@ -25,7 +25,7 @@
             <h2 class="pb-4"><fmt:message key="crews.mainLabel"/></h2>
             <c:if test="${requestScope.employee != null}">
                 <h5><strong><fmt:message key="crews.employee"/>:</strong> ${requestScope.employee.firstName} ${requestScope.employee.lastName}</h5>
-                <h5 class="pb-4"><strong><fmt:message key="crews.position"/>:</strong> ${requestScope.employee.position.title}</h5>
+                <h5 class="pb-4"><strong><fmt:message key="crews.position"/>:</strong> ${requestScope.employee.position.name}</h5>
             </c:if>
             <table id="crews" class="display text-center my-2">
                 <thead>
@@ -58,7 +58,7 @@
                                         <div class="accordion-body">
                                             <p>
                                                 <c:forEach items="${crew.members}" var="employee">
-                                                    <strong>${employee.position.title}</strong> - ${employee.firstName} ${employee.lastName}<br>
+                                                    <strong>${employee.position.name}</strong> - ${employee.firstName} ${employee.lastName}<br>
                                                 </c:forEach>
                                             </p>
                                         </div>

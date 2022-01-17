@@ -82,13 +82,15 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        //TODO Stringbuilder!
-        return getClass().getName() + "@" +
-                "personnelNumber = " + ID +
-                ", firstName = " + firstName +
-                ", lastName = " + lastName +
-                ", position = " + position +
-                ", login = " + email +
-                ", password = " + password;
+        StringBuilder builder = new StringBuilder();
+        builder.append(getClass().getName()).append("@");
+        builder.append("ID = ").append(ID);
+        builder.append(", firstName=").append(firstName);
+        builder.append(", lastName=").append(lastName);
+        builder.append(", position=").append(position);
+        builder.append(", email=").append(email);
+        builder.append(", password=").append(password);
+
+        return builder.toString();
     }
 }

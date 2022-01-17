@@ -36,7 +36,7 @@
                 <select class="mb-2 mt-2 ps-2 py-2 form-select" name="position-id" id="position">
                     <option disabled selected value=""><fmt:message key="signUp.position"/></option>
                     <c:forEach var="position" items="${requestScope.positions}">
-                        <option value="${position.ID}" <c:if test="${requestScope.position == position.ID}">selected</c:if> >${position.title}</option>
+                        <option value="${position.ID}" <c:if test="${requestScope.position == position.ID}">selected</c:if> >${position.name}</option>
                     </c:forEach>
                 </select>
                 <input class="mb-2 mt-2 ps-2 py-2 form-control" type="email" name="email" id="email" value="<c:if test="${requestScope.email != null}">${requestScope.email}</c:if>" placeholder="<fmt:message key="field.email"/>">

@@ -51,10 +51,12 @@ public class Crew implements Serializable {
 
     @Override
     public String toString() {
-        return "Crew{" +
-                "ID=" + ID +
-                ", assignedFlight=" + assignedFlight +
-                ", members=" + members.toString() +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append(getClass().getName()).append('@');
+        builder.append("ID=").append(ID);
+        builder.append(", assignedFlight=").append(assignedFlight);
+        builder.append(", members=").append(members.toString());
+
+        return builder.toString();
     }
 }

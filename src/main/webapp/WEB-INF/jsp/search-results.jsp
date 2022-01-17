@@ -91,10 +91,10 @@
                         <c:choose>
                             <%--todo как выводить статус--%>
                             <c:when test="${flight.flightStatus.ID == FlightCondition.SCHEDULED or flight.flightStatus.ID == FlightCondition.READY}">
-                                <td>${flight.flightStatus.designation}</td>
+                                <td>${flight.flightStatus.name}</td>
                             </c:when>
                             <c:otherwise>
-                                <td>${flight.flightStatus.designation}</td>
+                                <td>${flight.flightStatus.name}</td>
                             </c:otherwise>
                         </c:choose>
                     </tr>

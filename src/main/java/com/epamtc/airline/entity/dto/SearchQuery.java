@@ -44,11 +44,12 @@ public class SearchQuery implements Serializable {
 
     @Override
     public String toString() {
-        return "SearchQuery{" +
-                "deptDate=" + deptDate +
-                ", destDate=" + destDate +
-                ", departmentID=" + departmentID +
-                ", destinationID=" + destinationID +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append("deptDate=").append(deptDate);
+        builder.append(", destDate=").append(destDate);
+        builder.append(", departmentID=").append(departmentID);
+        builder.append(", destinationID=").append(destinationID);
+
+        return builder.toString();
     }
 }

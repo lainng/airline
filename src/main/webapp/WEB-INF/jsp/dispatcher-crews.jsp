@@ -66,7 +66,7 @@
                                         <div class="accordion-body">
                                             <p>
                                                 <c:forEach items="${crew.members}" var="employee">
-                                                    <strong>${employee.position.title}</strong> - ${employee.firstName} ${employee.lastName}<br>
+                                                    <strong>${employee.position.name}</strong> - ${employee.firstName} ${employee.lastName}<br>
                                                 </c:forEach>
                                             </p>
                                         </div>

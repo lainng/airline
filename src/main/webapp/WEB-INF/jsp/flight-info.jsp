@@ -93,7 +93,7 @@
                         <c:otherwise>
                             <c:forEach items="${requestScope.crew.members}" var="employee">
                                 <tr>
-                                    <th scope="row">${employee.position.title}</th>
+                                    <th scope="row">${employee.position.name}</th>
                                     <td>${employee.lastName} ${employee.firstName}</td>
                                 </tr>
                             </c:forEach>

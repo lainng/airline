@@ -72,12 +72,14 @@ public class Plane implements Serializable {
 
     @Override
     public String toString() {
-        return "Plane{" +
-                "ID=" + ID +
-                ", model='" + model + '\'' +
-                ", flyingHours=" + flyingHours +
-                ", passengerCapacity=" + passengerCapacity +
-                ", flightRange=" + flightRange +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append(getClass().getName()).append('@');
+        builder.append("ID=").append(ID);
+        builder.append(", model=").append(model);
+        builder.append(", flyingHours=").append(flyingHours);
+        builder.append(", passengerCapacity=").append(passengerCapacity);
+        builder.append(", flightRange=").append(flightRange);
+
+        return builder.toString();
     }
 }

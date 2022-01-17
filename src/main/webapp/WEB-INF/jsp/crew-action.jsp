@@ -106,7 +106,7 @@
                     <c:if test="${(employee.position.ID eq 1) or (employee.position.ID eq 4)}">
                         <tr>
                             <td>${employee.ID}</td>
-                            <td>${employee.position.title}</td>
+                            <td>${employee.position.name}</td>
                             <td>${employee.lastName}</td>
                             <td>${employee.firstName}</td>
                             <td>${employee.email}</td>
@@ -142,7 +142,7 @@
                 <c:if test="${(employee.position.ID eq 1) or (employee.position.ID eq 4)}">
                     <tr>
                         <td>${employee.ID}</td>
-                        <td>${employee.position.title}</td>
+                        <td>${employee.position.name}</td>
                         <td>${employee.lastName}</td>
                         <td>${employee.firstName}</td>
                         <td>${employee.email}</td>
@@ -181,7 +181,7 @@
                         <c:if test="${(employee.position.ID eq 2) or (employee.position.ID eq 3)}">
                             <tr>
                                 <td>${employee.ID}</td>
-                                <td>${employee.position.title}</td>
+                                <td>${employee.position.name}</td>
                                 <td>${employee.lastName}</td>
                                 <td>${employee.firstName}</td>
                                 <td>${employee.email}</td>
@@ -217,7 +217,7 @@
                     <c:if test="${(employee.position.ID eq 2) or (employee.position.ID eq 3)}">
                         <tr>
                             <td>${employee.ID}</td>
-                            <td>${employee.position.title}</td>
+                            <td>${employee.position.name}</td>
                             <td>${employee.lastName}</td>
                             <td>${employee.firstName}</td>
                             <td>${employee.email}</td>

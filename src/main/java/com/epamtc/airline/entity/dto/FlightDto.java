@@ -74,15 +74,17 @@ public class FlightDto implements Serializable {
 
     @Override
     public String toString() {
-        return "FlightDto{" +
-                "ID=" + ID +
-                ", routeID=" + routeID +
-                ", planeID=" + planeID +
-                ", departureTime=" + departureTime +
-                ", destinationTime=" + destinationTime +
-                ", flightStatus=" + flightStatus +
-                ", isConfirmed=" + isConfirmed +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append(getClass().getName()).append('@');
+        builder.append("ID=").append(ID);
+        builder.append(", routeID=").append(routeID);
+        builder.append(", planeID=").append(planeID);
+        builder.append(", departureTime=").append(departureTime);
+        builder.append(", destinationTime=").append(destinationTime);
+        builder.append(", flightStatus=").append(flightStatus);
+        builder.append(", isConfirmed=").append(isConfirmed);
+
+        return builder.toString();
     }
 
     @Override

@@ -31,7 +31,7 @@
                 <select class="form-select my-2 py-2" id="position" name="position-id">
                     <option selected disabled value=""><fmt:message key="staffAction.choosePosition"/></option>
                     <c:forEach var="position" items="${requestScope.positions}">
-                        <option value="${position.ID}" <c:if test="${requestScope.employee.position.ID == position.ID}">selected</c:if> >${position.title}</option>
+                        <option value="${position.ID}" <c:if test="${requestScope.employee.position.ID == position.ID}">selected</c:if> >${position.name}</option>
                     </c:forEach>
                 </select>
             </div>

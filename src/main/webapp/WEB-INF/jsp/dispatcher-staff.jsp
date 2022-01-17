@@ -39,7 +39,7 @@
                     <td>${employee.ID}</td>
                     <td>${employee.lastName}</td>
                     <td>${employee.firstName}</td>
-                    <td>${employee.position.title}</td>
+                    <td>${employee.position.name}</td>
                     <td>${employee.email}</td>
                     <td>
                         <a href="${pageContext.request.contextPath}/controller?command=crews-page&user-id=${employee.ID}" class="mx-2">

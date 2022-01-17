@@ -25,7 +25,7 @@
 <div class="bg-content">
     <div class="container">
         <h2 class="pt-5"><fmt:message key="user.welcome"/> ${user.firstName}</h2>
-        <h5 class="pb-2"><fmt:message key="user.position"/>: ${user.position.title}</h5>
+        <h5 class="pb-2"><fmt:message key="user.position"/>: ${user.position.name}</h5>
         <h3 class="py-3"><fmt:message key="user.flights"/></h3>
         <table id="flights" class="display text-center">
             <thead>
@@ -49,16 +49,16 @@
                     <td><fmt:formatDate value="${flight.destinationTime}" pattern="dd.MM.yyyy HH:mm"/></td>
                     <c:choose>
                         <c:when test="${flight.flightStatus.ID eq FlightCondition.SCHEDULED}">
-                            <td class="text-darkorange">${flight.flightStatus.designation}</td>
+                            <td class="text-darkorange">${flight.flightStatus.name}</td>
                         </c:when>
                         <c:when test="${flight.flightStatus.ID eq FlightCondition.READY}">
-                            <td class="text-success">${flight.flightStatus.designation}</td>
+                            <td class="text-success">${flight.flightStatus.name}</td>
                         </c:when>
                         <c:when test="${flight.flightStatus.ID eq FlightCondition.CANCELED}">
-                            <td class="text-danger">${flight.flightStatus.designation}</td>
+                            <td class="text-danger">${flight.flightStatus.name}</td>
                         </c:when>
                         <c:otherwise>
-                            <td>${flight.flightStatus.designation}</td>
+                            <td>${flight.flightStatus.name}</td>
                         </c:otherwise>
                     </c:choose>
                     <td>

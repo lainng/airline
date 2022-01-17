@@ -12,7 +12,7 @@ public class PositionBuilder implements EntityBuilder<Position> {
     public Position build(ResultSet resultSet) throws SQLException {
         Position position = new Position();
         position.setID(resultSet.getLong(Column.POSITION_ID));
-        position.setTitle(resultSet.getString(Column.POSITION_NAME));
+        position.setName(resultSet.getString(Column.POSITION_NAME));
         position.setRoleID(resultSet.getLong(Column.POSITION_ROLE_ID));
         return position;
     }

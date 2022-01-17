@@ -12,7 +12,7 @@ public class FlightStatusBuilder implements EntityBuilder<FlightStatus> {
     public FlightStatus build(ResultSet resultSet) throws SQLException {
         FlightStatus flightStatus = new FlightStatus();
         flightStatus.setID(resultSet.getLong(Column.FLIGHT_STATUS_ID));
-        flightStatus.setDesignation(resultSet.getString(Column.STATUS_NAME));
+        flightStatus.setName(resultSet.getString(Column.STATUS_NAME));
         return flightStatus;
     }
 }

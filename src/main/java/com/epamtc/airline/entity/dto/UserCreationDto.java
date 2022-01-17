@@ -90,14 +90,16 @@ public class UserCreationDto implements Serializable {
 
     @Override
     public String toString() {
-        return "UserCreationDto{" +
-                "ID=" + ID +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", positionID=" + positionID +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", passwordConfirmation='" + passwordConfirmation + '\'' +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append(getClass().getName()).append("@");
+        builder.append("ID = ").append(ID);
+        builder.append(", firstName=").append(firstName);
+        builder.append(", lastName=").append(lastName);
+        builder.append(", positionID=").append(positionID);
+        builder.append(", email=").append(email);
+        builder.append(", password=").append(password);
+        builder.append(", passwordConfirmation='").append(passwordConfirmation);
+
+        return builder.toString();
     }
 }

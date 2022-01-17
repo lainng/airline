@@ -53,10 +53,12 @@ public class CrewCreationDto implements Serializable {
 
     @Override
     public String toString() {
-        return "CrewCreationDto{" +
-                "ID=" + ID +
-                ", assignedFlightID=" + assignedFlightID +
-                ", members=" + Arrays.toString(members) +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append(getClass().getName()).append('@');
+        builder.append("ID=").append(ID);
+        builder.append(", assignedFlightID=").append(assignedFlightID);
+        builder.append(", members=").append(Arrays.toString(members));
+
+        return builder.toString();
     }
 }

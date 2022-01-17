@@ -56,10 +56,10 @@
                     <c:choose>
                         <c:when test="${flight.flightStatus.ID eq FlightCondition.SCHEDULED or flight.flightStatus.ID eq FlightCondition.READY}">
                             <c:if test="${flight.flightStatus.ID eq FlightCondition.SCHEDULED}">
-                                <td class="text-darkorange">${flight.flightStatus.designation}</td>
+                                <td class="text-darkorange">${flight.flightStatus.name}</td>
                             </c:if>
                             <c:if test="${flight.flightStatus.ID eq FlightCondition.READY}">
-                                <td class="text-success">${flight.flightStatus.designation}</td>x
+                                <td class="text-success">${flight.flightStatus.name}</td>x
                             </c:if>
                             <td>
                                 <a href="${pageContext.request.contextPath}/controller?command=flight-action-page&flight-id=${flight.ID}" class="text-decoration-none me-1" data-toggle="tooltip" title="<fmt:message key="admin.flights.editTooltip"/>">
@@ -75,13 +75,13 @@
                         </c:when>
                         <c:otherwise>
                             <c:if test="${flight.flightStatus.ID eq FlightCondition.ARRIVED}">
-                                <td class="text-primary">${flight.flightStatus.designation}</td>
+                                <td class="text-primary">${flight.flightStatus.name}</td>
                             </c:if>
                             <c:if test="${flight.flightStatus.ID eq FlightCondition.CANCELED}">
-                                <td class="text-danger">${flight.flightStatus.designation}</td>
+                                <td class="text-danger">${flight.flightStatus.name}</td>
                             </c:if>
                             <c:if test="${flight.flightStatus.ID eq FlightCondition.DEPARTED}">
-                                <td>${flight.flightStatus.designation}</td>
+                                <td>${flight.flightStatus.name}</td>
                             </c:if>
                             <td>
                                 <a href="${pageContext.request.contextPath}/controller?command=flight-info&flight-id=${flight.ID}" class="text-decoration-none" data-toggle="tooltip" title="<fmt:message key="admin.flights.seeMoreTooltip"/>">

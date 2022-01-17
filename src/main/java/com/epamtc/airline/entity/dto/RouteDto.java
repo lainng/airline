@@ -81,13 +81,14 @@ public class RouteDto implements Serializable {
 
     @Override
     public String toString() {
-        return "RouteDto{" +
-                "ID=" + ID +
-                ", number='" + number + '\'' +
-                ", departureID=" + departureID +
-                ", destinationID=" + destinationID +
-                ", distance=" + distance +
-                ", duration=" + duration +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append(getClass().getName()).append('@');
+        builder.append("ID=").append(ID);
+        builder.append(", departureID=").append(departureID);
+        builder.append(", destinationID=").append(destinationID);
+        builder.append(", distance=").append(distance);
+        builder.append(", duration=").append(duration);
+
+        return builder.toString();
     }
 }
