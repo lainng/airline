@@ -89,9 +89,8 @@
                         <td><fmt:formatDate value="${flight.destinationTime}" pattern="dd.MM.yyyy HH:mm"/></td>
                         <td>${flight.plane.model}</td>
                         <c:choose>
-                            <%--todo как выводить статус--%>
                             <c:when test="${flight.flightStatus.ID == FlightCondition.SCHEDULED or flight.flightStatus.ID == FlightCondition.READY}">
-                                <td>${flight.flightStatus.name}</td>
+                                <td>${requestScope.flightStatus.name}</td>
                             </c:when>
                             <c:otherwise>
                                 <td>${flight.flightStatus.name}</td>
