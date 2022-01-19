@@ -28,8 +28,12 @@ public class UserPageCommand implements Command {
         List<Flight> flights = flightService.takeUserFlights(user);
         request.setAttribute(RequestAttribute.FLIGHTS, flights);
 
-        String currentCommand = request.getParameter(RequestParameter.COMMAND);
-        session.setAttribute(SessionAttribute.CURRENT_COMMAND, currentCommand);
+        backButtonSetup(request);
         return new CommandResult(Pages.USER_PAGE, RouteType.FORWARD);
+    }
+
+    private void backButtonSetup(HttpServletRequest request) {
+        String currentCommand = request.getParameter(RequestParameter.COMMAND);
+        request.getSession().setAttribute(SessionAttribute.CURRENT_COMMAND, currentCommand);
     }
 }

@@ -23,8 +23,12 @@ public class DispatcherCrewsPageCommand implements Command {
         List<Crew> crews = crewService.takeAllCrews();
         request.setAttribute(RequestAttribute.CREWS, crews);
 
+        backButtonSetup(request);
+        return new CommandResult(Pages.DISPATCHER_CREWS, RouteType.FORWARD);
+    }
+
+    private void backButtonSetup(HttpServletRequest request) {
         String currentCommand = request.getParameter(RequestParameter.COMMAND);
         request.getSession().setAttribute(SessionAttribute.CURRENT_COMMAND, currentCommand);
-        return new CommandResult(Pages.DISPATCHER_CREWS, RouteType.FORWARD);
     }
 }
