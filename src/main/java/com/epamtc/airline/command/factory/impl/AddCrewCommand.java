@@ -28,11 +28,18 @@ public class AddCrewCommand implements Command {
 
         Optional<String> optionalFlightID = Optional.ofNullable(request.getParameter(RequestParameter.FLIGHT_ID));
         String crewID = request.getParameter(RequestParameter.CREW_ID);
-        Optional<String[]> optionalUsersID = Optional.ofNullable(request.getParameterValues(RequestParameter.USER_ID));
+        Optional<String[]> optionalPilotsID = Optional.ofNullable(request.getParameterValues(RequestParameter.PILOTS));
+        Optional<String[]> optionalAttendantsID = Optional.ofNullable(request.getParameterValues(RequestParameter.ATTENDANTS));
 
         CrewCreationDto crewCreationDto = new CrewCreationDto();
-        if (optionalUsersID.isPresent() && optionalFlightID.isPresent()) {
-            crewCreationDto.setMembers(toLongArrayParameter(optionalUsersID.get()));
+        if (optionalPilotsID.isPresent()
+                && optionalAttendantsID.isPresent()
+                && optionalFlightID.isPresent()) {
+            long[] usersID = buildUsersArray(
+                    toLongArrayParameters(optionalPilotsID.get()),
+                    toLongArrayParameters(optionalAttendantsID.get())
+            );
+            crewCreationDto.setMembers(usersID);
             crewCreationDto.setAssignedFlightID(Long.parseLong(optionalFlightID.get()));
         } else {
             session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_CREW_PARAMETERS);
@@ -54,7 +61,22 @@ public class AddCrewCommand implements Command {
         return new CommandResult(Pages.CREW_ACTION_PAGE_REDIRECT, RouteType.REDIRECT);
     }
 
-    private long[] toLongArrayParameter(String[] stringParameters) {
+    private long[] buildUsersArray(long[]... idArrays) {
+        int initialUsersNumber = 0;
+        for (long[] ids : idArrays) {
+            initialUsersNumber += ids.length;
+        }
+
+        long[] usersIDs = new long[initialUsersNumber];
+        int copyPos = 0;
+        for (long[] ids : idArrays) {
+            System.arraycopy(ids, 0, usersIDs, copyPos, ids.length);
+            copyPos += ids.length;
+        }
+        return usersIDs;
+    }
+
+    private long[] toLongArrayParameters(String[] stringParameters) {
         long[] longParameters = new long[stringParameters.length];
         for (int i = 0; i < stringParameters.length; i++) {
             longParameters[i] = Long.parseLong(stringParameters[i]);

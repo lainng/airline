@@ -49,9 +49,7 @@ public class CrewActionPageCommand implements Command {
             assignedFlight = flightService.takeFlight(Long.parseLong(flightID));
 
             if (optionalCrew.isPresent()) {
-                Crew crew = optionalCrew.get();
-                users.removeAll(crew.getMembers());
-                editCrewSettings(request, crew);
+                editCrewSettings(request, optionalCrew.get());
             } else if (assignedFlight.isPresent()) {
                 assignCrewSettings(request, assignedFlight.get());
             } else {

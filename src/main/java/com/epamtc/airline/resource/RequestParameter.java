@@ -27,4 +27,6 @@ public final class RequestParameter {
     public static final String DEPARTMENT_DATE = "deptDate";
     public static final String DESTINATION_DATE = "destDate";
     public static final String DEPARTMENT_TIME = "deptTime";
+    public static final String PILOTS = "pilots";
+    public static final String ATTENDANTS = "attendants";
 }

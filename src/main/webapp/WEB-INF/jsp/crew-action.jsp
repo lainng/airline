@@ -5,6 +5,12 @@
 
 <fmt:setLocale value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}"/>
 <fmt:bundle basename="labels"/>
+
+<c:set var="PILOT" value="1" scope="page"/>
+<c:set var="SECOND_PILOT" value="4" scope="page"/>
+<c:set var="ATTENDANT" value="2" scope="page"/>
+<c:set var="SENIOUR_ATTENDANT" value="3" scope="page"/>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -40,7 +46,7 @@
                 </c:if>
             </div>
             <h4 class="py-3"><fmt:message key="crewAction.flights"/>:</h4>
-            <table class="display compact text-center" id="flights">
+            <table id="flights" class="display compact text-center pt-2 mb-2">
                 <thead>
                 <tr>
                     <th><fmt:message key="table.ID"/></th>
@@ -71,8 +77,8 @@
                 <c:if test="${requestScope.crew != null}">
                     <tr>
                         <td>${requestScope.crew.assignedFlight.ID}</td>
-                        <td>${requestScope.crew.assignedFlight.route.departure}</td>
-                        <td>${requestScope.crew.assignedFlight.route.destination}</td>
+                        <td>${requestScope.crew.assignedFlight.route.departure.name}</td>
+                        <td>${requestScope.crew.assignedFlight.route.destination.name}</td>
                         <td><fmt:formatDate value="${requestScope.crew.assignedFlight.departureTime}" pattern="dd.MM.yyyy HH:mm"/></td>
                         <td><fmt:formatDate value="${requestScope.crew.assignedFlight.destinationTime}" pattern="dd.MM.yyyy HH:mm"/></td>
                         <td>${requestScope.crew.assignedFlight.plane.model}</td>
@@ -85,47 +91,9 @@
             </table>
         </div>
     </div>
-    <div class="container py-4">
-        <h4 class="py-3"><fmt:message key="crewAction.chosenPilots"/>:</h4>
-        <table class="display compact text-center" id="chosenPilots">
-            <thead>
-            <tr>
-                <th><fmt:message key="table.ID"/></th>
-                <th><fmt:message key="table.position"/></th>
-                <th><fmt:message key="table.lastName"/></th>
-                <th><fmt:message key="table.firstName"/></th>
-                <th><fmt:message key="table.email"/></th>
-                <th><fmt:message key="table.crews"/></th>
-                <th><fmt:message key="table.delete"/></th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:if test="${requestScope.crew != null}">
-                <c:forEach items="${requestScope.crew.members}" var="employee">
-                    <%--todo заменить числа на константы--%>
-                    <c:if test="${(employee.position.ID eq 1) or (employee.position.ID eq 4)}">
-                        <tr>
-                            <td>${employee.ID}</td>
-                            <td>${employee.position.name}</td>
-                            <td>${employee.lastName}</td>
-                            <td>${employee.firstName}</td>
-                            <td>${employee.email}</td>
-                            <td>
-                                <a href="${pageContext.request.contextPath}/controller?command=crews-page&user-id=${employee.ID}">
-                                    <i class="bi bi-people text-center link-dark"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <input type="checkbox" class="form-check-input" name="user-id" value="${employee.ID}" form="crew" checked>
-                            </td>
-                        </tr>
-                    </c:if>
-                </c:forEach>
-            </c:if>
-            </tbody>
-        </table>
-        <h4 class="pb-3 pt-5"><fmt:message key="crewAction.pilots"/>:</h4>
-        <table id="pilots" class="display compact text-center">
+    <div class="container py-3">
+        <h4 class="pb-3 pt-3"><fmt:message key="crewAction.pilots"/>:</h4>
+        <table id="pilots" class="display compact text-center pt-2 mb-2">
             <thead>
             <tr>
                 <th><fmt:message key="table.ID"/></th>
@@ -139,7 +107,7 @@
             </thead>
             <tbody>
             <c:forEach items="${requestScope.employees}" var="employee">
-                <c:if test="${(employee.position.ID eq 1) or (employee.position.ID eq 4)}">
+                <c:if test="${(employee.position.ID eq PILOT) or (employee.position.ID eq SECOND_PILOT)}">
                     <tr>
                         <td>${employee.ID}</td>
                         <td>${employee.position.name}</td>
@@ -148,11 +116,11 @@
                         <td>${employee.email}</td>
                         <td>
                             <a href="${pageContext.request.contextPath}/controller?command=crews-page&user-id=${employee.ID}">
-                                <i class="bi bi-people text-center link-dark"></i>
+                                <i class="bi bi-people text-center link-dark" data-toggle="tooltip" title="<fmt:message key="tooltip.crews"/>"></i>
                             </a>
                         </td>
                         <td>
-                            <input type="checkbox" class="form-check-input" name="user-id" value="${employee.ID}" form="crew">
+                            <input type="checkbox" class="form-check-input" name="pilots" value="${employee.ID}" <c:if test="${requestScope.crew.members.contains(employee)}">checked</c:if> form="crew">
                         </td>
                     </tr>
                 </c:if>
@@ -161,46 +129,9 @@
         </table>
     </div>
     <div class="bg-white">
-        <div class="container py-4">
-            <h4 class="py-3"><fmt:message key="crewAction.chosenAttendants"/>:</h4>
-            <table class="display compact text-center" id="chosenAttendants">
-                <thead>
-                <tr>
-                    <th><fmt:message key="table.ID"/></th>
-                    <th><fmt:message key="table.position"/></th>
-                    <th><fmt:message key="table.lastName"/></th>
-                    <th><fmt:message key="table.firstName"/></th>
-                    <th><fmt:message key="table.email"/></th>
-                    <th><fmt:message key="table.crews"/></th>
-                    <th><fmt:message key="table.delete"/></th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:if test="${requestScope.crew != null}">
-                    <c:forEach items="${requestScope.crew.members}" var="employee">
-                        <c:if test="${(employee.position.ID eq 2) or (employee.position.ID eq 3)}">
-                            <tr>
-                                <td>${employee.ID}</td>
-                                <td>${employee.position.name}</td>
-                                <td>${employee.lastName}</td>
-                                <td>${employee.firstName}</td>
-                                <td>${employee.email}</td>
-                                <td>
-                                    <a href="${pageContext.request.contextPath}/controller?command=crews-page&user-id=${employee.ID}">
-                                        <i class="bi bi-people text-center link-dark"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <input type="checkbox" class="form-check-input" name="user-id" value="${employee.ID}" form="crew" checked>
-                                </td>
-                            </tr>
-                        </c:if>
-                    </c:forEach>
-                </c:if>
-                </tbody>
-            </table>
-            <h4 class="pb-3 pt-5"><fmt:message key="crewAction.attendants"/>:</h4>
-            <table id="attendants" class="display compact text-center">
+        <div class="container py-3">
+            <h4 class="pb-3 pt-3"><fmt:message key="crewAction.attendants"/>:</h4>
+            <table id="attendants" class="display compact text-center pt-2 mb-2">
                 <thead>
                 <tr>
                     <th><fmt:message key="table.ID"/></th>
@@ -214,7 +145,7 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${requestScope.employees}" var="employee">
-                    <c:if test="${(employee.position.ID eq 2) or (employee.position.ID eq 3)}">
+                    <c:if test="${(employee.position.ID eq ATTENDANT) or (employee.position.ID eq SENIOUR_ATTENDANT)}">
                         <tr>
                             <td>${employee.ID}</td>
                             <td>${employee.position.name}</td>
@@ -222,13 +153,12 @@
                             <td>${employee.firstName}</td>
                             <td>${employee.email}</td>
                             <td>
-                                <%--todo tooltip--%>
                                 <a href="${pageContext.request.contextPath}/controller?command=crews-page&user-id=${employee.ID}">
-                                    <i class="bi bi-people text-center link-dark"></i>
+                                    <i class="bi bi-people text-center link-dark" data-toggle="tooltip" title="<fmt:message key="tooltip.crews"/>"></i>
                                 </a>
                             </td>
                             <td>
-                                <input type="checkbox" class="form-check-input" name="user-id" value="${employee.ID}" form="crew">
+                                <input type="checkbox" class="form-check-input" name="attendants" value="${employee.ID}" <c:if test="${requestScope.crew.members.contains(employee)}">checked</c:if> form="crew">
                             </td>
                         </tr>
                     </c:if>
@@ -238,58 +168,44 @@
         </div>
     </div>
     <div class="container">
-        <a href="${pageContext.request.contextPath}/controller?command=${requestScope.previousCommand}" class="btn btn-primary btn-darkblue py-2 my-5"><fmt:message key="button.goBack"/></a>
+        <a href="${pageContext.request.contextPath}/controller?command=${requestScope.previousCommand}" class="btn btn-primary btn-darkblue py-2 my-4"><fmt:message key="button.goBack"/></a>
     </div>
 </div>
 <jsp:include page="components/footer.jsp"/>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.11.3/sorting/custom-data-source/dom-checkbox.js"></script>
 <script src="https://cdn.datatables.net/plug-ins/1.11.3/sorting/datetime-moment.js"></script>
 <script>
     $(document).ready(function () {
         $.fn.dataTable.moment('DD.MM.YYYY HH:mm');
-        let chosenPilots = $('#chosenPilots').DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.11.0/i18n/ru.json'
-            },
-            columnDefs: [
-                { orderable: false, targets: [5, 6] }
-            ],
-            'paging' : false,
-            'info' : false,
-            'searching' : false,
+        $('[data-toggle="tooltip"]').tooltip({
+            container: 'table',
         });
-        let pilots = $('#pilots').DataTable({
+
+        let pilots = $('#pilots').dataTable({
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.11.0/i18n/ru.json'
             },
             columnDefs: [
-                { orderable: false, targets: [5, 6] }
+                { orderDataType: 'dom-checkbox', targets: [6], type: 'text'},
+                { orderable: false, targets: [5] }
             ],
+            order: [[ 6, "desc" ]],
         });
         let attendants = $('#attendants').DataTable({
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.11.0/i18n/ru.json'
             },
             columnDefs: [
-                { orderable: false, targets: [5, 6] }
+                { orderDataType: 'dom-checkbox', targets: [6], type: 'text'},
+                { orderable: false, targets: [5] }
             ],
-        });
-        let chosenAttendants = $('#chosenAttendants').DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.11.0/i18n/ru.json'
-            },
-            columnDefs: [
-                { orderable: false, targets: [5, 6] }
-            ],
-            'paging' : false,
-            'info' : false,
-            'searching' : false,
+            order: [[ 6, "desc" ]],
         });
         let flights = $('#flights').DataTable({
             language: {
@@ -301,23 +217,32 @@
             "order": [[ 3, "desc" ]],
         });
 
-        replaceEmplBackForth(pilots, chosenPilots, ':checkbox');
-        replaceEmplBackForth(attendants, chosenAttendants, ':checkbox');
-
         $.validator.addMethod('validFlights', function () {
             let checkedFlag = false;
             flights.$(':radio').each(function () {
                 if($(this).is(':checked')) {
                     checkedFlag = true;
                 }
-            })
+            });
             return checkedFlag;
         });
         $.validator.addMethod('validPilots', function () {
-            return !(chosenPilots.rows().data().length === 0);
+            let checkedFlag = false;
+            pilots.$(':checkbox').each(function () {
+                if($(this).is(':checked')) {
+                    checkedFlag = true;
+                }
+            });
+            return checkedFlag;
         });
         $.validator.addMethod('validAttendants', function () {
-            return !(chosenAttendants.rows().data().length === 0);
+            let checkedFlag = false;
+            attendants.$(':checkbox').each(function () {
+                if($(this).is(':checked')) {
+                    checkedFlag = true;
+                }
+            });
+            return checkedFlag;
         });
 
         $('#crew').validate({
@@ -350,20 +275,6 @@
             },
         });
     })
-    function replaceEmplBackForth(deptTable, destTable, selector) {
-        deptTable.on('click', selector, function () {
-            let row = deptTable.row($(this).parents('tr'));
-            destTable.row.add(row.data()).draw();
-            destTable.$(':not(:checked)').prop("checked", true);
-            deptTable.row(row).remove().draw();
-        });
-        destTable.on('click', selector, function () {
-            let row = destTable.row($(this).parents('tr'));
-            deptTable.row.add(row.data()).draw();
-            deptTable.$(':checked').prop("checked", false);
-            destTable.row(row).remove().draw();
-        });
-    }
 </script>
 </body>
 </html>
