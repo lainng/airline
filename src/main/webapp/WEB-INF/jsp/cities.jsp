@@ -55,7 +55,7 @@
                         <td>${city.name}</td>
                         <td>
                             <a href="${pageContext.request.contextPath}/controller?command=city-action-page&city-id=${city.ID}" class="text-decoration-none mx-2">
-                                <i class="bi bi-pencil link-dark" data-toggle="tooltip" title="<fmt:message key="cities.tooltipRename"/>"></i>
+                                <i class="bi bi-pencil link-dark" data-toggle="tooltip" title="<fmt:message key="tooltip.rename"/>"></i>
                             </a>
                         </td>
                     </tr>

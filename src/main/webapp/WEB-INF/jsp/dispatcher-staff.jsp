@@ -45,7 +45,7 @@
                     <td>
                         <c:if test="${employee.position.ID eq UserRole.USER}">
                             <a href="${pageContext.request.contextPath}/controller?command=crews-page&user-id=${employee.ID}" class="mx-2">
-                                <i class="bi bi-people link-dark text-decoration-none" data-toggle="tooltip" title="<fmt:message key="dispatcher.staff.crewsTooltip"/>"></i>
+                                <i class="bi bi-people link-dark text-decoration-none" data-toggle="tooltip" title="<fmt:message key="tooltip.seeMore"/>"></i>
                             </a>
                         </c:if>
                     </td>

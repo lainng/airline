@@ -54,11 +54,11 @@
                     <td>
                         <c:if test="${employee.position.ID eq UserRole.USER}">
                             <a href="${pageContext.request.contextPath}/controller?command=crews-page&user-id=${employee.ID}" class="mx-2 text-decoration-none">
-                                <i class="bi bi-people link-dark" data-toggle="tooltip" title="<fmt:message key="admin.staff.crewsTooltip"/>"></i>
+                                <i class="bi bi-people link-dark" data-toggle="tooltip" title="<fmt:message key="tooltip.crews"/>"></i>
                             </a>
                         </c:if>
                         <a href="${pageContext.request.contextPath}/controller?command=staff-action-page&user-id=${employee.ID}" class="mx-2 text-decoration-none">
-                            <i class="bi bi-pencil link-dark " data-toggle="tooltip" title="<fmt:message key="admin.staff.editTooltip"/>"></i>
+                            <i class="bi bi-pencil link-dark " data-toggle="tooltip" title="<fmt:message key="tooltip.edit"/>"></i>
                         </a>
                     </td>
                 </tr>

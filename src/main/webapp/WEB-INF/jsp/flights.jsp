@@ -62,13 +62,13 @@
                                 <td class="text-success">${flight.flightStatus.name}</td>x
                             </c:if>
                             <td>
-                                <a href="${pageContext.request.contextPath}/controller?command=flight-action-page&flight-id=${flight.ID}" class="text-decoration-none me-1" data-toggle="tooltip" title="<fmt:message key="admin.flights.editTooltip"/>">
+                                <a href="${pageContext.request.contextPath}/controller?command=flight-action-page&flight-id=${flight.ID}" class="text-decoration-none me-1" data-toggle="tooltip" title="<fmt:message key="tooltip.edit"/>">
                                     <i class="bi bi-pencil link-dark"></i>
                                 </a>
-                                <a class="text-decoration-none mx-2" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#cancelModal" title="<fmt:message key="admin.flights.cancelTooltip"/>">
+                                <a class="text-decoration-none mx-2" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#cancelModal" title="<fmt:message key="tooltip.cancel"/>">
                                     <i class="bi bi-x-circle text-danger" id="${flight.ID}"></i>
                                 </a>
-                                <a href="${pageContext.request.contextPath}/controller?command=flight-info&flight-id=${flight.ID}" class="text-decoration-none ms-1" data-toggle="tooltip" title="<fmt:message key="admin.flights.seeMoreTooltip"/>">
+                                <a href="${pageContext.request.contextPath}/controller?command=flight-info&flight-id=${flight.ID}" class="text-decoration-none ms-1" data-toggle="tooltip" title="<fmt:message key="tooltip.seeMore"/>">
                                     <i class="bi bi-info-circle link-dark"></i>
                                 </a>
                             </td>
@@ -84,7 +84,7 @@
                                 <td>${flight.flightStatus.name}</td>
                             </c:if>
                             <td>
-                                <a href="${pageContext.request.contextPath}/controller?command=flight-info&flight-id=${flight.ID}" class="text-decoration-none" data-toggle="tooltip" title="<fmt:message key="admin.flights.seeMoreTooltip"/>">
+                                <a href="${pageContext.request.contextPath}/controller?command=flight-info&flight-id=${flight.ID}" class="text-decoration-none" data-toggle="tooltip" title="<fmt:message key="tooltip.seeMore"/>">
                                     <i class="bi bi-info-circle link-dark"></i>
                                 </a>
                             </td>

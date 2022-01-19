@@ -46,7 +46,7 @@
                     <td>${plane.flightRange}</td>
                     <td>
                         <a href="${pageContext.request.contextPath}/controller?command=plane-action-page&plane-id=${plane.ID}">
-                            <i class="bi bi-pencil link-dark" data-toggle="tooltip" title="<fmt:message key="admin.planes.editTooltip"/>"></i>
+                            <i class="bi bi-pencil link-dark" data-toggle="tooltip" title="<fmt:message key="tooltip.edit"/>"></i>
                         </a>
                     </td>
                 </tr>
