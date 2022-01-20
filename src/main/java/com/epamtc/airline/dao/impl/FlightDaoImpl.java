@@ -1,10 +1,10 @@
 package com.epamtc.airline.dao.impl;
 
+import com.epamtc.airline.command.FlightCondition;
 import com.epamtc.airline.dao.AbstractDao;
 import com.epamtc.airline.dao.FlightDao;
 import com.epamtc.airline.dao.builder.EntityBuilderFactory;
 import com.epamtc.airline.dao.exception.DaoException;
-import com.epamtc.airline.entity.FlightStatus;
 import com.epamtc.airline.entity.dto.FlightDto;
 import com.epamtc.airline.entity.dto.SearchQuery;
 
@@ -96,7 +96,7 @@ public class FlightDaoImpl extends AbstractDao<FlightDto> implements FlightDao {
                 QUERY_REMOVE_FLIGHT_FROM_CREW,
                 flightID
         );
-        updateFlightStatus(flightID, FlightStatus.Condition.CANCELED);
+        updateFlightStatus(flightID, FlightCondition.CANCELED);
     }
     @Override
     public void insertFlight(FlightDto flightDto) throws DaoException {

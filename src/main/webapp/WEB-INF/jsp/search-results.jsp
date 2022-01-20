@@ -2,11 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
+<%@ page import="com.epamtc.airline.command.FlightCondition" %>
 
 <fmt:setLocale value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}"/>
 <fmt:bundle basename="labels"/>
-<jsp:useBean id="STATUS" class="com.epamtc.airline.entity.FlightStatus$Condition"/>
-
 <html>
 <head>
     <meta charset="UTF-8">
@@ -90,7 +89,7 @@
                         <td><fmt:formatDate value="${flight.destinationTime}" pattern="dd.MM.yyyy HH:mm"/></td>
                         <td>${flight.plane.model}</td>
                         <c:choose>
-                            <c:when test="${flight.flightStatus.ID == STATUS.SCHEDULED or flight.flightStatus.ID == STATUS.READY}">
+                            <c:when test="${flight.flightStatus.ID == FlightCondition.SCHEDULED or flight.flightStatus.ID == FlightCondition.READY}">
                                 <td>${requestScope.flightStatus.name}</td>
                             </c:when>
                             <c:otherwise>

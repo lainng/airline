@@ -84,7 +84,7 @@ public class AddFlightCommand implements Command {
 
     private void newFlightSetup(HttpSession session, FlightDto flightDto) throws ServiceException {
         FlightService flightService = ServiceFactory.getInstance().getFlightService();
-        FlightStatus flightStatus = new FlightStatus(FlightStatus.Condition.SCHEDULED);
+        FlightStatus flightStatus = new FlightStatus(FlightCondition.SCHEDULED);
         flightDto.setFlightStatus(flightStatus);
         boolean isFlightCreated = flightService.createFlight(flightDto);
         if (isFlightCreated) {
