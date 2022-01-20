@@ -21,7 +21,7 @@
 <div class="bg-content">
     <div class="container">
         <h2 class="pb-4 pt-5"><fmt:message key="flightInfo.info"/></h2>
-        <div class="row align-content-start">
+        <div class="row align-content-start pb-5">
             <div class="col-4">
                 <h3><fmt:message key="flightInfo.plane"/></h3>
                 <table class="table">
@@ -49,10 +49,6 @@
                 <h3><fmt:message key="flightInfo.route"/></h3>
                 <table class="table">
                     <tbody>
-                    <tr>
-                        <th scope="row"><fmt:message key="flightInfo.route.number"/></th>
-                        <td>${currentFlight.route.number}</td>
-                    </tr>
                     <tr>
                         <th scope="row"><fmt:message key="flightInfo.route.dept"/></th>
                         <td>${currentFlight.route.departure.name}</td>
@@ -103,15 +99,9 @@
                 </table>
             </div>
         </div>
-        <div class="pt-4 pb-5">
-            <a class="btn btn-primary btn-darkblue py-2" href="${pageContext.request.contextPath}/controller?command=${requestScope.previousCommand}">Назад</a>
-        </div>
     </div>
 </div>
 <jsp:include page="components/footer.jsp"/>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous">
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

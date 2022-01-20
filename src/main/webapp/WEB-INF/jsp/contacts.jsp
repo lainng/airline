@@ -18,7 +18,6 @@
 </head>
 <body>
 <jsp:include page="components/header.jsp"/>
-<!-- Contacts -->
 <div class="bg-content">
     <div class="container py-5">
         <div class="ps-5 ms-5">
@@ -42,7 +41,6 @@
                 <li><fmt:message key="contacts.Taiwan"/>: 900-421-963</li>
                 <li><fmt:message key="contacts.Japan"/>: 900-421-567</li>
             </ul>
-            <a href="${pageContext.request.contextPath}/controller?command=home-page" class="btn btn-primary btn-darkblue mt-4"><fmt:message key="button.toHome"/></a>
         </div>
     </div>
 </div>

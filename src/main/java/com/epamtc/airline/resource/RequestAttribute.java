@@ -19,7 +19,6 @@ public final class RequestAttribute {
     public static final String CURRENT_FLIGHT = "currentFlight";
     public static final String EMPLOYEE = "employee";
     public static final String EMPLOYEES = "employees";
-    public static final String PREVIOUS_COMMAND = "previousCommand";
     public static final String ROUTES = "routes";
     public static final String ROUTE = "route";
     public static final String PLANES = "planes";

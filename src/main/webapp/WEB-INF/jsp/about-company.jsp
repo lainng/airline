@@ -18,13 +18,11 @@
 </head>
 <body>
 <jsp:include page="components/header.jsp"/>
-<!-- About -->
 <div class="bg-content">
     <div class="container py-5">
         <div class="ps-5 ms-5">
             <h2 class="pb-4"><fmt:message key="aboutCompany.company"/></h2>
             <fmt:message key="aboutCompany.text"/>
-            <a href="${pageContext.request.contextPath}/controller?command=home-page" class="btn btn-primary btn-darkblue mt-4"><fmt:message key="button.toHome"/></a>
         </div>
     </div>
 </div>

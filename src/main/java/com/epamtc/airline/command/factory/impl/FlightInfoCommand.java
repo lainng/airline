@@ -41,12 +41,6 @@ public class FlightInfoCommand implements Command {
         request.setAttribute(RequestAttribute.CURRENT_FLIGHT, optionalFlight.get());
         flightCrewSettings(request, flightID);
 
-        Optional<String> prevCommand = Optional.ofNullable((String) session.getAttribute(SessionAttribute.CURRENT_COMMAND));
-        if (!prevCommand.isPresent()) {
-            request.setAttribute(RequestAttribute.PREVIOUS_COMMAND, CommandName.HOME_PAGE_COMMAND);
-        } else {
-            request.setAttribute(RequestAttribute.PREVIOUS_COMMAND, prevCommand.get());
-        }
         return new CommandResult(Pages.FLIGHT_INFO_PAGE, RouteType.FORWARD);
     }
 

@@ -20,7 +20,7 @@
 <body>
 <jsp:include page="components/header.jsp"/>
 <div class="bg-content">
-    <div class="container">
+    <div class="container pb-5">
         <div class="d-flex flex-row justify-content-between pt-5 pb-4">
             <h3><fmt:message key="admin.planes.mainLabel"/></h3>
             <a href="${pageContext.request.contextPath}/controller?command=plane-action-page" class="btn btn-primary btn-darkblue mb-4 py-2"><fmt:message key="admin.planes.addPlane"/></a>
@@ -53,9 +53,6 @@
             </c:forEach>
             </tbody>
         </table>
-        <div class="pt-4 pb-5">
-            <a class="btn text-light btn-darkblue py-2" href="${pageContext.request.contextPath}/controller?command=admin-page"><fmt:message key="button.goBack"/></a>
-        </div>
     </div>
 </div>
 <jsp:include page="components/footer.jsp"/>

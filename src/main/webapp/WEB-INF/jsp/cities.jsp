@@ -31,7 +31,7 @@
                 <button type="submit" form="city" class="btn btn-primary btn-darkblue py-2"><fmt:message key="button.add"/></button>
             </div>
         </div>
-        <div class="d-flex flex-column justify-content-center w-50 m-auto">
+        <div class="d-flex flex-column justify-content-center w-50 m-auto pb-5">
             <c:choose>
                 <c:when test="${requestScope.success != null}">
                     <div class="success text-center mb-3"><fmt:message key="${requestScope.success}"/></div>
@@ -62,9 +62,6 @@
                 </c:forEach>
                 </tbody>
             </table>
-        </div>
-        <div class="py-5">
-            <a class="btn text-light btn-darkblue py-2" href="${pageContext.request.contextPath}/controller?command=routes-page"><fmt:message key="button.goBack"/></a>
         </div>
     </div>
 </div>
@@ -100,6 +97,11 @@
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.11.0/i18n/ru.json'
             },
+            columns: [
+                { width: "16%" },
+                null,
+                { width: "22%" },
+            ],
         } );
         $('#city').validate({
             rules: {

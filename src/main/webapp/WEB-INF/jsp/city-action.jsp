@@ -19,8 +19,8 @@
 <body>
 <jsp:include page="components/header.jsp"/>
 <div class="bg-content">
-    <div class="container">
-        <h3 class="text-center pt-5 pb-4"><fmt:message key="cityAction.mainLabel"/></h3>
+    <div class="container pb-5">
+        <h3 class="text-center pt-5 pb-5"><fmt:message key="cityAction.mainLabel"/></h3>
         <form method="post" action="${pageContext.request.contextPath}/controller?command=add-city" id="city">
             <input type="hidden" name="city-id" value="${requestScope.city.ID}">
             <div class="d-flex flex-column justify-content-between m-auto w-35">

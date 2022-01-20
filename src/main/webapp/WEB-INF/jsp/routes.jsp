@@ -20,7 +20,7 @@
 <body>
 <jsp:include page="components/header.jsp"/>
 <div class="pb-1 bg-content">
-    <div class="container">
+    <div class="container pb-5">
         <div class="d-flex flex-row justify-content-between align-content-center py-5">
             <h3><fmt:message key="admin.routes.mainLabel"/></h3>
             <div>
@@ -32,7 +32,6 @@
             <thead>
             <tr>
                 <th><fmt:message key="table.ID"/></th>
-                <th><fmt:message key="table.number"/></th>
                 <th><fmt:message key="table.dept"/></th>
                 <th><fmt:message key="table.dest"/></th>
                 <th><fmt:message key="table.duration"/></th>
@@ -44,23 +43,19 @@
             <c:forEach items="${requestScope.routes}" var="route">
                 <tr>
                     <td>${route.ID}</td>
-                    <td>${route.number}</td>
                     <td>${route.departure.name}</td>
                     <td>${route.destination.name}</td>
                     <td><fmt:formatDate value="${route.duration}" pattern="HH:mm"/></td>
                     <td>${route.distance}</td>
                     <td>
                         <a href="${pageContext.request.contextPath}/controller?command=route-action-page&route-id=${route.ID}">
-                            <i class="bi bi-pencil link-dark" data-toggle="tooltip" title="<fmt:message key="admin.routes.editTooltip"/>"></i>
+                            <i class="bi bi-pencil link-dark" data-toggle="tooltip" title="<fmt:message key="tooltip.edit"/>"></i>
                         </a>
                     </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
-        <div class="pt-4 pb-5">
-            <a class="btn text-light btn-darkblue py-2" href="${pageContext.request.contextPath}/controller?command=admin-page"><fmt:message key="button.goBack"/></a>
-        </div>
     </div>
 </div>
 <jsp:include page="components/footer.jsp"/>
@@ -80,7 +75,7 @@
                 url: '//cdn.datatables.net/plug-ins/1.11.0/i18n/ru.json'
             },
             "columnDefs": [ {
-                "targets": 6,
+                "targets": 5,
                 "orderable": false
             } ],
         } );

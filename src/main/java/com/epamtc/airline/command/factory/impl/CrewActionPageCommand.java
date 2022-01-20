@@ -7,7 +7,6 @@ import com.epamtc.airline.entity.User;
 import com.epamtc.airline.resource.Pages;
 import com.epamtc.airline.resource.RequestAttribute;
 import com.epamtc.airline.resource.RequestParameter;
-import com.epamtc.airline.resource.SessionAttribute;
 import com.epamtc.airline.service.CrewService;
 import com.epamtc.airline.service.FlightService;
 import com.epamtc.airline.service.ServiceFactory;
@@ -61,12 +60,6 @@ public class CrewActionPageCommand implements Command {
         request.setAttribute(RequestAttribute.FLIGHTS, unassignedFlights);
         request.setAttribute(RequestAttribute.EMPLOYEES, users);
 
-        Optional<String> prevCommand = Optional.ofNullable((String) session.getAttribute(SessionAttribute.CURRENT_COMMAND));
-        if (!prevCommand.isPresent()) {
-            request.setAttribute(RequestAttribute.PREVIOUS_COMMAND, CommandName.DISPATCHER_PAGE_COMMAND);
-        } else {
-            request.setAttribute(RequestAttribute.PREVIOUS_COMMAND, prevCommand.get());
-        }
         return new CommandResult(Pages.CREW_ACTION_PAGE, RouteType.FORWARD);
     }
 

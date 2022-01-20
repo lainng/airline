@@ -22,7 +22,7 @@
 <body>
 <jsp:include page="components/header.jsp"/>
 <div class="bg-content">
-    <div class="container">
+    <div class="container pb-5">
         <h3 class="pt-5 pb-4"><fmt:message key="admin.staff.mainLabel"/></h3>
         <c:choose>
             <c:when test="${requestScope.success != null}">
@@ -65,9 +65,6 @@
             </c:forEach>
             </tbody>
         </table>
-        <div class="pt-4 pb-5">
-            <a class="btn text-light btn-darkblue py-2" href="${pageContext.request.contextPath}/controller?command=admin-page"><fmt:message key="button.goBack"/></a>
-        </div>
     </div>
 </div>
 <jsp:include page="components/footer.jsp"/>

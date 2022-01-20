@@ -17,13 +17,13 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title><fmt:message key="user.title"/></title>
 </head>
 <body>
 <jsp:include page="components/header.jsp"/>
 <div class="bg-content">
-    <div class="container">
+    <div class="container pb-5">
         <h2 class="pt-5"><fmt:message key="user.welcome"/> ${user.firstName}</h2>
         <h5 class="pb-2"><fmt:message key="user.position"/>: ${user.position.name}</h5>
         <h3 class="py-3"><fmt:message key="user.flights"/></h3>
@@ -42,7 +42,7 @@
             <tbody>
             <c:forEach items="${requestScope.flights}" var="flight">
                 <tr>
-                    <td>${flight.route.number}</td>
+                    <td>${flight.route.ID}</td>
                     <td>${flight.route.departure.name}</td>
                     <td>${flight.route.destination.name}</td>
                     <td><fmt:formatDate value="${flight.departureTime}" pattern="dd.MM.yyyy HH:mm"/></td>
@@ -80,14 +80,10 @@
             </c:forEach>
             </tbody>
         </table>
-        <div class="pt-4 pb-5">
-            <a class="btn text-light btn-darkblue py-2" href="${pageContext.request.contextPath}/controller?command=home-page"><fmt:message key="button.toHome"/></a>
-        </div>
     </div>
 </div>
 <jsp:include page="components/footer.jsp"/>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>

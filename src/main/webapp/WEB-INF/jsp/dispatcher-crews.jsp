@@ -84,9 +84,6 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <div class="pt-4">
-                <a class="btn text-light btn-darkblue py-2" href="${pageContext.request.contextPath}/controller?command=dispatcher-page"><fmt:message key="button.goBack"/></a>
-            </div>
         </div>
     </div>
 </div>
@@ -138,7 +135,7 @@
                 "orderable": false
             } ],
         } );
-        /* todo выделить в общий файл */
+        /* todo выделить в общий файл - функция по установке ID в modal */
         let path = $('#deleteButtonModal').attr('href');
         $('i.bi-x-circle').click(function () {
             let crewID = $(this).attr('id');

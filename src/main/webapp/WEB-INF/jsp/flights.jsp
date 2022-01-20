@@ -15,25 +15,29 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title><fmt:message key="admin.flights.title"/></title>
 </head>
 <body>
 <jsp:include page="components/header.jsp"/>
 <div class="bg-content">
-    <div class="container">
+    <div class="container pb-5">
         <div class="d-flex flex-row justify-content-between pt-5 pb-5">
             <h3><fmt:message key="admin.flights.mainLabel"/></h3>
-            <c:if test="${requestScope.success != null}">
-                <div class="success text-center w-33"><fmt:message key="${requestScope.success}"/></div>
-            </c:if>
+            <c:choose>
+                <c:when test="${requestScope.success != null}">
+                    <div class="success text-center w-33"><fmt:message key="${requestScope.success}"/></div>
+                </c:when>
+                <c:when test="${requestScope.error != null}">
+                    <div class="error text-center w-33"><fmt:message key="${requestScope.error}"/></div>
+                </c:when>
+            </c:choose>
             <a href="${pageContext.request.contextPath}/controller?command=flight-action-page" class="btn btn-primary btn-darkblue py-2"><fmt:message key="admin.flights.addPlane"/></a>
         </div>
         <table id="flights" class="display text-center my-2">
             <thead>
             <tr>
                 <th><fmt:message key="table.ID"/></th>
-                <th><fmt:message key="table.number"/></th>
                 <th><fmt:message key="table.dept"/></th>
                 <th><fmt:message key="table.dest"/></th>
                 <th><fmt:message key="table.deptTime"/></th>
@@ -47,7 +51,6 @@
             <c:forEach items="${requestScope.flights}" var="flight">
                 <tr>
                     <td>${flight.ID}</td>
-                    <td>${flight.route.number}</td>
                     <td>${flight.route.departure.name}</td>
                     <td>${flight.route.destination.name}</td>
                     <td><fmt:formatDate value="${flight.departureTime}" pattern="dd.MM.yyyy HH:mm"/></td>
@@ -59,7 +62,7 @@
                                 <td class="text-darkorange">${flight.flightStatus.name}</td>
                             </c:if>
                             <c:if test="${flight.flightStatus.ID eq FlightCondition.READY}">
-                                <td class="text-success">${flight.flightStatus.name}</td>x
+                                <td class="text-success">${flight.flightStatus.name}</td>
                             </c:if>
                             <td>
                                 <a href="${pageContext.request.contextPath}/controller?command=flight-action-page&flight-id=${flight.ID}" class="text-decoration-none me-1" data-toggle="tooltip" title="<fmt:message key="tooltip.edit"/>">
@@ -94,9 +97,6 @@
             </c:forEach>
             </tbody>
         </table>
-        <div class="pt-4 pb-5">
-            <a class="btn text-light btn-darkblue py-2" href="${pageContext.request.contextPath}/controller?command=admin-page"><fmt:message key="button.goBack"/></a>
-        </div>
     </div>
 </div>
 <div class="modal fade" id="cancelModal" tabindex="-1" aria-hidden="true">
@@ -132,14 +132,13 @@
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/1.11.0/i18n/ru.json'
             },
-            order: [[ 4, "desc" ]],
+            order: [[ 3, "desc" ]],
             columnDefs: [ {
-                "targets": 8,
+                "targets": 7,
                 "orderable": false
             } ],
             columns: [
                 { width: "4%" },
-                { width: "8%" },
                 null,
                 null,
                 null,

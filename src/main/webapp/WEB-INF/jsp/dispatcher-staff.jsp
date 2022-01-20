@@ -21,7 +21,7 @@
 <body>
 <jsp:include page="components/header.jsp"/>
 <div class="bg-content">
-    <div class="container">
+    <div class="container pb-5">
         <h3 class="pt-5 pb-4"><fmt:message key="dispatcher.staff.mainLabel"/></h3>
         <table id="staff" class="display text-center">
             <thead>
@@ -53,9 +53,6 @@
             </c:forEach>
             </tbody>
         </table>
-        <div class="pt-4 pb-5">
-            <a class="btn btn-primary btn-darkblue py-2" href="${pageContext.request.contextPath}/controller?command=dispatcher-page"><fmt:message key="button.goBack"/></a>
-        </div>
     </div>
 </div>
 <jsp:include page="components/footer.jsp"/>

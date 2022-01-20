@@ -129,7 +129,7 @@
         </table>
     </div>
     <div class="bg-white">
-        <div class="container py-3">
+        <div class="container pt-3 pb-4">
             <h4 class="pb-3 pt-3"><fmt:message key="crewAction.attendants"/>:</h4>
             <table id="attendants" class="display compact text-center pt-2 mb-2">
                 <thead>
@@ -166,9 +166,6 @@
                 </tbody>
             </table>
         </div>
-    </div>
-    <div class="container">
-        <a href="${pageContext.request.contextPath}/controller?command=${requestScope.previousCommand}" class="btn btn-primary btn-darkblue py-2 my-4"><fmt:message key="button.goBack"/></a>
     </div>
 </div>
 <jsp:include page="components/footer.jsp"/>

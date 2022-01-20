@@ -21,7 +21,7 @@
 <body>
 <jsp:include page="components/header.jsp"/>
 <div class="bg-content">
-    <div class="container">
+    <div class="container pb-5">
         <div class="d-flex flex-row justify-content-between pt-5 pb-4">
             <h3><fmt:message key="dispatcher.flights.mainLabel"/></h3>
         </div>
@@ -29,7 +29,6 @@
             <thead>
             <tr>
                 <th><fmt:message key="table.ID"/></th>
-                <th><fmt:message key="table.number"/></th>
                 <th><fmt:message key="table.dept"/></th>
                 <th><fmt:message key="table.dest"/></th>
                 <th><fmt:message key="table.deptTime"/></th>
@@ -43,7 +42,6 @@
             <c:forEach items="${requestScope.flights}" var="flight">
                 <tr>
                     <td>${flight.ID}</td>
-                    <td>${flight.route.number}</td>
                     <td>${flight.route.departure.name}</td>
                     <td>${flight.route.destination.name}</td>
                     <td><fmt:formatDate value="${flight.departureTime}" pattern="dd.MM.yyyy HH:mm"/></td>
@@ -85,9 +83,6 @@
             </c:forEach>
             </tbody>
         </table>
-        <div class="pt-4 pb-5">
-            <a class="btn text-light btn-darkblue py-2" href="${pageContext.request.contextPath}/controller?command=dispatcher-page"><fmt:message key="button.goBack"/></a>
-        </div>
     </div>
 </div>
 <jsp:include page="components/footer.jsp"/>

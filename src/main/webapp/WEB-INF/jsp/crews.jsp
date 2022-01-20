@@ -32,7 +32,7 @@
                 <tr>
                     <th><fmt:message key="table.crewID"/></th>
                     <th><fmt:message key="table.flightID"/></th>
-                    <th><fmt:message key="table.route"/></th>
+                    <th><fmt:message key="table.dept"/></th>
                     <th><fmt:message key="table.deptTime"/></th>
                     <th><fmt:message key="table.plane"/></th>
                     <th><fmt:message key="table.crews"/></th>
@@ -43,7 +43,7 @@
                     <tr>
                         <td>${crew.ID}</td>
                         <td>${crew.assignedFlight.ID}</td>
-                        <td>${crew.assignedFlight.route.number}</td>
+                        <td>${crew.assignedFlight.route.departure.name}</td>
                         <td><fmt:formatDate value="${crew.assignedFlight.departureTime}" pattern="dd.MM.yyyy HH:mm"/></td>
                         <td>${crew.assignedFlight.plane.model}</td>
                         <td class="text-start">
