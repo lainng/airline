@@ -32,7 +32,7 @@ public class SearchingFlightCommand implements Command {
         FlightService flightService = ServiceFactory.getInstance().getFlightService();
         CityService cityService = ServiceFactory.getInstance().getCityService();
 
-        FlightStatus scheduledStatus = flightService.takeFlightStatus(FlightCondition.SCHEDULED);
+        FlightStatus scheduledStatus = flightService.takeFlightStatus(FlightStatus.Condition.SCHEDULED);
         List<City> cities = cityService.takeAllCities();
 
         request.setAttribute(RequestAttribute.CITIES, cities);

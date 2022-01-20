@@ -14,6 +14,14 @@ public class FlightStatus implements Serializable {
         this.ID = ID;
     }
 
+    public static class Condition {
+        public static final long SCHEDULED = 1L;
+        public static final long READY = 2L;
+        public static final long DEPARTED = 3L;
+        public static final long ARRIVED = 4L;
+        public static final long CANCELED = 5L;
+    }
+
     public long getID() {
         return ID;
     }

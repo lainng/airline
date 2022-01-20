@@ -1,11 +1,11 @@
 package com.epamtc.airline.service.impl;
 
-import com.epamtc.airline.command.FlightCondition;
 import com.epamtc.airline.dao.CrewDao;
 import com.epamtc.airline.dao.DaoFactory;
 import com.epamtc.airline.dao.exception.DaoException;
 import com.epamtc.airline.entity.Crew;
 import com.epamtc.airline.entity.Flight;
+import com.epamtc.airline.entity.FlightStatus;
 import com.epamtc.airline.entity.User;
 import com.epamtc.airline.entity.dto.CrewCreationDto;
 import com.epamtc.airline.entity.dto.CrewDto;
@@ -68,7 +68,7 @@ public class CrewServiceImpl implements CrewService {
         FlightService flightService = ServiceFactory.getInstance().getFlightService();
         try {
             crewDao.insertNewCrew(crewCreationDto);
-            flightService.changeFlightStatus(crewCreationDto.getAssignedFlightID(), FlightCondition.READY);
+            flightService.changeFlightStatus(crewCreationDto.getAssignedFlightID(), FlightStatus.Condition.READY);
         } catch (DaoException e) {
             LOGGER.error("Unable to create a new crew. {}", e.getMessage());
             throw new ServiceException("Unable to create a new crew.", e);
@@ -85,7 +85,7 @@ public class CrewServiceImpl implements CrewService {
             }
             crewDao.deleteCrew(crewID);
             Flight assignedFlight = optionalCrew.get().getAssignedFlight();
-            flightService.changeFlightStatus(assignedFlight.getID(), FlightCondition.SCHEDULED);
+            flightService.changeFlightStatus(assignedFlight.getID(), FlightStatus.Condition.SCHEDULED);
         } catch (DaoException e) {
             LOGGER.error("Unable to delete a crew. {}", e.getMessage());
             throw new ServiceException("Unable to delete a crew.", e);

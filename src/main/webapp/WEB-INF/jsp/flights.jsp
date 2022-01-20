@@ -2,10 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
-<%@ page import="com.epamtc.airline.command.FlightCondition" %>
 
 <fmt:setLocale value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}"/>
 <fmt:bundle basename="labels"/>
+<jsp:useBean id="STATUS" class="com.epamtc.airline.entity.FlightStatus$Condition"/>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -57,11 +58,11 @@
                     <td><fmt:formatDate value="${flight.destinationTime}" pattern="dd.MM.yyyy HH:mm"/></td>
                     <td>${flight.plane.model}</td>
                     <c:choose>
-                        <c:when test="${flight.flightStatus.ID eq FlightCondition.SCHEDULED or flight.flightStatus.ID eq FlightCondition.READY}">
-                            <c:if test="${flight.flightStatus.ID eq FlightCondition.SCHEDULED}">
+                        <c:when test="${flight.flightStatus.ID eq STATUS.SCHEDULED or flight.flightStatus.ID eq STATUS.READY}">
+                            <c:if test="${flight.flightStatus.ID eq STATUS.SCHEDULED}">
                                 <td class="text-darkorange">${flight.flightStatus.name}</td>
                             </c:if>
-                            <c:if test="${flight.flightStatus.ID eq FlightCondition.READY}">
+                            <c:if test="${flight.flightStatus.ID eq STATUS.READY}">
                                 <td class="text-success">${flight.flightStatus.name}</td>
                             </c:if>
                             <td>
@@ -77,13 +78,13 @@
                             </td>
                         </c:when>
                         <c:otherwise>
-                            <c:if test="${flight.flightStatus.ID eq FlightCondition.ARRIVED}">
+                            <c:if test="${flight.flightStatus.ID eq STATUS.ARRIVED}">
                                 <td class="text-primary">${flight.flightStatus.name}</td>
                             </c:if>
-                            <c:if test="${flight.flightStatus.ID eq FlightCondition.CANCELED}">
+                            <c:if test="${flight.flightStatus.ID eq STATUS.CANCELED}">
                                 <td class="text-danger">${flight.flightStatus.name}</td>
                             </c:if>
-                            <c:if test="${flight.flightStatus.ID eq FlightCondition.DEPARTED}">
+                            <c:if test="${flight.flightStatus.ID eq STATUS.DEPARTED}">
                                 <td>${flight.flightStatus.name}</td>
                             </c:if>
                             <td>
