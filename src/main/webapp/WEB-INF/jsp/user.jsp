@@ -30,7 +30,7 @@
         <table id="flights" class="display text-center">
             <thead>
             <tr>
-                <th><fmt:message key="table.number"/></th>
+                <th><fmt:message key="table.flightID"/></th>
                 <th><fmt:message key="table.dept"/></th>
                 <th><fmt:message key="table.dest"/></th>
                 <th><fmt:message key="table.deptTime"/></th>
@@ -42,7 +42,7 @@
             <tbody>
             <c:forEach items="${requestScope.flights}" var="flight">
                 <tr>
-                    <td>${flight.route.ID}</td>
+                    <td>${flight.ID}</td>
                     <td>${flight.route.departure.name}</td>
                     <td>${flight.route.destination.name}</td>
                     <td><fmt:formatDate value="${flight.departureTime}" pattern="dd.MM.yyyy HH:mm"/></td>
@@ -98,6 +98,15 @@
             "order": [[ 3, "desc" ]],
             columnDefs: [
                 { orderable: false, targets: 6 }
+            ],
+            columns: [
+                { width: "9%" },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
             ],
         } );
         $('[data-toggle="tooltip"]').tooltip({
