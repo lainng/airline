@@ -23,7 +23,6 @@ public class ChangePasswordCommand implements Command {
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession();
         Map<String, String[]> parameterMap = request.getParameterMap();
-        UserService userService = ServiceFactory.getInstance().getUserService();
 
         User user = (User) session.getAttribute(SessionAttribute.USER);
         UserCreationDto dto = new UserCreationDto();
@@ -37,14 +36,8 @@ public class ChangePasswordCommand implements Command {
             return new CommandResult(Pages.SETTINGS_PAGE, RouteType.FORWARD);
         }
 
-        boolean isPasswordChanged = userService.changeUserPassword(dto);
-        if (isPasswordChanged) {
-            session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.PASSWORD_CHANGED);
-            return new CommandResult(Pages.SETTINGS_PAGE_REDIRECT, RouteType.REDIRECT);
-        } else {
-            request.setAttribute(RequestAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_PASSWORD);
-            return new CommandResult(Pages.SETTINGS_PAGE, RouteType.FORWARD);
-        }
+        changingPasswordSetup(session, dto);
+        return new CommandResult(Pages.SETTINGS_PAGE_REDIRECT, RouteType.REDIRECT);
     }
 
     private boolean checkRequestParameters(Map<String, String[]> parameterMap) {
@@ -59,5 +52,15 @@ public class ChangePasswordCommand implements Command {
 
         dto.setPassword(password);
         dto.setPasswordConfirmation(confirmPassword);
+    }
+
+    private void changingPasswordSetup(HttpSession session, UserCreationDto dto) throws ServiceException {
+        UserService userService = ServiceFactory.getInstance().getUserService();
+        boolean isPasswordChanged = userService.changeUserPassword(dto);
+        if (isPasswordChanged) {
+            session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.PASSWORD_CHANGED);
+        } else {
+            session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_PASSWORD);
+        }
     }
 }

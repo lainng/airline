@@ -43,7 +43,7 @@ public class AddFlightCommand implements Command {
             if(!flightID.isEmpty()) {
                 redirectPath = buildRedirectPath(flightID);
             }
-            return new CommandResult(redirectPath, RouteType.FORWARD);
+            return new CommandResult(redirectPath, RouteType.REDIRECT);
         }
 
         flightDto.setRouteID(Long.parseLong(routeID));
@@ -56,7 +56,7 @@ public class AddFlightCommand implements Command {
             if(!flightID.isEmpty()) {
                 redirectPath = buildRedirectPath(flightID);
             }
-            return new CommandResult(redirectPath, RouteType.FORWARD);
+            return new CommandResult(redirectPath, RouteType.REDIRECT);
         }
 
         if (flightID.isEmpty()) {

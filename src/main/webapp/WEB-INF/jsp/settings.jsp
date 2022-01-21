@@ -25,12 +25,14 @@
             <h3 class="text-center pt-5"><fmt:message key="settings.title"/></h3>
             <h5 class="text-center py-3"><fmt:message key="settings.changePassword"/></h5>
             <div class="d-flex flex-column justify-content-between m-auto pb-4 w-35">
-                <c:if test="${requestScope.error != null}">
-                    <div class="mb-2 text-center error"><fmt:message key="${requestScope.error}"/></div>
-                </c:if>
-                <c:if test="${requestScope.success != null}">
-                    <div class="mb-2 text-center success"><fmt:message key="${requestScope.success}"/></div>
-                </c:if>
+                <c:choose>
+                    <c:when test="${requestScope.success != null}">
+                        <div class="success text-center mb-2"><fmt:message key="${requestScope.success}"/></div>
+                    </c:when>
+                    <c:when test="${requestScope.error != null}">
+                        <div class="error text-center mb-2"><fmt:message key="${requestScope.error}"/></div>
+                    </c:when>
+                </c:choose>
                 <input class="form-control my-2 py-2" type="password" name="password" id="password" placeholder="<fmt:message key="settings.newPassword"/>">
                 <input class="form-control my-2 py-2" type="password" name="confirmPassword" id="confirmPassword" placeholder="<fmt:message key="settings.confirmPassword"/>">
                 <div class="d-flex flex-row justify-content-between py-5">

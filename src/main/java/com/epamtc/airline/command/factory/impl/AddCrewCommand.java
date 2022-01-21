@@ -43,7 +43,7 @@ public class AddCrewCommand implements Command {
             crewCreationDto.setAssignedFlightID(Long.parseLong(optionalFlightID.get()));
         } else {
             session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_CREW_PARAMETERS);
-            String redirectPath = Pages.STAFF_ACTION_PAGE_REDIRECT;
+            String redirectPath = Pages.CREW_ACTION_PAGE_REDIRECT;
             if (optionalFlightID.isPresent()) {
                 redirectPath = buildRedirectPath(optionalFlightID.get());
             }

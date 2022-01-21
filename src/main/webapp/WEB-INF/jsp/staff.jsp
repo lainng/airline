@@ -24,14 +24,9 @@
 <div class="bg-content">
     <div class="container pb-5">
         <h3 class="pt-5 pb-4"><fmt:message key="admin.staff.mainLabel"/></h3>
-        <c:choose>
-            <c:when test="${requestScope.success != null}">
-                <div class="success text-center mb-3"><fmt:message key="${requestScope.success}"/></div>
-            </c:when>
-            <c:when test="${requestScope.error != null}">
-                <div class="error text-center mb-3"><fmt:message key="${requestScope.error}"/></div>
-            </c:when>
-        </c:choose>
+        <c:if test="${requestScope.success != null}">
+            <div class="success text-center mb-3"><fmt:message key="${requestScope.success}"/></div>
+        </c:if>
         <table id="staff" class="display text-center">
             <thead>
             <tr>

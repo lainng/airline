@@ -3,6 +3,7 @@ package com.epamtc.airline.command.factory.impl;
 import com.epamtc.airline.command.*;
 import com.epamtc.airline.entity.City;
 import com.epamtc.airline.resource.Pages;
+import com.epamtc.airline.resource.RequestAttribute;
 import com.epamtc.airline.resource.RequestParameter;
 import com.epamtc.airline.resource.SessionAttribute;
 import com.epamtc.airline.service.CityService;
@@ -28,7 +29,7 @@ public class AddCityCommand implements Command {
             String cityName = request.getParameter(RequestParameter.CITY);
             city.setName(cityName);
         } else {
-            session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_CITY_PARAMETERS);
+            request.setAttribute(RequestAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_CITY_PARAMETERS);
             return new CommandResult(Pages.CITIES_PAGE_REDIRECT, RouteType.FORWARD);
         }
 

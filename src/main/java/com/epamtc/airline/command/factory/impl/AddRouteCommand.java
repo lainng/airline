@@ -32,7 +32,7 @@ public class AddRouteCommand implements Command {
         boolean isRequestParametersValid = checkRequestParameters(parameterMap);
         if (!isRequestParametersValid) {
             session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_ROUTE_PARAMETERS);
-            String redirectPath = Pages.PLANE_ACTION_PAGE_REDIRECT;
+            String redirectPath = Pages.ROUTE_ACTION_PAGE_REDIRECT;
             if (!routeID.isEmpty()) {
                 redirectPath = buildRedirectPath(routeID);
             }

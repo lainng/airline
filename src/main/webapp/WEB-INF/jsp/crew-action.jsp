@@ -41,9 +41,14 @@
     <div class="bg-white">
         <div class="container py-3">
             <div id="errContainer" class="text-center">
-                <c:if test="${requestScope.success != null}">
-                    <div class="success"><fmt:message key="${requestScope.success}"/></div>
-                </c:if>
+                <c:choose>
+                    <c:when test="${requestScope.success != null}">
+                        <div class="success"><fmt:message key="${requestScope.success}"/></div>
+                    </c:when>
+                    <c:when test="${requestScope.error != null}">
+                        <div class="error"><fmt:message key="${requestScope.error}"/></div>
+                    </c:when>
+                </c:choose>
             </div>
             <h4 class="py-3"><fmt:message key="crewAction.flights"/>:</h4>
             <table id="flights" class="display compact text-center pt-2 mb-2">
