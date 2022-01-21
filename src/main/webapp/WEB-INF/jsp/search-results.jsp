@@ -22,7 +22,7 @@
 <body>
 <jsp:include page="components/header.jsp"/>
 <div class="bg-content">
-    <div class="container">
+    <div class="container pb-5">
         <div class="d-flex flex-column justify-content-start pt-5 pb-2">
             <h3 class="pb-4"><fmt:message key="searchResult.mainLabel"/></h3>
             <div class="row align-content-start col-auto p-4 white-box mt-2 mb-5">
@@ -65,12 +65,14 @@
                             <button type="submit" class="btn btn-primary btn-darkblue form-control py-2"><fmt:message key="searchResult.search"/></button>
                         </div>
                     </div>
+                    <c:if test="${requestScope.error != null}">
+                        <div class="error text-center"><fmt:message key="${requestScope.error}"/></div>
+                    </c:if>
                 </form>
             </div>
             <table class="display text-center" id="flights">
                 <thead>
                 <tr>
-                    <th><fmt:message key="table.number"/></th>
                     <th><fmt:message key="table.dept"/></th>
                     <th><fmt:message key="table.dest"/></th>
                     <th><fmt:message key="table.deptTime"/></th>
@@ -82,7 +84,6 @@
                 <tbody>
                 <c:forEach items="${requestScope.flights}" var="flight">
                     <tr>
-                        <td>${flight.route.number}</td>
                         <td>${flight.route.departure.name}</td>
                         <td>${flight.route.destination.name}</td>
                         <td><fmt:formatDate value="${flight.departureTime}" pattern="dd.MM.yyyy HH:mm"/></td>
@@ -101,7 +102,6 @@
                 </tbody>
             </table>
         </div>
-        <a href="${pageContext.request.contextPath}/controller?command=home-page" class="btn btn-primary btn-darkblue my-5 py-2"><fmt:message key="button.goBack"/></a>
     </div>
 </div>
 <jsp:include page="components/footer.jsp"/>
@@ -173,7 +173,7 @@
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.11.0/i18n/ru.json'
             },
-            "order": [[ 3, "asc" ]],
+            "order": [[ 2, "asc" ]],
         });
     });
 </script>
