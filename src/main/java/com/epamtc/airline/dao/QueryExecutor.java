@@ -28,7 +28,7 @@ public class QueryExecutor<T> {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            statement = connection.prepareStatement(query);
+            statement = connection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             StatementParameterSetter parameterSetter = new StatementParameterSetter(parameters);
             parameterSetter.setParametersToStatement(statement);
             resultSet = statement.executeQuery();

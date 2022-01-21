@@ -24,6 +24,8 @@ public class CrewDtoBuilder implements EntityBuilder<CrewDto> {
         }
         while (resultSet.next() && resultSet.getLong(Column.EMPLOYEE_CREW_ID) == crewDto.getID());
         crewDto.setMembers(crewMembers);
+        resultSet.previous();
+
         return crewDto;
     }
 }

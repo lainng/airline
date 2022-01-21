@@ -34,7 +34,9 @@ public class CrewDaoImpl extends AbstractDao<CrewDto> implements CrewDao {
             "FROM employee E " +
             "JOIN position P on P.position_id = E.position_id " +
             "JOIN employee_in_crew EC on E.employee_id = EC.employee_id " +
+            "JOIN crew C on C.crew_id = EC.crew_id " +
             "WHERE EC.crew_id = ?;";
+
     public CrewDaoImpl() {
         super(EntityBuilderFactory.getInstance().getCrewDtoBuilder());
     }
