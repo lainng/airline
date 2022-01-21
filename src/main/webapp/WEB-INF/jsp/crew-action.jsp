@@ -36,20 +36,28 @@
                 <input type="hidden" name="hiddenAttendants" class="">
                 <input type="hidden" name="crew-id" value="${requestScope.crew.ID}">
             </form>
+            <div class="pb-4">
+                <div id="errContainer" class="text-center">
+                    <c:choose>
+                        <c:when test="${requestScope.success != null}">
+                            <div class="success">
+                                <fmt:message key="${requestScope.success}"/><br>
+                                <fmt:message key="crewAction.goBack"/>
+                            </div>
+                        </c:when>
+                        <c:when test="${requestScope.error != null}">
+                            <div class="error">
+                                <fmt:message key="${requestScope.error}"/>
+                            </div>
+                        </c:when>
+                    </c:choose>
+                </div>
+            </div>
         </div>
     </div>
     <div class="bg-white">
         <div class="container py-3">
-            <div id="errContainer" class="text-center">
-                <c:choose>
-                    <c:when test="${requestScope.success != null}">
-                        <div class="success"><fmt:message key="${requestScope.success}"/></div>
-                    </c:when>
-                    <c:when test="${requestScope.error != null}">
-                        <div class="error"><fmt:message key="${requestScope.error}"/></div>
-                    </c:when>
-                </c:choose>
-            </div>
+
             <h4 class="py-3"><fmt:message key="crewAction.flights"/>:</h4>
             <table id="flights" class="display compact text-center pt-2 mb-2">
                 <thead>
