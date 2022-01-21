@@ -21,7 +21,7 @@
 <jsp:include page="components/header.jsp"/>
 <div class="bg-content">
     <div class="container">
-        <form method="post" action="${pageContext.request.contextPath}/controller?command=change-password" id="changePassword">
+        <form method="post" action="${pageContext.request.contextPath}/controller?command=change-password" id="changePassword" class="mb-0">
             <h3 class="text-center pt-5"><fmt:message key="settings.title"/></h3>
             <h5 class="text-center py-3"><fmt:message key="settings.changePassword"/></h5>
             <div class="d-flex flex-column justify-content-between m-auto pb-4 w-35">

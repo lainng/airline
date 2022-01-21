@@ -27,7 +27,7 @@
 <jsp:include page="components/header.jsp"/>
 <div class="bg-content">
     <div class="container">
-        <div class="d-flex flex-row justify-content-between py-4">
+        <div class="d-flex flex-row justify-content-between pt-4">
             <h3 class="pt-2"><fmt:message key="${requestScope.crewPageKey}"/></h3>
             <form method="post" action="${pageContext.request.contextPath}/controller?command=add-crew" id="crew" class="mb-0">
                 <button type="submit" class="btn btn-primary btn-darkblue py-2 my-2"><fmt:message key="crewAction.confirm"/></button>
@@ -36,23 +36,23 @@
                 <input type="hidden" name="hiddenAttendants" class="">
                 <input type="hidden" name="crew-id" value="${requestScope.crew.ID}">
             </form>
-            <div class="pb-4">
-                <div id="errContainer" class="text-center">
-                    <c:choose>
-                        <c:when test="${requestScope.success != null}">
-                            <div class="success">
-                                <fmt:message key="${requestScope.success}"/><br>
-                                <fmt:message key="crewAction.goBack"/>
-                            </div>
-                        </c:when>
-                        <c:when test="${requestScope.error != null}">
-                            <div class="error">
-                                <fmt:message key="${requestScope.error}"/>
-                            </div>
-                        </c:when>
-                    </c:choose>
-                </div>
-            </div>
+        </div>
+        <div id="errContainer" class="text-center pt-2 pb-4">
+            <c:choose>
+                <c:when test="${requestScope.success != null}">
+                    <div class="success">
+                        <fmt:message key="${requestScope.success}"/><br>
+                        <a href="${pageContext.request.contextPath}/controller?command=dispatcher-crews" class="text-darkblue">
+                            <fmt:message key="crewAction.goBack"/>
+                        </a>
+                    </div>
+                </c:when>
+                <c:when test="${requestScope.error != null}">
+                    <div class="error">
+                        <fmt:message key="${requestScope.error}"/>
+                    </div>
+                </c:when>
+            </c:choose>
         </div>
     </div>
     <div class="bg-white">
@@ -142,7 +142,7 @@
         </table>
     </div>
     <div class="bg-white">
-        <div class="container pt-3 pb-4">
+        <div class="container pt-3 pb-5">
             <h4 class="pb-3 pt-3"><fmt:message key="crewAction.attendants"/>:</h4>
             <table id="attendants" class="display compact text-center pt-2 mb-2">
                 <thead>
@@ -269,7 +269,7 @@
                     validAttendants: true,
                 },
             },
-            errorClass: "is-invalid error",
+            errorClass: "is-invalid error mt-2",
             errorElement: "div",
             errorLabelContainer: "#errContainer",
             messages: {

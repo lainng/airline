@@ -39,7 +39,6 @@
                 <tr>
                     <th><fmt:message key="table.crewID"/></th>
                     <th><fmt:message key="table.flightID"/></th>
-                    <th><fmt:message key="table.route"/></th>
                     <th><fmt:message key="table.dept"/></th>
                     <th><fmt:message key="table.plane"/></th>
                     <th><fmt:message key="table.crews"/></th>
@@ -51,7 +50,6 @@
                     <tr>
                         <td>${crew.ID}</td>
                         <td>${crew.assignedFlight.ID}</td>
-                        <td>${crew.assignedFlight.route.number}</td>
                         <td><fmt:formatDate value="${crew.assignedFlight.departureTime}" pattern="dd.MM.yyyy HH:mm"/></td>
                         <td>${crew.assignedFlight.plane.model}</td>
                         <td class="text-start">
@@ -120,18 +118,17 @@
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.11.0/i18n/ru.json'
             },
-            order: [[3, 'desc']],
+            order: [[2, 'desc']],
             columns: [
                 { "width": "8%" },
                 { "width": "8%" },
-                null,
                 null,
                 null,
                 { "width": "40%" },
                 null,
             ],
             columnDefs: [ {
-                "targets": [5, 6],
+                "targets": [4, 5],
                 "orderable": false
             } ],
         } );
