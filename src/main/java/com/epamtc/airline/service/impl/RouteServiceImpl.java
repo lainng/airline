@@ -87,6 +87,7 @@ public class RouteServiceImpl implements RouteService {
         if(routeDto == null) {
             return null;
         }
+
         Route route = new Route();
         CityService cityService = ServiceFactory.getInstance().getCityService();
 

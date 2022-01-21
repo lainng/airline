@@ -12,7 +12,6 @@ public class RouteDtoBuilder implements EntityBuilder<RouteDto> {
     public RouteDto build(ResultSet resultSet) throws SQLException {
         RouteDto routeDto = new RouteDto();
         routeDto.setID(resultSet.getLong(Column.ROUTE_ID));
-        routeDto.setNumber(resultSet.getString(Column.ROUTE_NUMBER));
         routeDto.setDepartureID(resultSet.getLong(Column.ROUTE_DEPARTURE_ID));
         routeDto.setDestinationID(resultSet.getLong(Column.ROUTE_DESTINATION_ID));
         routeDto.setDistance(resultSet.getInt(Column.ROUTE_DISTANCE));
