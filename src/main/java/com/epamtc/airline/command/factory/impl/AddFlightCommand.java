@@ -18,6 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+import java.util.Optional;
 
 public class AddFlightCommand implements Command {
     private static final int FIRST_PARAMETER_VALUE = 0;
@@ -76,8 +77,17 @@ public class AddFlightCommand implements Command {
 
     private boolean checkRequestParameters(Map<String, String[]> parameterMap) {
         RequestParameterValidator validator = new RequestParameterValidator();
-        return validator.isValidID(parameterMap.get(RequestParameter.ROUTE_ID)[FIRST_PARAMETER_VALUE])
-                && validator.isValidID(parameterMap.get(RequestParameter.PLANE_ID)[FIRST_PARAMETER_VALUE])
+        Optional<String[]> optionalRouteID = Optional.ofNullable(parameterMap.get(RequestParameter.ROUTE_ID));
+        Optional<String[]> optionalPlaneID = Optional.ofNullable(parameterMap.get(RequestParameter.PLANE_ID));
+
+        if (!optionalRouteID.isPresent() || !optionalPlaneID.isPresent()) {
+            return false;
+        }
+
+        String[] routeID = optionalRouteID.get();
+        String[] planeID = optionalPlaneID.get();
+        return validator.isValidID(routeID[FIRST_PARAMETER_VALUE])
+                && validator.isValidID(planeID[FIRST_PARAMETER_VALUE])
                 && !validator.isEmpty(parameterMap.get(RequestParameter.DEPARTMENT_DATE)[FIRST_PARAMETER_VALUE])
                 && !validator.isEmpty(parameterMap.get(RequestParameter.DEPARTMENT_TIME)[FIRST_PARAMETER_VALUE]);
     }
