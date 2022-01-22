@@ -77,9 +77,11 @@
                                 </div>
                             </div>
                             <noscript>
-                                <c:forEach items="${crew.members}" var="employee">
-                                    <strong>${employee.position.name}</strong> - ${employee.firstName} ${employee.lastName}<br>
-                                </c:forEach>
+                                <div class="my-3">
+                                    <c:forEach items="${crew.members}" var="employee">
+                                        <strong>${employee.position.name}</strong> - ${employee.firstName} ${employee.lastName}<br>
+                                    </c:forEach>
+                                </div>
                             </noscript>
                         </td>
                         <td>

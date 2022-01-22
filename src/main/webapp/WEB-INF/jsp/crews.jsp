@@ -51,7 +51,7 @@
                     <td><fmt:formatDate value="${crew.assignedFlight.departureTime}" pattern="dd.MM.yyyy HH:mm"/></td>
                     <td>${crew.assignedFlight.plane.model}</td>
                     <td class="text-start">
-                        <div class="accordion accordion-flush" id="accordionFlush${crew.ID}">
+                        <div class="accordion accordion-flush d-none" id="accordionFlush${crew.ID}">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-heading${crew.ID}">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${crew.ID}" aria-expanded="false" aria-controls="flush-collapse${crew.ID}">
@@ -69,6 +69,13 @@
                                 </div>
                             </div>
                         </div>
+                        <noscript>
+                            <div class="my-3">
+                                <c:forEach items="${crew.members}" var="employee">
+                                    <strong>${employee.position.name}</strong> - ${employee.firstName} ${employee.lastName}<br>
+                                </c:forEach>
+                            </div>
+                        </noscript>
                     </td>
                 </tr>
             </c:forEach>
@@ -85,6 +92,7 @@
 <script>
     $(document).ready(function() {
         $.fn.dataTable.moment('DD.MM.YYYY HH:mm');
+        $('.accordion').toggleClass('d-none');
         $('#crews').DataTable( {
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.11.0/i18n/ru.json'
