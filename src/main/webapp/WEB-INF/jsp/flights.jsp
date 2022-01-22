@@ -78,8 +78,8 @@
                                         <i class="bi bi-x-circle text-danger mx-2"></i>
                                     </a>
                                 </noscript>
-                                <a class="text-decoration-none mx-2" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#cancelModal" title="<fmt:message key="tooltip.cancel"/>">
-                                    <i class="bi bi-x-circle text-danger d-none" id="${flight.ID}"></i>
+                                <a class="text-decoration-none" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#cancelModal" title="<fmt:message key="tooltip.cancel"/>">
+                                    <i class="bi bi-x-circle text-danger d-none mx-2" id="${flight.ID}"></i>
                                 </a>
                                 <a href="${pageContext.request.contextPath}/controller?command=flight-info&flight-id=${flight.ID}" class="text-decoration-none ms-1" data-toggle="tooltip" title="<fmt:message key="tooltip.seeMore"/>">
                                     <i class="bi bi-info-circle link-dark"></i>
