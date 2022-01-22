@@ -19,7 +19,7 @@
 <jsp:include page="components/header.jsp"/>
 <div class="bg-content">
     <div class="container">
-        <h3 class="text-center py-5"><fmt:message key="${requestScope.planeActionPageKey}"/></h3>
+        <h3 class="text-center pt-5 pb-4"><fmt:message key="${requestScope.planeActionPageKey}"/></h3>
         <form method="post" action="${pageContext.request.contextPath}/controller?command=add-plane" id="plane" class="mb-0">
             <input type="hidden" name="plane-id" value="${requestScope.plane.ID}">
             <div class="d-flex flex-column justify-content-center m-auto w-35">
