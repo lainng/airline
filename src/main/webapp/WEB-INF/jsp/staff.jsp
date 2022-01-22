@@ -27,6 +27,11 @@
         <c:if test="${requestScope.success != null}">
             <div class="success text-center mb-3"><fmt:message key="${requestScope.success}"/></div>
         </c:if>
+        <noscript>
+            <div class="noscript text-center mb-4">
+                <fmt:message key="noscript.label"/>
+            </div>
+        </noscript>
         <table id="staff" class="display text-center">
             <thead>
             <tr>

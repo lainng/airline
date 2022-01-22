@@ -41,7 +41,7 @@
                                 <option value="${route.ID}" <c:if test="${requestScope.currentFlight.route.ID == route.ID}">selected</c:if> >${route.number}: ${route.departure.name} - ${route.destination.name}</option>
                             </c:when>
                             <c:otherwise>
-                                <option value="${route.ID}">${route.number}: ${route.departure} - ${route.destination}</option>
+                                <option value="${route.ID}">${route.number}: ${route.departure.name} - ${route.destination.name}</option>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>

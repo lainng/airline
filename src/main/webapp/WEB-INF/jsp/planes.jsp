@@ -25,6 +25,11 @@
             <h3><fmt:message key="admin.planes.mainLabel"/></h3>
             <a href="${pageContext.request.contextPath}/controller?command=plane-action-page" class="btn btn-primary btn-darkblue mb-4 py-2"><fmt:message key="admin.planes.addPlane"/></a>
         </div>
+        <noscript>
+            <div class="noscript text-center mb-4">
+                <fmt:message key="noscript.label"/>
+            </div>
+        </noscript>
         <table id="planes" class="display text-center my-2">
             <thead>
             <tr>

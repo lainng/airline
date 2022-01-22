@@ -26,6 +26,11 @@
                 <h3><fmt:message key="dispatcher.crews.mainLabel"/></h3>
                 <a href="${pageContext.request.contextPath}/controller?command=crew-action-page" class="btn btn-primary py-2 btn-darkblue"><fmt:message key="dispatcher.crews.newCrew"/></a>
             </div>
+            <noscript>
+                <div class="noscript text-center mb-4">
+                    <fmt:message key="noscript.label"/>
+                </div>
+            </noscript>
             <c:choose>
                 <c:when test="${requestScope.success != null}">
                     <div class="success text-center mb-4"><fmt:message key="${requestScope.success}"/></div>
@@ -53,7 +58,7 @@
                         <td><fmt:formatDate value="${crew.assignedFlight.departureTime}" pattern="dd.MM.yyyy HH:mm"/></td>
                         <td>${crew.assignedFlight.plane.model}</td>
                         <td class="text-start">
-                            <div class="accordion accordion-flush" id="accordionFlush${crew.ID}">
+                            <div class="accordion accordion-flush d-none" id="accordionFlush${crew.ID}">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-heading${crew.ID}">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${crew.ID}" aria-expanded="false" aria-controls="flush-collapse${crew.ID}">
@@ -71,12 +76,24 @@
                                     </div>
                                 </div>
                             </div>
+                            <noscript>
+                                <c:forEach items="${crew.members}" var="employee">
+                                    <strong>${employee.position.name}</strong> - ${employee.firstName} ${employee.lastName}<br>
+                                </c:forEach>
+                            </noscript>
                         </td>
                         <td>
                             <a href="${pageContext.request.contextPath}/controller?command=crew-action-page&flight-id=${crew.assignedFlight.ID}" class="text-decoration-none mx-2" data-toggle="tooltip" title="<fmt:message key="button.edit"/>">
                                 <i class="bi bi-pencil link-dark"></i>
                             </a>
-                            <i class="bi bi-x-circle text-danger mx-2" id="${crew.ID}" data-toggle="tooltip" title="<fmt:message key="button.delete"/>" data-bs-toggle="modal" data-bs-target="#deleteModal"></i>
+                            <noscript>
+                                <a href="${pageContext.request.contextPath}/controller?command=delete-crew&crew-id=${crew.ID}" class="text-decoration-none mx-2" data-toggle="tooltip" title="<fmt:message key="tooltip.cancel"/>">
+                                    <i class="bi bi-x-circle text-danger mx-2"></i>
+                                </a>
+                            </noscript>
+                            <a class="text-decoration-none mx-2">
+                                <i class="bi bi-x-circle text-danger d-none" id="${crew.ID}" data-toggle="tooltip" title="<fmt:message key="button.delete"/>" data-bs-toggle="modal" data-bs-target="#deleteModal"></i>
+                            </a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -110,6 +127,7 @@
 <script src="https://cdn.datatables.net/plug-ins/1.11.3/sorting/datetime-moment.js"></script>
 <script>
     $(document).ready(function() {
+        $('td > a > i.bi-x-circle, .accordion').toggleClass('d-none');
         $('[data-toggle="tooltip"]').tooltip({
             container: 'table',
         });
@@ -132,7 +150,7 @@
                 "orderable": false
             } ],
         } );
-        /* todo выделить в общий файл - функция по установке ID в modal */
+
         let path = $('#deleteButtonModal').attr('href');
         $('i.bi-x-circle').click(function () {
             let crewID = $(this).attr('id');

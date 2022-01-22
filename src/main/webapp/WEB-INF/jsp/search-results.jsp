@@ -25,6 +25,9 @@
     <div class="container pb-5">
         <div class="d-flex flex-column justify-content-start pt-5 pb-2">
             <h3 class="pb-4"><fmt:message key="searchResult.mainLabel"/></h3>
+            <noscript>
+                <div class="noscript text-center mb-4"><fmt:message key="noscript.label"/></div>
+            </noscript>
             <div class="row align-content-start col-auto p-4 white-box mt-2 mb-5">
                 <form method="get" action="${pageContext.request.contextPath}/controller" id="flightSearch" class="mt-2">
                     <div class="d-flex flex-row justify-content-between">

@@ -28,6 +28,11 @@
                 <a href="${pageContext.request.contextPath}/controller?command=route-action-page" class="btn btn-primary btn-darkblue"><fmt:message key="admin.routes.newRoute"/></a>
             </div>
         </div>
+        <noscript>
+            <div class="noscript text-center mb-4">
+                <fmt:message key="noscript.label"/>
+            </div>
+        </noscript>
         <table id="routes" class="display text-center">
             <thead>
             <tr>

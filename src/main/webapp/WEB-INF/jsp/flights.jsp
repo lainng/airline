@@ -34,6 +34,11 @@
             </c:choose>
             <a href="${pageContext.request.contextPath}/controller?command=flight-action-page" class="btn btn-primary btn-darkblue py-2"><fmt:message key="admin.flights.addPlane"/></a>
         </div>
+        <noscript>
+            <div class="noscript text-center mb-4">
+                <fmt:message key="noscript.label"/>
+            </div>
+        </noscript>
         <table id="flights" class="display text-center my-2">
             <thead>
             <tr>
@@ -68,8 +73,13 @@
                                 <a href="${pageContext.request.contextPath}/controller?command=flight-action-page&flight-id=${flight.ID}" class="text-decoration-none me-1" data-toggle="tooltip" title="<fmt:message key="tooltip.edit"/>">
                                     <i class="bi bi-pencil link-dark"></i>
                                 </a>
+                                <noscript>
+                                    <a href="${pageContext.request.contextPath}/controller?command=cancel-flight&flight-id=${flight.ID}" class="text-decoration-none mx-2" data-toggle="tooltip" title="<fmt:message key="tooltip.cancel"/>">
+                                        <i class="bi bi-x-circle text-danger mx-2"></i>
+                                    </a>
+                                </noscript>
                                 <a class="text-decoration-none mx-2" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#cancelModal" title="<fmt:message key="tooltip.cancel"/>">
-                                    <i class="bi bi-x-circle text-danger" id="${flight.ID}"></i>
+                                    <i class="bi bi-x-circle text-danger d-none" id="${flight.ID}"></i>
                                 </a>
                                 <a href="${pageContext.request.contextPath}/controller?command=flight-info&flight-id=${flight.ID}" class="text-decoration-none ms-1" data-toggle="tooltip" title="<fmt:message key="tooltip.seeMore"/>">
                                     <i class="bi bi-info-circle link-dark"></i>
@@ -124,6 +134,7 @@
 <script src="https://cdn.datatables.net/plug-ins/1.11.3/sorting/datetime-moment.js"></script>
 <script>
     $(document).ready(function() {
+        $('td > a > i.bi-x-circle').toggleClass('d-none');
         $.fn.dataTable.moment('DD.MM.YYYY HH:mm');
         $('[data-toggle="tooltip"]').tooltip({
             container: 'table',

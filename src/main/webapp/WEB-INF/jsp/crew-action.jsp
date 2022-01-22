@@ -37,6 +37,11 @@
                 <input type="hidden" name="crew-id" value="${requestScope.crew.ID}">
             </form>
         </div>
+        <noscript>
+            <div class="noscript text-center mb-4">
+                <fmt:message key="noscript.label"/>
+            </div>
+        </noscript>
         <div id="errContainer" class="text-center pt-2 pb-4">
             <c:choose>
                 <c:when test="${requestScope.success != null}">

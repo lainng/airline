@@ -23,6 +23,11 @@
 <div class="bg-content">
     <div class="container pb-5">
         <h3 class="pt-5 pb-4"><fmt:message key="dispatcher.staff.mainLabel"/></h3>
+        <noscript>
+            <div class="noscript text-center mb-4">
+                <fmt:message key="noscript.label"/>
+            </div>
+        </noscript>
         <table id="staff" class="display text-center">
             <thead>
             <tr>

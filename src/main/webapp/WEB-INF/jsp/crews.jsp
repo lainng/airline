@@ -20,57 +20,60 @@
 <body>
 <jsp:include page="components/header.jsp"/>
 <div class="bg-content">
-    <div class="container">
-        <div class="py-5">
-            <h2 class="pb-4"><fmt:message key="crews.mainLabel"/></h2>
-            <c:if test="${requestScope.employee != null}">
-                <h5><strong><fmt:message key="crews.employee"/>:</strong> ${requestScope.employee.firstName} ${requestScope.employee.lastName}</h5>
-                <h5 class="pb-4"><strong><fmt:message key="crews.position"/>:</strong> ${requestScope.employee.position.name}</h5>
-            </c:if>
-            <table id="crews" class="display text-center my-2">
-                <thead>
+    <div class="container py-5">
+        <h2 class="pb-4"><fmt:message key="crews.mainLabel"/></h2>
+        <c:if test="${requestScope.employee != null}">
+            <h5><strong><fmt:message key="crews.employee"/>:</strong> ${requestScope.employee.firstName} ${requestScope.employee.lastName}</h5>
+            <h5 class="pb-4"><strong><fmt:message key="crews.position"/>:</strong> ${requestScope.employee.position.name}</h5>
+        </c:if>
+        <noscript>
+            <div class="noscript text-center mb-4">
+                <fmt:message key="noscript.label"/>
+            </div>
+        </noscript>
+        <table id="crews" class="display text-center my-2">
+            <thead>
+            <tr>
+                <th><fmt:message key="table.crewID"/></th>
+                <th><fmt:message key="table.flightID"/></th>
+                <th><fmt:message key="table.dept"/></th>
+                <th><fmt:message key="table.deptTime"/></th>
+                <th><fmt:message key="table.plane"/></th>
+                <th><fmt:message key="table.crews"/></th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${requestScope.crews}" var="crew">
                 <tr>
-                    <th><fmt:message key="table.crewID"/></th>
-                    <th><fmt:message key="table.flightID"/></th>
-                    <th><fmt:message key="table.dept"/></th>
-                    <th><fmt:message key="table.deptTime"/></th>
-                    <th><fmt:message key="table.plane"/></th>
-                    <th><fmt:message key="table.crews"/></th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${requestScope.crews}" var="crew">
-                    <tr>
-                        <td>${crew.ID}</td>
-                        <td>${crew.assignedFlight.ID}</td>
-                        <td>${crew.assignedFlight.route.departure.name}</td>
-                        <td><fmt:formatDate value="${crew.assignedFlight.departureTime}" pattern="dd.MM.yyyy HH:mm"/></td>
-                        <td>${crew.assignedFlight.plane.model}</td>
-                        <td class="text-start">
-                            <div class="accordion accordion-flush" id="accordionFlush${crew.ID}">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-heading${crew.ID}">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${crew.ID}" aria-expanded="false" aria-controls="flush-collapse${crew.ID}">
-                                            <fmt:message key="dispatcher.crews.crew"/>
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapse${crew.ID}" class="accordion-collapse collapse" aria-labelledby="flush-heading${crew.ID}" data-bs-parent="#accordionFlush${crew.ID}">
-                                        <div class="accordion-body">
-                                            <p>
-                                                <c:forEach items="${crew.members}" var="employee">
-                                                    <strong>${employee.position.name}</strong> - ${employee.firstName} ${employee.lastName}<br>
-                                                </c:forEach>
-                                            </p>
-                                        </div>
+                    <td>${crew.ID}</td>
+                    <td>${crew.assignedFlight.ID}</td>
+                    <td>${crew.assignedFlight.route.departure.name}</td>
+                    <td><fmt:formatDate value="${crew.assignedFlight.departureTime}" pattern="dd.MM.yyyy HH:mm"/></td>
+                    <td>${crew.assignedFlight.plane.model}</td>
+                    <td class="text-start">
+                        <div class="accordion accordion-flush" id="accordionFlush${crew.ID}">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-heading${crew.ID}">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${crew.ID}" aria-expanded="false" aria-controls="flush-collapse${crew.ID}">
+                                        <fmt:message key="dispatcher.crews.crew"/>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapse${crew.ID}" class="accordion-collapse collapse" aria-labelledby="flush-heading${crew.ID}" data-bs-parent="#accordionFlush${crew.ID}">
+                                    <div class="accordion-body">
+                                        <p>
+                                            <c:forEach items="${crew.members}" var="employee">
+                                                <strong>${employee.position.name}</strong> - ${employee.firstName} ${employee.lastName}<br>
+                                            </c:forEach>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </div>
+                        </div>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
     </div>
 </div>
 <jsp:include page="components/footer.jsp"/>

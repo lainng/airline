@@ -41,7 +41,7 @@
                 <label for="dest"><fmt:message key="routeAction.dest"/>:</label>
                 <select class="form-select mb-2 py-2 mt-2" id="dest" name="dest">
                     <option selected disabled value=""><fmt:message key="routeAction.destinationSelect"/></option>
-                    <c:forEach items="${requestScope.city}" var="city">
+                    <c:forEach items="${requestScope.cities}" var="city">
                         <option value="${city.ID}" <c:if test="${requestScope.route.destination.ID == city.ID}">selected</c:if> >${city.name}</option>
                     </c:forEach>
                 </select>
@@ -72,7 +72,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath}/scripts/changeSelectColor.js"></script>
 <script>
     $(document).ready(function () {
         $('#route').validate({
@@ -127,6 +128,7 @@
             return /^[1-9][0-9]+$/.test(value);
         });
     });
+
     function hideSelectCity(baseCities, citiesWhereHided) {
         $(baseCities).change(function () {
             let hidedCities = $(citiesWhereHided + " option");

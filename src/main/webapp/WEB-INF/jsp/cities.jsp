@@ -32,6 +32,11 @@
             </div>
         </div>
         <div class="d-flex flex-column justify-content-center w-50 m-auto pb-5">
+            <noscript>
+                <div class="noscript text-center mb-4">
+                    <fmt:message key="noscript.label"/>
+                </div>
+            </noscript>
             <c:choose>
                 <c:when test="${requestScope.success != null}">
                     <div class="success text-center mb-3"><fmt:message key="${requestScope.success}"/></div>

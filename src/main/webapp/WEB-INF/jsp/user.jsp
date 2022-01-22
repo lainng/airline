@@ -27,6 +27,11 @@
         <h2 class="pt-5"><fmt:message key="user.welcome"/> ${user.firstName}</h2>
         <h5 class="pb-2"><fmt:message key="user.position"/>: ${user.position.name}</h5>
         <h3 class="py-3"><fmt:message key="user.flights"/></h3>
+        <noscript>
+            <div class="noscript text-center mb-4">
+                <fmt:message key="noscript.label"/>
+            </div>
+        </noscript>
         <table id="flights" class="display text-center">
             <thead>
             <tr>

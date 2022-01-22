@@ -106,6 +106,14 @@ input[readonly] {
 	border-radius: 0.25rem;
 }
 
+.noscript {
+	padding: 0.7rem;
+	color: #896233;
+	background-color: #f7cba4;
+	border-color: #f6984a;
+	border-radius: 0.25rem;
+}
+
 .accordion-item, .accordion-button, .accordion-button:hover {
 	background-color: inherit !important;
 }

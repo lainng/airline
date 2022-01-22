@@ -22,9 +22,12 @@
 <jsp:include page="components/header.jsp"/>
 <div class="bg-content">
     <div class="container pb-5">
-        <div class="d-flex flex-row justify-content-between pt-5 pb-4">
-            <h3><fmt:message key="dispatcher.flights.mainLabel"/></h3>
-        </div>
+        <h3 class="pt-5 pb-4"><fmt:message key="dispatcher.flights.mainLabel"/></h3>
+        <noscript>
+            <div class="noscript text-center mb-4">
+                <fmt:message key="noscript.label"/>
+            </div>
+        </noscript>
         <table id="flights" class="display text-center">
             <thead>
             <tr>
