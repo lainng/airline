@@ -25,7 +25,10 @@ public class EditEmployeeCommand implements Command {
         HttpSession session = request.getSession();
         UserService userService = ServiceFactory.getInstance().getUserService();
         Map<String, String[]> parameterMap = request.getParameterMap();
+
         UserCreationDto dto = new UserCreationDto();
+        String userID = request.getParameter(RequestParameter.USER_ID);
+        dto.setID(Long.parseLong(userID));
 
         boolean isParametersValid = checkRequestParameters(parameterMap);
         if (isParametersValid) {
@@ -49,19 +52,16 @@ public class EditEmployeeCommand implements Command {
         }
         String positionID = optionalPositionID.get()[FIRST_PARAMETER_VALUE];
 
-        return validator.isValidID(parameterMap.get(RequestParameter.USER_ID)[FIRST_PARAMETER_VALUE])
-                && validator.isValidID(positionID)
+        return validator.isValidID(positionID)
                 && !validator.isEmpty(parameterMap.get(RequestParameter.FIRST_NAME)[FIRST_PARAMETER_VALUE])
                 && !validator.isEmpty(parameterMap.get(RequestParameter.LAST_NAME)[FIRST_PARAMETER_VALUE]);
     }
 
     private void setParametersToDto(Map<String, String[]> parameterMap, UserCreationDto dto) {
-        long userID = Long.parseLong(parameterMap.get(RequestParameter.USER_ID)[FIRST_PARAMETER_VALUE]);
         String firstName = parameterMap.get(RequestParameter.FIRST_NAME)[FIRST_PARAMETER_VALUE];
         String lastName = parameterMap.get(RequestParameter.LAST_NAME)[FIRST_PARAMETER_VALUE];
         long positionID = Long.parseLong(parameterMap.get(RequestParameter.POSITION_ID)[FIRST_PARAMETER_VALUE]);
 
-        dto.setID(userID);
         dto.setFirstName(firstName);
         dto.setLastName(lastName);
         dto.setPositionID(positionID);

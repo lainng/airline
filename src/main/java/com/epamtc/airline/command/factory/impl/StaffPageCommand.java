@@ -11,12 +11,16 @@ import com.epamtc.airline.service.UserService;
 import com.epamtc.airline.service.exception.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.util.List;
 
 public class StaffPageCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
+        HttpSession session = request.getSession();
+        putInfoKeyToRequest(session, request);
+
         UserService userService = ServiceFactory.getInstance().getUserService();
         List<User> employees = userService.takeAllUsers();
         request.setAttribute(RequestAttribute.EMPLOYEES, employees);
