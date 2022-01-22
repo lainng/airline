@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpSession;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.util.Map;
+import java.util.Optional;
 
 public class AddRouteCommand implements Command {
     private static final int FIRST_PARAMETER_VALUE = 0;
@@ -51,8 +52,18 @@ public class AddRouteCommand implements Command {
 
     private boolean checkRequestParameters(Map<String, String[]> parameterMap) {
         RequestParameterValidator validator  =new RequestParameterValidator();
-        return validator.isValidID(parameterMap.get(RequestParameter.DEPARTMENT)[FIRST_PARAMETER_VALUE])
-                && validator.isValidID(parameterMap.get(RequestParameter.DESTINATION)[FIRST_PARAMETER_VALUE])
+        Optional<String[]> optionalDeptID = Optional.ofNullable(parameterMap.get(RequestParameter.DEPARTMENT));
+        Optional<String[]> optionalDestID = Optional.ofNullable(parameterMap.get(RequestParameter.DESTINATION));
+
+        if (!optionalDeptID.isPresent() || !optionalDestID.isPresent()) {
+            return false;
+        }
+
+        String[] deptID = optionalDeptID.get();
+        String[] destID = optionalDestID.get();
+
+        return validator.isValidID(deptID[FIRST_PARAMETER_VALUE])
+                && validator.isValidID(destID[FIRST_PARAMETER_VALUE])
                 && validator.isNumeric(parameterMap.get(RequestParameter.DISTANCE)[FIRST_PARAMETER_VALUE])
                 && !validator.isEmpty(parameterMap.get(RequestParameter.DURATION)[FIRST_PARAMETER_VALUE]);
     }

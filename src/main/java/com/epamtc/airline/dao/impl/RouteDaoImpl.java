@@ -12,7 +12,7 @@ public class RouteDaoImpl extends AbstractDao<RouteDto> implements RouteDao {
 
     private static final String QUERY_GET_ROUTE_BY_ID = "SELECT * FROM route WHERE route_id = ?;";
     private static final String QUERY_GET_ALL_ROUTES = "SELECT * FROM route;";
-    private static final String QUERY_INSERT_ROUTE = "INSERT INTO route (departure_city_id, destination_city_id, distance, duration) VALUE (?, ?, ?, ?, ?);";
+    private static final String QUERY_INSERT_ROUTE = "INSERT INTO route (departure_city_id, destination_city_id, distance, duration) VALUE (?, ?, ?, ?);";
     private static final String QUERY_UPDATE_ROUTE = "UPDATE route SET departure_city_id = ?, destination_city_id = ?, distance = ?, duration = ? WHERE route_id = ?;";
 
     public RouteDaoImpl() {
