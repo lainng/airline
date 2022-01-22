@@ -99,8 +99,8 @@ public class CrewDaoImpl extends AbstractDao<CrewDto> implements CrewDao {
         );
     }
     @Override
-    public int deleteCrew(long crewID) throws DaoException {
-        return queryExecutor.executeUpdate(
+    public void deleteCrew(long crewID) throws DaoException {
+        queryExecutor.executeUpdate(
                 QUERY_DELETE_CREW_BY_ID,
                 crewID
         );

@@ -51,16 +51,15 @@ public class QueryExecutor<T> {
                 .orElse(null);
     }
 
-    public int executeUpdate(String query, Object... parameters) throws DaoException {
+    public void executeUpdate(String query, Object... parameters) throws DaoException {
         Connection connection = POOL.getConnection();
         PreparedStatement statement = null;
-        int affectedRowCount;
         try {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(query);
             StatementParameterSetter parameterSetter = new StatementParameterSetter(parameters);
             parameterSetter.setParametersToStatement(statement);
-            affectedRowCount = statement.executeUpdate();
+            statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
             rollbackChanges(connection);
@@ -70,7 +69,6 @@ public class QueryExecutor<T> {
             switchAutoCommit(connection);
             POOL.releaseConnection(connection, statement);
         }
-        return affectedRowCount;
     }
 
     public void executeTransactionUpdate(AbstractQuery... queries) throws DaoException {

@@ -21,6 +21,5 @@ public interface CrewDao {
     List<CrewDto> findAllCrews() throws DaoException;
     void updateCrew(CrewCreationDto crewCreationDto) throws DaoException;
     void addCrew(CrewCreationDto crewCreationDto) throws DaoException;
-    int deleteCrew(long crewID) throws DaoException;
-
+    void deleteCrew(long crewID) throws DaoException;
 }
