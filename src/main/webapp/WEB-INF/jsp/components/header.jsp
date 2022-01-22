@@ -29,7 +29,24 @@
                     </div>
                 </c:when>
                 <c:when test="${sessionScope.user != null}">
-                    <button type="button" class="btn btn-primary btn-darkblue dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <noscript>
+                        <div class="d-flex flex-row align-items-center">
+                            <c:choose>
+                                <c:when test="${sessionScope.roleId == UserRole.USER}">
+                                    <a class="nav-link link-dark px-2" href="${pageContext.request.contextPath}/controller?command=user-page"><fmt:message key="header.profile"/></a>
+                                </c:when>
+                                <c:when test="${sessionScope.roleId == UserRole.DISPATCHER}">
+                                    <a class="nav-link link-dark px-2" href="${pageContext.request.contextPath}/controller?command=dispatcher-page"><fmt:message key="header.profile"/></a>
+                                </c:when>
+                                <c:when test="${sessionScope.roleId == UserRole.ADMIN}">
+                                    <a class="nav-link link-dark px-2" href="${pageContext.request.contextPath}/controller?command=admin-page"><fmt:message key="header.profile"/></a>
+                                </c:when>
+                            </c:choose>
+                            <a class="nav-link link-dark px-2" href="${pageContext.request.contextPath}/controller?command=settings"><fmt:message key="header.settings"/></a>
+                            <a class="nav-link link-dark px-2" href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="header.logout"/></a>
+                        </div>
+                    </noscript>
+                    <button type="button" id="userButton" class="btn btn-primary btn-darkblue dropdown-toggle d-none" data-bs-toggle="dropdown" aria-expanded="false">
                             ${sessionScope.user.firstName} ${sessionScope.user.lastName}
                     </button>
                     <ul class="dropdown-menu">
@@ -53,3 +70,6 @@
         </div>
     </header>
 </div>
+<script>
+    $('#userButton').toggleClass('d-none');
+</script>
