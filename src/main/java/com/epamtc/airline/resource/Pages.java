@@ -67,6 +67,5 @@ public final class Pages {
     public static final String CITIES_PAGE_REDIRECT = "controller?command=cities-page";
 
     public static final String CITY_ACTION_PAGE = "WEB-INF/jsp/city-action.jsp";
-
-
+    public static final String CITY_ACTION_PAGE_REDIRECT = "controller?command=city-action-page";
 }

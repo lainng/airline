@@ -24,6 +24,9 @@
         <form method="post" action="${pageContext.request.contextPath}/controller?command=add-city" id="city">
             <input type="hidden" name="city-id" value="${requestScope.city.ID}">
             <div class="d-flex flex-column justify-content-between m-auto w-35">
+                <c:if test="${requestScope.error != null}">
+                    <div class="error text-center mb-3"><fmt:message key="${requestScope.error}"/></div>
+                </c:if>
                 <label for="city" class="pb-2"><fmt:message key="cityAction.destName"/>:</label>
                 <input type="text" class="form-control py-2 mb-2" name="city" value="<c:if test="${requestScope.city != null}">${requestScope.city.name}</c:if>" placeholder="<fmt:message key="cityAction.inputName"/>">
             </div>
