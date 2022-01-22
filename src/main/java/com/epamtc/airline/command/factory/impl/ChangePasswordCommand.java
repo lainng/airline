@@ -56,7 +56,7 @@ public class ChangePasswordCommand implements Command {
 
     private void changingPasswordSetup(HttpSession session, UserCreationDto dto) throws ServiceException {
         UserService userService = ServiceFactory.getInstance().getUserService();
-        boolean isPasswordChanged = userService.changeUserPassword(dto);
+        boolean isPasswordChanged = userService.editUserPassword(dto);
         if (isPasswordChanged) {
             session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.PASSWORD_CHANGED);
         } else {

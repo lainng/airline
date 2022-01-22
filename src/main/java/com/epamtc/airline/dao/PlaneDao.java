@@ -6,8 +6,8 @@ import com.epamtc.airline.entity.Plane;
 import java.util.List;
 
 public interface PlaneDao {
-    Plane takePlaneByID(long planeID) throws DaoException;
-    List<Plane> takeAllPlanes() throws DaoException;
-    void insertPlane(Plane plane) throws DaoException;
+    Plane findPlaneByID(long planeID) throws DaoException;
+    List<Plane> findAllPlanes() throws DaoException;
+    void addPlane(Plane plane) throws DaoException;
     void updatePlane(Plane plane) throws DaoException;
 }

@@ -11,5 +11,5 @@ public interface FlightStatusDao {
      * @return
      * @throws DaoException
      */
-    FlightStatus takeFlightStatusByID(long statusID) throws DaoException;
+    FlightStatus findFlightStatusByID(long statusID) throws DaoException;
 }

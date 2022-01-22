@@ -99,7 +99,7 @@ public class FlightDaoImpl extends AbstractDao<FlightDto> implements FlightDao {
         updateFlightStatus(flightID, FlightCondition.CANCELED);
     }
     @Override
-    public void insertFlight(FlightDto flightDto) throws DaoException {
+    public void addFlight(FlightDto flightDto) throws DaoException {
         queryExecutor.executeUpdate(
                 QUERY_INSERT_FLIGHT,
                 flightDto.getRouteID(),
@@ -119,7 +119,7 @@ public class FlightDaoImpl extends AbstractDao<FlightDto> implements FlightDao {
         );
     }
     @Override
-    public List<FlightDto> takeSearchResults(SearchQuery searchQuery) throws DaoException {
+    public List<FlightDto> searchFlights(SearchQuery searchQuery) throws DaoException {
         return queryExecutor.executeQuery(
                 QUERY_GET_FLIGHTS_BY_SEARCH_QUERY,
                 searchQuery.getDepartmentID(),

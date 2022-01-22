@@ -53,7 +53,7 @@ public class CrewServiceImpl implements CrewService {
         return crews;
     }
     @Override
-    public void updateCrew(CrewCreationDto crewCreationDto) throws ServiceException {
+    public void editCrew(CrewCreationDto crewCreationDto) throws ServiceException {
         CrewDao crewDao = DaoFactory.getInstance().getCrewDao();
         try {
             crewDao.updateCrew(crewCreationDto);
@@ -67,7 +67,7 @@ public class CrewServiceImpl implements CrewService {
         CrewDao crewDao = DaoFactory.getInstance().getCrewDao();
         FlightService flightService = ServiceFactory.getInstance().getFlightService();
         try {
-            crewDao.insertNewCrew(crewCreationDto);
+            crewDao.addCrew(crewCreationDto);
             flightService.changeFlightStatus(crewCreationDto.getAssignedFlightID(), FlightCondition.READY);
         } catch (DaoException e) {
             LOGGER.error("Unable to create a new crew. {}", e.getMessage());
@@ -106,7 +106,7 @@ public class CrewServiceImpl implements CrewService {
         return Optional.ofNullable(crew);
     }
     @Override
-    public List<Crew> getUserCrews(long userID) throws ServiceException {
+    public List<Crew> takeUserCrews(long userID) throws ServiceException {
         UserService userService = ServiceFactory.getInstance().getUserService();
         Optional<User> optionalUser = userService.takeUser(userID);
         List<Crew> userCrews = new ArrayList<>();

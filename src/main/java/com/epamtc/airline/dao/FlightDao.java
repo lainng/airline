@@ -38,7 +38,7 @@ public interface FlightDao {
     List<FlightDto> findAllFlights() throws DaoException;
     void updateFlightStatus(long flightID, long statusID) throws DaoException;
     void cancelFlightByID(long flightID) throws DaoException;
-    void insertFlight(FlightDto flightDto) throws DaoException;
+    void addFlight(FlightDto flightDto) throws DaoException;
     void updateFlight(FlightDto flightDto) throws DaoException;
-    List<FlightDto> takeSearchResults(SearchQuery query) throws DaoException;
+    List<FlightDto> searchFlights(SearchQuery query) throws DaoException;
 }

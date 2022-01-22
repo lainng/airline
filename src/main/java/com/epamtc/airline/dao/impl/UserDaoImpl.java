@@ -41,7 +41,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         );
     }
     @Override
-    public Optional<User> getUserByEmail(String email) throws DaoException {
+    public Optional<User> findUserByEmail(String email) throws DaoException {
         return Optional.ofNullable(
                 queryExecutor.executeSingleEntityQuery(
                     QUERY_GET_USER_BY_EMAIL,

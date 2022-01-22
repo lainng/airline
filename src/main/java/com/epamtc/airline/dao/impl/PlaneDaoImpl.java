@@ -20,18 +20,18 @@ public class PlaneDaoImpl extends AbstractDao<Plane> implements PlaneDao {
     }
 
     @Override
-    public Plane takePlaneByID(long planeID) throws DaoException {
+    public Plane findPlaneByID(long planeID) throws DaoException {
         return queryExecutor.executeSingleEntityQuery(
                 QUERY_GET_PLANE_BY_ID,
                 planeID
         );
     }
     @Override
-    public List<Plane> takeAllPlanes() throws DaoException {
+    public List<Plane> findAllPlanes() throws DaoException {
         return queryExecutor.executeQuery(QUERY_GET_ALL_PLANES);
     }
     @Override
-    public void insertPlane(Plane plane) throws DaoException {
+    public void addPlane(Plane plane) throws DaoException {
         queryExecutor.executeUpdate(
                 QUERY_INSERT_NEW_PLANE,
                 plane.getModel(),

@@ -22,7 +22,7 @@ public class CityServiceImpl implements CityService {
         CityDao cityDao = DaoFactory.getInstance().getCityDao();
         City city;
         try {
-            city = cityDao.takeCityByID(cityID);
+            city = cityDao.findCityByID(cityID);
         } catch (DaoException e) {
             LOGGER.error("Unable to get a city by its ID. {}", e.getMessage());
             throw new ServiceException("Unable to get a city by its ID.", e);
@@ -34,7 +34,7 @@ public class CityServiceImpl implements CityService {
         CityDao cityDao = DaoFactory.getInstance().getCityDao();
         List<City> cities;
         try {
-            cities = cityDao.takeAllCities();
+            cities = cityDao.findAllCities();
         } catch (DaoException e) {
             LOGGER.error("Unable to get all cities. {}", e.getMessage());
             throw new ServiceException("Unable to get all cities.", e);
@@ -49,7 +49,7 @@ public class CityServiceImpl implements CityService {
             return false;
         }
         try {
-            cityDao.insertCity(city);
+            cityDao.addCity(city);
         } catch (DaoException e) {
             LOGGER.error("Unable to create a new city. {}", e.getMessage());
             throw new ServiceException("Unable to create a new city.", e);

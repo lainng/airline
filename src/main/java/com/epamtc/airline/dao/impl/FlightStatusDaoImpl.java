@@ -14,7 +14,7 @@ public class FlightStatusDaoImpl extends AbstractDao<FlightStatus> implements Fl
     }
 
     @Override
-    public FlightStatus takeFlightStatusByID(long statusID) throws DaoException {
+    public FlightStatus findFlightStatusByID(long statusID) throws DaoException {
         return queryExecutor.executeSingleEntityQuery(
                 QUERY_GET_FLIGHT_STATUS_BY_ID,
                 statusID

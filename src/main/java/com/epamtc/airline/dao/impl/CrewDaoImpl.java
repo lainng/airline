@@ -83,7 +83,7 @@ public class CrewDaoImpl extends AbstractDao<CrewDto> implements CrewDao {
         );
     }
     @Override
-    public void insertNewCrew(CrewCreationDto crewCreationDto) throws DaoException {
+    public void addCrew(CrewCreationDto crewCreationDto) throws DaoException {
         List<Object[]> batch = new ArrayList<>();
         for (long userID : crewCreationDto.getMembers()) {
             batch.add(new Object[] {crewCreationDto.getAssignedFlightID(), userID});

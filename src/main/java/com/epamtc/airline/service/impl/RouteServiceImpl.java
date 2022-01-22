@@ -27,7 +27,7 @@ public class RouteServiceImpl implements RouteService {
         RouteDao routeDao = DaoFactory.getInstance().getRouteDao();
         List<Route> routes = new ArrayList<>();
         try {
-            List<RouteDto> routeDtoList = routeDao.takeAllRoutes();
+            List<RouteDto> routeDtoList = routeDao.findAllRoutes();
             for (RouteDto dto : routeDtoList) {
                 routes.add(toEntity(dto));
             }
@@ -42,7 +42,7 @@ public class RouteServiceImpl implements RouteService {
         RouteDao routeDao = DaoFactory.getInstance().getRouteDao();
         Route route;
         try {
-            RouteDto routeDto = routeDao.takeRouteByID(routeID);
+            RouteDto routeDto = routeDao.findRouteByID(routeID);
             route = toEntity(routeDto);
         } catch (DaoException e) {
             LOGGER.error("Unable to get a route by its ID. {}", e.getMessage());
@@ -59,7 +59,7 @@ public class RouteServiceImpl implements RouteService {
         }
         RouteDao routeDao = DaoFactory.getInstance().getRouteDao();
         try {
-            routeDao.insertRoute(routeDto);
+            routeDao.addRoute(routeDto);
         } catch (DaoException e) {
             LOGGER.error("Unable to create a new route. {}", e.getMessage());
             throw new ServiceException("Unable to create a new route.", e);

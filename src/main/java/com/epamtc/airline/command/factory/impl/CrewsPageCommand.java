@@ -39,7 +39,7 @@ public class CrewsPageCommand implements Command {
                 return new CommandResult(Pages.ERROR_404, RouteType.FORWARD);
             }
 
-            crews = crewService.getUserCrews(Long.parseLong(userID));
+            crews = crewService.takeUserCrews(Long.parseLong(userID));
             request.setAttribute(RequestAttribute.CREWS, crews);
             request.setAttribute(RequestAttribute.EMPLOYEE, optionalUser.get());
         } else {

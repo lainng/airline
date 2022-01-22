@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
         }
         Optional<User> optionalUser;
         try {
-            optionalUser = userDao.getUserByEmail(email);
+            optionalUser = userDao.findUserByEmail(email);
             if (optionalUser.isPresent()) {
                 User user = optionalUser.get();
                 if (!DigestUtils.md5Hex(String.valueOf(password)).equalsIgnoreCase(user.getPassword())) {
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
             return false;
         }
         try {
-            Optional<User> optionalUserFromDB = userDao.getUserByEmail(userCreationDto.getEmail());
+            Optional<User> optionalUserFromDB = userDao.findUserByEmail(userCreationDto.getEmail());
             if (!optionalUserFromDB.isPresent()) {
                 userDao.addUser(userCreationDto);
                 return true;
@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
         PositionDao positionDao = DaoFactory.getInstance().getPositionDao();
         List<Position> positions;
         try {
-            positions = positionDao.takeAllPositions();
+            positions = positionDao.findAllPositions();
             positions.removeIf(position -> position.getRoleID() == UserRole.ADMIN);
         } catch (DaoException e) {
             LOGGER.error("Unable to take all positions. {}", e.getMessage());
@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
         return positions;
     }
     @Override
-    public boolean changeUserPassword(UserCreationDto dto) throws ServiceException {
+    public boolean editUserPassword(UserCreationDto dto) throws ServiceException {
         UserValidator userValidator = ValidatorFactory.getInstance().getUserValidator();
         UserDao userDao = DaoFactory.getInstance().getUserDao();
 

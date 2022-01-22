@@ -22,7 +22,7 @@ public class PlaneServiceImpl implements PlaneService {
         PlaneDao planeDao = DaoFactory.getInstance().getPlaneDao();
         Plane plane;
         try {
-            plane = planeDao.takePlaneByID(planeID);
+            plane = planeDao.findPlaneByID(planeID);
         } catch (DaoException e) {
             LOGGER.error("Unable to get the plane by its ID. {}", e.getMessage());
             throw new ServiceException("Unable to get the plane by its ID.", e);
@@ -35,7 +35,7 @@ public class PlaneServiceImpl implements PlaneService {
         PlaneDao planeDao = DaoFactory.getInstance().getPlaneDao();
         List<Plane> planes;
         try {
-            planes = planeDao.takeAllPlanes();
+            planes = planeDao.findAllPlanes();
         } catch (DaoException e) {
             LOGGER.error("Unable to get all planes. {}", e.getMessage());
             throw new ServiceException("Unable to get all planes.", e);
@@ -51,7 +51,7 @@ public class PlaneServiceImpl implements PlaneService {
         }
         PlaneDao planeDao = DaoFactory.getInstance().getPlaneDao();
         try {
-            planeDao.insertPlane(plane);
+            planeDao.addPlane(plane);
         } catch (DaoException e) {
             LOGGER.error("Unable to add a new plane. {}", e.getMessage());
             throw new ServiceException("Unable to add a new plane.", e);

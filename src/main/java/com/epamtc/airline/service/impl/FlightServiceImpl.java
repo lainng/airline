@@ -142,7 +142,7 @@ public class FlightServiceImpl implements FlightService {
     public boolean createFlight(FlightDto flightDto) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
         try {
-            flightDao.insertFlight(flightDto);
+            flightDao.addFlight(flightDto);
         } catch (DaoException e) {
             LOGGER.error("Unable to create a new flight. {}", e.getMessage());
             throw new ServiceException("Unable to create a new flight.", e);
@@ -165,7 +165,7 @@ public class FlightServiceImpl implements FlightService {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
         List<Flight> searchResult = new ArrayList<>();
         try {
-            List<FlightDto> flightDtoList = flightDao.takeSearchResults(query);
+            List<FlightDto> flightDtoList = flightDao.searchFlights(query);
             for (FlightDto dto : flightDtoList) {
                 searchResult.add(toEntity(dto));
             }
@@ -180,7 +180,7 @@ public class FlightServiceImpl implements FlightService {
         FlightStatusDao flightStatusDao = DaoFactory.getInstance().getFlightStatusDao();
         FlightStatus status;
         try {
-            status = flightStatusDao.takeFlightStatusByID(statusID);
+            status = flightStatusDao.findFlightStatusByID(statusID);
         } catch (DaoException e) {
             LOGGER.error("Unable to get a flight status. {}", e.getMessage());
             throw new ServiceException("Unable to get a a flight status.", e);

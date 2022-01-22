@@ -55,7 +55,7 @@ public class AddCrewCommand implements Command {
             session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_ADDED_CREW);
         } else {
             crewCreationDto.setID(Long.parseLong(crewID));
-            crewService.updateCrew(crewCreationDto);
+            crewService.editCrew(crewCreationDto);
             session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_UPDATED_CREW);
         }
         return new CommandResult(Pages.CREW_ACTION_PAGE_REDIRECT, RouteType.REDIRECT);

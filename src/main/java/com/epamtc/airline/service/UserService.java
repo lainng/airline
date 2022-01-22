@@ -40,7 +40,7 @@ public interface UserService {
      * @return {@code true} if password is changed, {@code false} otherwise.
      * @throws ServiceException if changing is impossible;
      */
-    boolean changeUserPassword(UserCreationDto dto) throws ServiceException;
+    boolean editUserPassword(UserCreationDto dto) throws ServiceException;
 
     /**
      *

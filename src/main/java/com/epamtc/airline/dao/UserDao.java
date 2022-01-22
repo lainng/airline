@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserDao {
+
     /**
      * Adds the created {@link User} instance to the data source.
      * @param userCreationDto
@@ -21,7 +22,7 @@ public interface UserDao {
      * @return An {@link Optional} describing user entity, or an empty {@link Optional} if the user is not found.
      * @throws DaoException if a data source access error or other errors.
      */
-    Optional<User> getUserByEmail(String email) throws DaoException;
+    Optional<User> findUserByEmail(String email) throws DaoException;
 
     /**
      * Updates user password.
@@ -31,8 +32,25 @@ public interface UserDao {
      */
     void updateUserPassword(long userID, String password) throws DaoException;
 
-
+    /**
+     *
+     * @return
+     * @throws DaoException
+     */
     List<User> findAllUsers() throws DaoException;
+
+    /**
+     *
+     * @param userID
+     * @return
+     * @throws DaoException
+     */
     Optional<User> findUserByID(long userID) throws DaoException;
+
+    /**
+     *
+     * @param userCreationDto
+     * @throws DaoException
+     */
     void updateUser(UserCreationDto userCreationDto) throws DaoException;
 }

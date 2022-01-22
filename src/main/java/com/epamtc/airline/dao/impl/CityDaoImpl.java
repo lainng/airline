@@ -19,17 +19,17 @@ public class CityDaoImpl extends AbstractDao<City> implements CityDao {
     }
 
     @Override
-    public List<City> takeAllCities() throws DaoException {
+    public List<City> findAllCities() throws DaoException {
         return queryExecutor.executeQuery(QUERY_GET_ALL_CITIES);
     }
     @Override
-    public City takeCityByID(long cityID) throws DaoException {
+    public City findCityByID(long cityID) throws DaoException {
         return queryExecutor.executeSingleEntityQuery(
                 QUERY_GET_CITY_BY_ID,
                 cityID);
     }
     @Override
-    public void insertCity(City city) throws DaoException {
+    public void addCity(City city) throws DaoException {
         queryExecutor.executeUpdate(
                 QUERY_INSERT_CITY,
                 city.getName()

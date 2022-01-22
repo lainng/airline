@@ -20,17 +20,17 @@ public class RouteDaoImpl extends AbstractDao<RouteDto> implements RouteDao {
     }
 
     @Override
-    public RouteDto takeRouteByID(long routeID) throws DaoException {
+    public RouteDto findRouteByID(long routeID) throws DaoException {
         return queryExecutor.executeSingleEntityQuery(
                 QUERY_GET_ROUTE_BY_ID,
                 routeID);
     }
     @Override
-    public List<RouteDto> takeAllRoutes() throws DaoException {
+    public List<RouteDto> findAllRoutes() throws DaoException {
         return queryExecutor.executeQuery(QUERY_GET_ALL_ROUTES);
     }
     @Override
-    public void insertRoute(RouteDto routeDto) throws DaoException {
+    public void addRoute(RouteDto routeDto) throws DaoException {
         queryExecutor.executeUpdate(
                 QUERY_INSERT_ROUTE,
                 routeDto.getDepartureID(),

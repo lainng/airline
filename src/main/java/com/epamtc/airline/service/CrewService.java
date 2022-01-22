@@ -29,7 +29,7 @@ public interface CrewService {
      * @param crewCreationDto
      * @throws ServiceException
      */
-    void updateCrew(CrewCreationDto crewCreationDto) throws ServiceException;
+    void editCrew(CrewCreationDto crewCreationDto) throws ServiceException;
 
     /**
      *
@@ -60,5 +60,5 @@ public interface CrewService {
      * @return
      * @throws ServiceException
      */
-    List<Crew> getUserCrews(long userID) throws ServiceException;
+    List<Crew> takeUserCrews(long userID) throws ServiceException;
 }
