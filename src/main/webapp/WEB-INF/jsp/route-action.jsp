@@ -125,7 +125,7 @@
         hideSelectCity('#dest', '#dept');
 
         $.validator.addMethod('greaterZero', function (value) {
-            return /^[1-9][0-9]+$/.test(value);
+            return /^[1-9][0-9]*$/.test(value);
         });
     });
 
