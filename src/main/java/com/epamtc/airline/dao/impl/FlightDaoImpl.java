@@ -119,7 +119,7 @@ public class FlightDaoImpl extends AbstractDao<FlightDto> implements FlightDao {
         );
     }
     @Override
-    public List<FlightDto> searchFlights(SearchQuery searchQuery) throws DaoException {
+    public List<FlightDto> findFlightsBySearchQuery(SearchQuery searchQuery) throws DaoException {
         return queryExecutor.executeQuery(
                 QUERY_GET_FLIGHTS_BY_SEARCH_QUERY,
                 searchQuery.getDepartmentID(),

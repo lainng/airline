@@ -165,7 +165,7 @@ public class FlightServiceImpl implements FlightService {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
         List<Flight> searchResult = new ArrayList<>();
         try {
-            List<FlightDto> flightDtoList = flightDao.searchFlights(query);
+            List<FlightDto> flightDtoList = flightDao.findFlightsBySearchQuery(query);
             for (FlightDto dto : flightDtoList) {
                 searchResult.add(toEntity(dto));
             }
