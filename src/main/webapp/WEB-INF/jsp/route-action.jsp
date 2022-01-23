@@ -121,6 +121,7 @@
                 },
             },
         });
+        setMutedColor($('#dept, #dest'));
         hideSelectCity('#dept', '#dest');
         hideSelectCity('#dest', '#dept');
 
