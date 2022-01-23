@@ -54,7 +54,7 @@
                 </div>
                 <div class="d-flex flex-column w-19">
                     <div class="input-group mb-3" id="fromBlock">
-                        <input type="text" class="form-control py-2" id="from" name="deptDate" placeholder="<fmt:message key="flightSearch.outbound"/>" autocomplete="off" readonly>
+                        <input type="text" class="form-control py-2" id="from" name="deptDate" placeholder="<fmt:message key="flightSearch.outbound"/>" autocomplete="off">
                         <span class="input-group-text" id="fromBtn">
                         <i class="bi bi-calendar-date"></i>
                     </span>
@@ -62,7 +62,7 @@
                 </div>
                 <div class="d-flex flex-column w-19">
                     <div class="input-group mb-3" id="toBlock">
-                        <input type="text" class="form-control py-2" id="to" name="destDate" placeholder="<fmt:message key="flightSearch.inbound"/>" autocomplete="off"  readonly>
+                        <input type="text" class="form-control py-2" id="to" name="destDate" placeholder="<fmt:message key="flightSearch.inbound"/>" autocomplete="off">
                         <span class="input-group-text" id="toBtn">
                             <i class="bi bi-calendar-date"></i>
                     </span>
@@ -88,6 +88,7 @@
     $(document).ready(function () {
         datepickerLocalization('${sessionScope.locale}');
         setMutedColor($('select.form-select'));
+        $('#from, #to').prop('readonly', true);
         $('#flightSearch').validate({
             rules: {
                 dept: {

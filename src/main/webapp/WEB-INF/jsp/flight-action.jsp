@@ -66,7 +66,7 @@
                 </div>
                 <div class="d-flex flex-row justify-content-between pb-2">
                     <div class="d-flex flex-column w-48">
-                        <input type="text" class="form-control py-2 mb-2" id="deptDate" name="deptDate" value="<c:if test="${requestScope.currentFlight != null}"><fmt:formatDate value="${requestScope.currentFlight.departureTime}" pattern="dd.MM.yyyy"/></c:if>" placeholder="<fmt:message key="flightAction.chooseDate"/>" autocomplete="off" readonly>
+                        <input type="text" class="form-control py-2 mb-2" id="deptDate" name="deptDate" value="<c:if test="${requestScope.currentFlight != null}"><fmt:formatDate value="${requestScope.currentFlight.departureTime}" pattern="dd.MM.yyyy"/></c:if>" placeholder="<fmt:message key="flightAction.chooseDate"/>" autocomplete="off">
                     </div>
                     <div class="d-flex flex-column w-48">
                         <input type="time" class="form-control text-center py-2 mb-2" id="deptTime" name="deptTime" value="<c:if test="${requestScope.currentFlight != null}"><fmt:formatDate value="${requestScope.currentFlight.departureTime}" pattern="HH:mm"/></c:if>" autocomplete="off">
@@ -91,6 +91,7 @@
 <script>
     $(document).ready(function () {
         datepickerLocalization('ru');
+        $('#from, #to').prop('readonly', true);
         $('#deptDate').datepicker({
             minDate: +1,
         });
