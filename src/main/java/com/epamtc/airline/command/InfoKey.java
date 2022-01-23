@@ -1,7 +1,8 @@
 package com.epamtc.airline.command;
 
 public final class InfoKey {
-    public static final String ERROR_INVALID_SEARCH_QUERY_PARAMETERS = "error.incorrectSearchingQueryParameters";
+    public static final String ERROR_INCORRECT_SEARCH_QUERY_PARAMETERS = "error.incorrectSearchingQueryParameters";
+    public static final String ERROR_INCORRECT_DATE_FORMAT = ""; /*todo написать ключ */
 
     public static final String ERROR_INCORRECT_LOGIN_DATA = "error.invalidLogin";
     public static final String ERROR_INCORRECT_SIGN_UP_DATA = ""; /*todo написать ключ */

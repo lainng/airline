@@ -1,6 +1,7 @@
 package com.epamtc.airline.resource;
 
 public final class RequestAttribute {
+
     public static final String CREW_PAGE_KEY = "crewPageKey";
     public static final String ROUTE_ACTION_PAGE_KEY = "routeActionPageKey";
     public static final String PLANE_ACTION_PAGE_KEY = "planeActionPageKey";
@@ -26,6 +27,7 @@ public final class RequestAttribute {
     public static final String CITIES = "cities";
     public static final String CITY = "city";
     public static final String FLIGHT_STATUS = "flightStatus";
+    public static final String SEARCHING_QUERY = "searchingQuery";
 
     private RequestAttribute() {}
 }

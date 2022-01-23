@@ -46,7 +46,7 @@ public class SearchingFlightCommand implements Command {
 
         boolean isRequestParametersValid = checkRequestParameters(request.getParameterMap());
         if (!isRequestParametersValid) {
-            request.setAttribute(RequestAttribute.ERROR_KEY, InfoKey.ERROR_INVALID_SEARCH_QUERY_PARAMETERS);
+            request.setAttribute(RequestAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_SEARCH_QUERY_PARAMETERS);
             return new CommandResult(Pages.SEARCH_RESULTS_PAGE, RouteType.FORWARD);
         }
 
@@ -56,11 +56,12 @@ public class SearchingFlightCommand implements Command {
             searchQuery.setDeptDate(buildDate(deptDate));
             searchQuery.setDestDate(buildDate(destDate));
         } catch (ParseException e) {
-            request.setAttribute(RequestAttribute.ERROR_KEY, InfoKey.ERROR_INVALID_SEARCH_QUERY_PARAMETERS);
+            request.setAttribute(RequestAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_DATE_FORMAT);
             return new CommandResult(Pages.SEARCH_RESULTS_PAGE, RouteType.FORWARD);
         }
 
         List<Flight> searchResult = flightService.searchFlights(searchQuery);
+        request.setAttribute(RequestAttribute.SEARCHING_QUERY, searchQuery);
         request.setAttribute(RequestAttribute.FLIGHTS, searchResult);
         return new CommandResult(Pages.SEARCH_RESULTS_PAGE, RouteType.FORWARD);
     }
@@ -88,8 +89,8 @@ public class SearchingFlightCommand implements Command {
 
         return validator.isValidID(deptIDValues[FIRST_PARAMETER_VALUE])
                 && validator.isValidID(destIDValues[FIRST_PARAMETER_VALUE])
-                && !validator.isEmpty(deptDateValues[FIRST_PARAMETER_VALUE])
-                && !validator.isEmpty(destDateValues[FIRST_PARAMETER_VALUE]);
+                && validator.isValidDate(deptDateValues[FIRST_PARAMETER_VALUE])
+                && validator.isValidDate(destDateValues[FIRST_PARAMETER_VALUE]);
     }
 
     private Timestamp buildDate(String stringDate) throws ParseException {

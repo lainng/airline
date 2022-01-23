@@ -36,7 +36,7 @@
                             <select class="form-select py-2 mb-2" id="dept" name="dept">
                                 <option selected disabled value=""><fmt:message key="searchResult.from"/></option>
                                 <c:forEach items="${requestScope.cities}" var="city">
-                                    <option value="${city.ID}">${city.name}</option>
+                                    <option value="${city.ID}" <c:if test="${requestScope.searchingQuery.departmentID eq city.ID}">selected</c:if> >${city.name}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -44,13 +44,13 @@
                             <select class="form-select py-2 mb-2" id="dest" name="dest">
                                 <option disabled selected value=""><fmt:message key="searchResult.to"/></option>
                                 <c:forEach items="${requestScope.cities}" var="city">
-                                    <option value="${city.ID}">${city.name}</option>
+                                    <option value="${city.ID}" <c:if test="${requestScope.searchingQuery.destinationID eq city.ID}">selected</c:if> >${city.name}</option>
                                 </c:forEach>
                             </select>
                         </div>
                         <div class="d-flex flex-column w-19">
                             <div class="input-group mb-2" id="fromBlock">
-                                <input type="text" class="form-control py-2" id="from" name="deptDate" placeholder="<fmt:message key="searchResult.outbound"/>" autocomplete="off">
+                                <input type="text" class="form-control py-2" id="from" name="deptDate" placeholder="<fmt:message key="searchResult.outbound"/>" <c:if test="${requestScope.searchingQuery != null}">value="<fmt:formatDate pattern="dd.MM.yyyy" value="${requestScope.searchingQuery.deptDate}"/>"</c:if> autocomplete="off">
                                 <span class="input-group-text" id="fromBtn">
                                     <i class="bi bi-calendar-date"></i>
                                 </span>
@@ -58,7 +58,7 @@
                         </div>
                         <div class="d-flex flex-column w-19">
                             <div class="input-group mb-2" id="toBlock">
-                                <input type="text" class="form-control py-2" id="to" name="destDate" placeholder="<fmt:message key="searchResult.inbound"/>" autocomplete="off">
+                                <input type="text" class="form-control py-2" id="to" name="destDate" placeholder="<fmt:message key="searchResult.inbound"/>" <c:if test="${requestScope.searchingQuery != null}">value="<fmt:formatDate pattern="dd.MM.yyyy" value="${requestScope.searchingQuery.destDate}"/>"</c:if> autocomplete="off">
                                 <span class="input-group-text" id="toBtn">
                                     <i class="bi bi-calendar-date"></i>
                                 </span>
