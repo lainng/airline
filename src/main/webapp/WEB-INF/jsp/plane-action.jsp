@@ -112,7 +112,7 @@
             return /^[1-9][0-9]*$/.test(value);
         });
         $.validator.addMethod('zeroOrPositive', function (value) {
-            return /^[0-9]*$/.test(value);
+            return /^[0-9]+$/.test(value);
         });
     });
 </script>
