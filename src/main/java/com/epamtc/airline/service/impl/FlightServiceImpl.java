@@ -24,6 +24,8 @@ import java.util.Optional;
 
 public class FlightServiceImpl implements FlightService {
     private static final Logger LOGGER = LogManager.getLogger();
+    private static final int TWENTY_THREE = 23;
+    private static final int FIFTY_NINE = 59;
 
     @Override
     public List<Flight> takeUserFlights(User user) throws ServiceException {
@@ -164,6 +166,7 @@ public class FlightServiceImpl implements FlightService {
     public List<Flight> searchFlights(SearchQuery query) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
         List<Flight> searchResult = new ArrayList<>();
+        changeQueryTimeRightBorder(query);
         try {
             List<FlightDto> flightDtoList = flightDao.findFlightsBySearchQuery(query);
             for (FlightDto dto : flightDtoList) {
@@ -230,5 +233,14 @@ public class FlightServiceImpl implements FlightService {
         destinationTime.add(Calendar.HOUR, duration.get(Calendar.HOUR));
         destinationTime.add(Calendar.MINUTE, duration.get(Calendar.MINUTE));
         flight.setDestinationTime(new Timestamp(destinationTime.getTimeInMillis()));
+    }
+
+    private void changeQueryTimeRightBorder(SearchQuery query) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(query.getDestDate().getTime());
+        calendar.set(Calendar.HOUR, TWENTY_THREE);
+        calendar.set(Calendar.MINUTE, FIFTY_NINE);
+        calendar.set(Calendar.SECOND, FIFTY_NINE);
+        query.setDestDate(new Timestamp(calendar.getTimeInMillis()));
     }
 }
