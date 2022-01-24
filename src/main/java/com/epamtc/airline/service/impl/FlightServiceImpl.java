@@ -216,7 +216,7 @@ public class FlightServiceImpl implements FlightService {
         flight.setFlightStatus(dto.getFlightStatus());
         flight.setConfirmed(dto.isConfirmed());
 
-        checkFlightStatus(flight);
+        updateFlightStatus(flight);
 
         return flight;
     }
@@ -253,18 +253,37 @@ public class FlightServiceImpl implements FlightService {
         query.setDestDate(new Timestamp(calendar.getTimeInMillis()));
     }
 
-    private void checkFlightStatus(Flight flight) throws ServiceException {
-        if (flight.getFlightStatus().getID() == FlightCondition.CANCELED) {
+    private void updateFlightStatus(Flight flight) throws ServiceException {
+        long flightStatusID = flight.getFlightStatus().getID();
+        if (flightStatusID == FlightCondition.CANCELED 
+                || flightStatusID == FlightCondition.ARRIVED) {
             return;
         }
+        
         Date now = new Date();
         if (now.after(flight.getDestinationTime())) {
             flight.setFlightStatus(takeFlightStatus(FlightCondition.ARRIVED));
             changeFlightStatus(flight.getID(), FlightCondition.ARRIVED);
+            calculateTotalFlightHours(flight);
         } else if (now.after(flight.getDepartureTime())) {
             flight.setFlightStatus(takeFlightStatus(FlightCondition.DEPARTED));
             changeFlightStatus(flight.getID(), FlightCondition.DEPARTED);
         }
+    }
+    
+    private void calculateTotalFlightHours(Flight flight) throws ServiceException {
+        PlaneService planeService = ServiceFactory.getInstance().getPlaneService();
+        Plane plane = flight.getPlane();
+
+        Calendar onWayHours = Calendar.getInstance();
+        onWayHours.setTimeInMillis(flight.getRoute().getDuration().getTime());
+
+        int hoursOnWay = onWayHours.get(Calendar.HOUR_OF_DAY);
+        int totalHours = plane.getFlyingHours();
+        totalHours += hoursOnWay;
+
+        plane.setFlyingHours(totalHours);
+        planeService.editPlane(plane);
     }
 
     private List<Flight> toEntityList(List<FlightDto> dtoList) throws ServiceException {
