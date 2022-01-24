@@ -87,13 +87,13 @@
                             </td>
                         </c:when>
                         <c:otherwise>
-                            <c:if test="${flight.flightStatus.ID eq FlightCondition.ARRIVED}">
+                            <c:if test="${flight.flightStatus.ID eq FlightCondition.DEPARTED}">
                                 <td class="text-primary">${flight.flightStatus.name}</td>
                             </c:if>
                             <c:if test="${flight.flightStatus.ID eq FlightCondition.CANCELED}">
                                 <td class="text-danger">${flight.flightStatus.name}</td>
                             </c:if>
-                            <c:if test="${flight.flightStatus.ID eq FlightCondition.DEPARTED}">
+                            <c:if test="${flight.flightStatus.ID eq FlightCondition.ARRIVED}">
                                 <td>${flight.flightStatus.name}</td>
                             </c:if>
                             <td>

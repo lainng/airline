@@ -104,6 +104,7 @@
             columnDefs: [
                 { orderable: false, targets: 7 }
             ],
+            "order": [[ 3, "desc" ]],
         } );
         $('[data-toggle="tooltip"]').tooltip({
             container: 'table',

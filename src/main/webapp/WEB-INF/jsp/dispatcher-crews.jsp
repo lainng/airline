@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page isELIgnored="false" %>
+<%@ page isELIgnored="false" import="com.epamtc.airline.command.FlightCondition" %>
 
 <fmt:setLocale value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}"/>
 <fmt:bundle basename="labels"/>
@@ -85,16 +85,21 @@
                             </noscript>
                         </td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/controller?command=crew-action-page&flight-id=${crew.assignedFlight.ID}" class="text-decoration-none mx-2" data-toggle="tooltip" title="<fmt:message key="button.edit"/>">
-                                <i class="bi bi-pencil link-dark"></i>
-                            </a>
-                            <noscript>
-                                <a href="${pageContext.request.contextPath}/controller?command=delete-crew&crew-id=${crew.ID}" class="text-decoration-none mx-2" data-toggle="tooltip" title="<fmt:message key="tooltip.cancel"/>">
-                                    <i class="bi bi-x-circle text-danger mx-2"></i>
+                            <c:if test="${crew.assignedFlight.flightStatus.ID == FlightCondition.SCHEDULED or crew.assignedFlight.flightStatus.ID == FlightCondition.READY}">
+                                <a href="${pageContext.request.contextPath}/controller?command=crew-action-page&flight-id=${crew.assignedFlight.ID}" class="text-decoration-none mx-2" data-toggle="tooltip" title="<fmt:message key="button.edit"/>">
+                                    <i class="bi bi-pencil link-dark"></i>
                                 </a>
-                            </noscript>
-                            <a class="text-decoration-none mx-2">
-                                <i class="bi bi-x-circle text-danger d-none" id="${crew.ID}" data-toggle="tooltip" title="<fmt:message key="button.delete"/>" data-bs-toggle="modal" data-bs-target="#deleteModal"></i>
+                                <noscript>
+                                    <a href="${pageContext.request.contextPath}/controller?command=delete-crew&crew-id=${crew.ID}" class="text-decoration-none mx-2" data-toggle="tooltip" title="<fmt:message key="tooltip.cancel"/>">
+                                        <i class="bi bi-x-circle text-danger mx-2"></i>
+                                    </a>
+                                </noscript>
+                                <a class="text-decoration-none mx-2">
+                                    <i class="bi bi-x-circle text-danger d-none" id="${crew.ID}" data-toggle="tooltip" title="<fmt:message key="button.delete"/>" data-bs-toggle="modal" data-bs-target="#deleteModal"></i>
+                                </a>
+                            </c:if>
+                            <a href="${pageContext.request.contextPath}/controller?command=flight-info&flight-id=${crew.assignedFlight.ID}" class="text-decoration-none mx-2" data-toggle="tooltip" title="<fmt:message key="tooltip.seeMore"/>">
+                                <i class="bi bi-info-circle link-dark"></i>
                             </a>
                         </td>
                     </tr>
@@ -145,7 +150,7 @@
                 null,
                 null,
                 { "width": "40%" },
-                null,
+                { "width": "10%" },
             ],
             columnDefs: [ {
                 "targets": [4, 5],
