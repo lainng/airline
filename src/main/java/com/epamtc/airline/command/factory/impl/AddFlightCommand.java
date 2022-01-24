@@ -1,7 +1,6 @@
 package com.epamtc.airline.command.factory.impl;
 
 import com.epamtc.airline.command.*;
-import com.epamtc.airline.entity.FlightStatus;
 import com.epamtc.airline.entity.dto.FlightDto;
 import com.epamtc.airline.resource.Pages;
 import com.epamtc.airline.resource.RequestParameter;
@@ -94,8 +93,6 @@ public class AddFlightCommand implements Command {
 
     private void newFlightSetup(HttpSession session, FlightDto flightDto) throws ServiceException {
         FlightService flightService = ServiceFactory.getInstance().getFlightService();
-        FlightStatus flightStatus = new FlightStatus(FlightCondition.SCHEDULED);
-        flightDto.setFlightStatus(flightStatus);
         boolean isFlightCreated = flightService.createFlight(flightDto);
         if (isFlightCreated) {
             session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_ADDED_FLIGHT);

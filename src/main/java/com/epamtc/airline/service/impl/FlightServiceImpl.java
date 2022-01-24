@@ -1,5 +1,6 @@
 package com.epamtc.airline.service.impl;
 
+import com.epamtc.airline.command.FlightCondition;
 import com.epamtc.airline.command.UserRole;
 import com.epamtc.airline.dao.DaoFactory;
 import com.epamtc.airline.dao.FlightDao;
@@ -17,10 +18,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class FlightServiceImpl implements FlightService {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -30,12 +28,10 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public List<Flight> takeUserFlights(User user) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
-        List<Flight> flights = new ArrayList<>();
+        List<Flight> flights;
         try {
             List<FlightDto> flightDtoList = flightDao.findUserFlights(user.getID());
-            for (FlightDto dto : flightDtoList) {
-                flights.add(toEntity(dto));
-            }
+            flights = toEntityList(flightDtoList);
         } catch (DaoException e) {
             LOGGER.error("Unable to get the list of user's flights. {}", e.getMessage());
             throw new ServiceException(e);
@@ -45,10 +41,10 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public boolean confirmFlight(long flightID, User user) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
+        if (!isFlightAssignedEmployee(user, flightID)) {
+            return false;
+        }
         try {
-            if (!isFlightAssignedEmployee(user, flightID)) {
-                return false;
-            }
             flightDao.confirmFlightByID(flightID, user.getID());
         } catch (DaoException e) {
             LOGGER.error("Unable to confirm user flight. {}", e.getMessage());
@@ -59,27 +55,26 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public Optional<Flight> takeUserFlight(long flightID, User user) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
-        Flight flight = null;
+        Optional<Flight> optionalFlight = Optional.empty();
+        if (!isFlightAssignedEmployee(user, flightID)) {
+            return optionalFlight;
+        }
         try {
-            if(isFlightAssignedEmployee(user, flightID)) {
-                FlightDto flightDto = flightDao.findFlightByID(flightID);
-                flight = toEntity(flightDto);
-            }
+            FlightDto flightDto = flightDao.findFlightByID(flightID);
+            optionalFlight = Optional.ofNullable(toEntity(flightDto));
         } catch (DaoException e) {
             LOGGER.error("Unable to get the flight by ID. {}", e.getMessage());
             throw new ServiceException("Unable to get the flight by ID.", e);
         }
-        return Optional.ofNullable(flight);
+        return optionalFlight;
     }
     @Override
     public List<Flight> takeUnassignedFlights() throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
-        List<Flight> flights = new ArrayList<>();
+        List<Flight> flights;
         try {
             List<FlightDto> flightDtoList = flightDao.findUnassignedFlights();
-            for (FlightDto dto : flightDtoList) {
-                flights.add(toEntity(dto));
-            }
+            flights = toEntityList(flightDtoList);
         } catch (DaoException e) {
             LOGGER.error("Unable to get the list of unassigned flights. {}", e.getMessage());
             throw new ServiceException("Unable to get the list of unassigned flights.", e);
@@ -102,12 +97,10 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public List<Flight> takeAllFlights() throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
-        List<Flight> flights = new ArrayList<>();
+        List<Flight> flights;
         try {
             List<FlightDto> flightDtoList = flightDao.findAllFlights();
-            for (FlightDto dto : flightDtoList) {
-                flights.add(toEntity(dto));
-            }
+            flights = toEntityList(flightDtoList);
         } catch (DaoException e) {
             LOGGER.error("Unable to get all flights. {}", e.getMessage());
             throw new ServiceException("Unable to get all flights.", e);
@@ -143,7 +136,9 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public boolean createFlight(FlightDto flightDto) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
+        FlightStatus flightStatus = takeFlightStatus(FlightCondition.SCHEDULED);
         try {
+            flightDto.setFlightStatus(flightStatus);
             flightDao.addFlight(flightDto);
         } catch (DaoException e) {
             LOGGER.error("Unable to create a new flight. {}", e.getMessage());
@@ -165,13 +160,11 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public List<Flight> searchFlights(SearchQuery query) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
-        List<Flight> searchResult = new ArrayList<>();
+        List<Flight> searchResult;
         changeQueryTimeRightBorder(query);
         try {
             List<FlightDto> flightDtoList = flightDao.findFlightsBySearchQuery(query);
-            for (FlightDto dto : flightDtoList) {
-                searchResult.add(toEntity(dto));
-            }
+            searchResult = toEntityList(flightDtoList);
         } catch (DaoException e) {
             LOGGER.error("Unable to get a search result. {}", e.getMessage());
             throw new ServiceException("Unable to get a search result.", e);
@@ -209,6 +202,8 @@ public class FlightServiceImpl implements FlightService {
         flight.setFlightStatus(dto.getFlightStatus());
         flight.setConfirmed(dto.isConfirmed());
 
+        checkFlightStatus(flight);
+
         return flight;
     }
 
@@ -242,5 +237,28 @@ public class FlightServiceImpl implements FlightService {
         calendar.set(Calendar.MINUTE, FIFTY_NINE);
         calendar.set(Calendar.SECOND, FIFTY_NINE);
         query.setDestDate(new Timestamp(calendar.getTimeInMillis()));
+    }
+
+    private void checkFlightStatus(Flight flight) throws ServiceException {
+        if (flight.getFlightStatus().getID() == FlightCondition.CANCELED) {
+            return;
+        }
+        Date now = new Date();
+        if (now.after(flight.getDestinationTime())) {
+            flight.setFlightStatus(takeFlightStatus(FlightCondition.ARRIVED));
+            changeFlightStatus(flight.getID(), FlightCondition.ARRIVED);
+        } else if (now.after(flight.getDepartureTime())) {
+            flight.setFlightStatus(takeFlightStatus(FlightCondition.DEPARTED));
+            changeFlightStatus(flight.getID(), FlightCondition.DEPARTED);
+        }
+    }
+
+    private List<Flight> toEntityList(List<FlightDto> dtoList) throws ServiceException {
+        List<Flight> flights = new ArrayList<>(dtoList.size());
+        for (FlightDto dto : dtoList) {
+            Flight flight = toEntity(dto);
+            flights.add(flight);
+        }
+        return flights;
     }
 }
