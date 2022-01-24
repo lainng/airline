@@ -38,6 +38,7 @@ public class FlightServiceImpl implements FlightService {
         }
         return flights;
     }
+
     @Override
     public boolean confirmFlight(long flightID, User user) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
@@ -52,6 +53,7 @@ public class FlightServiceImpl implements FlightService {
         }
         return true;
     }
+
     @Override
     public Optional<Flight> takeUserFlight(long flightID, User user) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
@@ -68,12 +70,16 @@ public class FlightServiceImpl implements FlightService {
         }
         return optionalFlight;
     }
+
     @Override
     public List<Flight> takeUnassignedFlights() throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
         List<Flight> flights;
         try {
             List<FlightDto> flightDtoList = flightDao.findUnassignedFlights();
+            if (!flightDtoList.isEmpty()) {
+                flightDtoList.removeIf(flightDto -> flightDto.getFlightStatus().getID() == FlightCondition.CANCELED);
+            }
             flights = toEntityList(flightDtoList);
         } catch (DaoException e) {
             LOGGER.error("Unable to get the list of unassigned flights. {}", e.getMessage());
@@ -81,6 +87,7 @@ public class FlightServiceImpl implements FlightService {
         }
         return flights;
     }
+
     @Override
     public Optional<Flight> takeFlight(long flightID) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
@@ -94,6 +101,7 @@ public class FlightServiceImpl implements FlightService {
         }
         return Optional.ofNullable(flight);
     }
+
     @Override
     public List<Flight> takeAllFlights() throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
@@ -107,6 +115,7 @@ public class FlightServiceImpl implements FlightService {
         }
         return flights;
     }
+
     @Override
     public void changeFlightStatus(long flightID, long statusID) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
@@ -117,6 +126,7 @@ public class FlightServiceImpl implements FlightService {
             throw new ServiceException("Unable to change flight status.", e);
         }
     }
+
     @Override
     public boolean cancelFlight(long flightID) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
@@ -133,6 +143,7 @@ public class FlightServiceImpl implements FlightService {
         }
         return true;
     }
+
     @Override
     public boolean createFlight(FlightDto flightDto) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
@@ -146,6 +157,7 @@ public class FlightServiceImpl implements FlightService {
         }
         return true;
     }
+
     @Override
     public boolean editFlight(FlightDto flightDto) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
@@ -157,6 +169,7 @@ public class FlightServiceImpl implements FlightService {
         }
         return true;
     }
+
     @Override
     public List<Flight> searchFlights(SearchQuery query) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
@@ -171,6 +184,7 @@ public class FlightServiceImpl implements FlightService {
         }
         return searchResult;
     }
+
     @Override
     public FlightStatus takeFlightStatus(long statusID) throws ServiceException {
         FlightStatusDao flightStatusDao = DaoFactory.getInstance().getFlightStatusDao();
