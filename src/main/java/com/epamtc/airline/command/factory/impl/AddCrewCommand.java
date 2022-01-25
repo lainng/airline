@@ -24,7 +24,6 @@ public class AddCrewCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession();
-        CrewService crewService = ServiceFactory.getInstance().getCrewService();
 
         Optional<String> optionalFlightID = Optional.ofNullable(request.getParameter(RequestParameter.FLIGHT_ID));
         String crewID = request.getParameter(RequestParameter.CREW_ID);
@@ -51,12 +50,10 @@ public class AddCrewCommand implements Command {
         }
 
         if (crewID.isEmpty()) {
-            crewService.createCrew(crewCreationDto);
-            session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_ADDED_CREW);
+            newCrewSetup(session, crewCreationDto);
         } else {
             crewCreationDto.setID(Long.parseLong(crewID));
-            crewService.editCrew(crewCreationDto);
-            session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_UPDATED_CREW);
+            editCrewSetup(session, crewCreationDto);
         }
         return new CommandResult(Pages.CREW_ACTION_PAGE_REDIRECT, RouteType.REDIRECT);
     }
@@ -90,5 +87,21 @@ public class AddCrewCommand implements Command {
                 + RequestParameter.FLIGHT_ID
                 + EQUAL
                 + Long.parseLong(flightID);
+    }
+
+    private void newCrewSetup(HttpSession session, CrewCreationDto dto) throws ServiceException {
+        CrewService crewService = ServiceFactory.getInstance().getCrewService();
+        boolean isCreated = crewService.createCrew(dto);
+        if (isCreated) {
+            session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_ADDED_CREW);
+        } else {
+            session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_FLIGHT_ALREADY_ASSIGNED);
+        }
+    }
+
+    private void editCrewSetup(HttpSession session, CrewCreationDto dto) throws ServiceException {
+        CrewService crewService = ServiceFactory.getInstance().getCrewService();
+        crewService.editCrew(dto);
+        session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_UPDATED_CREW);
     }
 }

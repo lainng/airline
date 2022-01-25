@@ -25,7 +25,7 @@ public interface CrewService {
     List<Crew> takeAllCrews() throws ServiceException;
 
     /**
-     *
+     * 
      * @param crewCreationDto
      * @throws ServiceException
      */
@@ -34,9 +34,10 @@ public interface CrewService {
     /**
      *
      * @param crewCreationDto
+     * @return
      * @throws ServiceException
      */
-    void createCrew(CrewCreationDto crewCreationDto) throws ServiceException;
+    boolean createCrew(CrewCreationDto crewCreationDto) throws ServiceException;
 
     /**
      *

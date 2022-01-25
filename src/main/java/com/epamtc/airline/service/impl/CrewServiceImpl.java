@@ -37,6 +37,7 @@ public class CrewServiceImpl implements CrewService {
         }
         return Optional.ofNullable(crew);
     }
+
     @Override
     public List<Crew> takeAllCrews() throws ServiceException {
         CrewDao crewDao = DaoFactory.getInstance().getCrewDao();
@@ -52,6 +53,7 @@ public class CrewServiceImpl implements CrewService {
         }
         return crews;
     }
+
     @Override
     public void editCrew(CrewCreationDto crewCreationDto) throws ServiceException {
         CrewDao crewDao = DaoFactory.getInstance().getCrewDao();
@@ -62,10 +64,14 @@ public class CrewServiceImpl implements CrewService {
             throw new ServiceException("Unable to update crew information.", e);
         }
     }
+
     @Override
-    public void createCrew(CrewCreationDto crewCreationDto) throws ServiceException {
+    public boolean createCrew(CrewCreationDto crewCreationDto) throws ServiceException {
         CrewDao crewDao = DaoFactory.getInstance().getCrewDao();
         FlightService flightService = ServiceFactory.getInstance().getFlightService();
+        if (isFlightAssigned(crewCreationDto.getAssignedFlightID())) {
+            return false;
+        }
         try {
             crewDao.addCrew(crewCreationDto);
             flightService.changeFlightStatus(crewCreationDto.getAssignedFlightID(), FlightCondition.READY);
@@ -73,7 +79,9 @@ public class CrewServiceImpl implements CrewService {
             LOGGER.error("Unable to create a new crew. {}", e.getMessage());
             throw new ServiceException("Unable to create a new crew.", e);
         }
+        return true;
     }
+
     @Override
     public boolean deleteCrew(long crewID) throws ServiceException {
         CrewDao crewDao = DaoFactory.getInstance().getCrewDao();
@@ -92,6 +100,7 @@ public class CrewServiceImpl implements CrewService {
         }
         return true;
     }
+
     @Override
     public Optional<Crew> takeCrewByID(long crewID) throws ServiceException {
         CrewDao crewDao = DaoFactory.getInstance().getCrewDao();
@@ -105,6 +114,7 @@ public class CrewServiceImpl implements CrewService {
         }
         return Optional.ofNullable(crew);
     }
+
     @Override
     public List<Crew> takeUserCrews(long userID) throws ServiceException {
         UserService userService = ServiceFactory.getInstance().getUserService();
@@ -135,5 +145,16 @@ public class CrewServiceImpl implements CrewService {
         optionalFlight.ifPresent(crew::setAssignedFlight);
 
         return crew;
+    }
+
+    private boolean isFlightAssigned(long currentFlightID) throws ServiceException {
+        FlightService flightService = ServiceFactory.getInstance().getFlightService();
+        List<Flight> flights = flightService.takeUnassignedFlights();
+        for (Flight flight : flights) {
+            if(currentFlightID == flight.getID()) {
+                return false;
+            }
+        }
+        return true;
     }
 }
