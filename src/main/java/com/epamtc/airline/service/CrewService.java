@@ -25,7 +25,7 @@ public interface CrewService {
     List<Crew> takeAllCrews() throws ServiceException;
 
     /**
-     * 
+     *
      * @param crewCreationDto
      * @throws ServiceException
      */
