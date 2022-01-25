@@ -259,15 +259,16 @@ public class FlightServiceImpl implements FlightService {
                 || flightStatusID == FlightCondition.ARRIVED) {
             return;
         }
-        
+
         Date now = new Date();
-        if (now.after(flight.getDestinationTime())) {
-            flight.setFlightStatus(takeFlightStatus(FlightCondition.ARRIVED));
-            changeFlightStatus(flight.getID(), FlightCondition.ARRIVED);
+        if (flightStatusID == FlightCondition.SCHEDULED
+                && now.after(flight.getDepartureTime())) {
+            editFlightStatus(flight, FlightCondition.CANCELED);
+        } else if (now.after(flight.getDestinationTime())) {
+            editFlightStatus(flight, FlightCondition.ARRIVED);
             calculateTotalFlightHours(flight);
         } else if (now.after(flight.getDepartureTime())) {
-            flight.setFlightStatus(takeFlightStatus(FlightCondition.DEPARTED));
-            changeFlightStatus(flight.getID(), FlightCondition.DEPARTED);
+            editFlightStatus(flight, FlightCondition.DEPARTED);
         }
     }
     
@@ -293,5 +294,10 @@ public class FlightServiceImpl implements FlightService {
             flights.add(flight);
         }
         return flights;
+    }
+
+    private void editFlightStatus(Flight flight, long statusID) throws ServiceException {
+        flight.setFlightStatus(takeFlightStatus(statusID));
+        changeFlightStatus(flight.getID(), statusID);
     }
 }
