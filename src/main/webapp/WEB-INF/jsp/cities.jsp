@@ -21,7 +21,7 @@
 <jsp:include page="components/header.jsp"/>
 <div class="bg-content">
     <div class="container">
-        <div class="d-flex flex-row justify-content-between align-content-center py-5">
+        <div class="d-flex flex-row justify-content-between align-content-center pt-5 pb-4">
             <h3><fmt:message key="cities.destinations"/></h3>
             <div id="errContainer"></div>
             <div class="d-flex flex-row justify-content-between align-content-center w-25">
@@ -39,10 +39,10 @@
             </noscript>
             <c:choose>
                 <c:when test="${requestScope.success != null}">
-                    <div class="success text-center mb-3"><fmt:message key="${requestScope.success}"/></div>
+                    <div class="success text-center mb-4"><fmt:message key="${requestScope.success}"/></div>
                 </c:when>
                 <c:when test="${requestScope.error != null}">
-                    <div class="error text-center mb-3"><fmt:message key="${requestScope.error}"/></div>
+                    <div class="error text-center mb-4"><fmt:message key="${requestScope.error}"/></div>
                 </c:when>
             </c:choose>
             <table id="cities" class="display text-center">
