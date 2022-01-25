@@ -54,7 +54,7 @@ public class RouteServiceImpl implements RouteService {
     public boolean createRoute(RouteDto routeDto) throws ServiceException {
         RouteValidator routeValidator = ValidatorFactory.getInstance().getRouteDtoValidator();
         boolean isEntityValid = routeValidator.validateDto(routeDto);
-        if (!isEntityValid) {
+        if (!isEntityValid && !checkUniqueness(routeDto)) {
             return false;
         }
         RouteDao routeDao = DaoFactory.getInstance().getRouteDao();
@@ -70,7 +70,7 @@ public class RouteServiceImpl implements RouteService {
     public boolean editRoute(RouteDto routeDto) throws ServiceException {
         RouteValidator routeValidator = ValidatorFactory.getInstance().getRouteDtoValidator();
         boolean isEntityValid = routeValidator.validateDto(routeDto);
-        if (!isEntityValid) {
+        if (!isEntityValid || !checkUniqueness(routeDto)) {
             return false;
         }
         RouteDao routeDao = DaoFactory.getInstance().getRouteDao();
@@ -100,5 +100,22 @@ public class RouteServiceImpl implements RouteService {
         route.setDuration(routeDto.getDuration());
 
         return route;
+    }
+
+    private boolean checkUniqueness(RouteDto current) throws ServiceException {
+        List<Route> routes = takeAllRoutes();
+        for (Route route : routes) {
+            if (isParametersEqual(current, route)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isParametersEqual(RouteDto current, Route collated) {
+        return current.getDepartureID() == collated.getDeparture().getID()
+                && current.getDestinationID() == collated.getDestination().getID()
+                && current.getDistance() == collated.getDistance()
+                && current.getDuration().equals(collated.getDuration());
     }
 }
