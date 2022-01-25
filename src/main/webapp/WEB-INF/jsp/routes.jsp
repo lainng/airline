@@ -77,7 +77,7 @@
         });
         $('#routes').DataTable( {
             language: {
-                url: '//cdn.datatables.net/plug-ins/1.11.0/i18n/ru.json'
+                url: localStorage.getItem("tableLang")
             },
             "columnDefs": [ {
                 "targets": 5,

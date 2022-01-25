@@ -141,7 +141,7 @@
         });
         $('#flights').DataTable( {
             language: {
-                url: 'https://cdn.datatables.net/plug-ins/1.11.0/i18n/ru.json'
+                url: localStorage.getItem("tableLang")
             },
             order: [[ 3, "desc" ]],
             columnDefs: [ {

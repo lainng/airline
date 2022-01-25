@@ -204,7 +204,7 @@
 
         let pilots = $('#pilots').dataTable({
             language: {
-                url: '//cdn.datatables.net/plug-ins/1.11.0/i18n/ru.json'
+                url: localStorage.getItem("tableLang")
             },
             columnDefs: [
                 { orderDataType: 'dom-checkbox', targets: [6], type: 'text'},
@@ -214,7 +214,7 @@
         });
         let attendants = $('#attendants').DataTable({
             language: {
-                url: '//cdn.datatables.net/plug-ins/1.11.0/i18n/ru.json'
+                url: localStorage.getItem("tableLang")
             },
             columnDefs: [
                 { orderDataType: 'dom-checkbox', targets: [6], type: 'text'},
@@ -224,7 +224,7 @@
         });
         let flights = $('#flights').DataTable({
             language: {
-                url: '//cdn.datatables.net/plug-ins/1.11.0/i18n/ru.json'
+                url: localStorage.getItem("tableLang")
             },
             columnDefs: [
                 { orderable: false, targets: 6 }

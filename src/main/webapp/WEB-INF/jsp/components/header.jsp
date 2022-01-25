@@ -18,8 +18,8 @@
         </div>
         <div class="d-flex flex-row w-33 justify-content-between">
             <div class="d-flex flex-row">
-                <a href="${pageContext.request.contextPath}/controller?${pageContext.request.queryString}&locale=en" class="nav-link link-dark">EN</a>
-                <a href="${pageContext.request.contextPath}/controller?${pageContext.request.queryString}&locale=ru" class="nav-link link-dark">RU</a>
+                <a href="${pageContext.request.contextPath}/controller?${pageContext.request.queryString}&locale=en" onclick="setEnglish()" class="nav-link link-dark">EN</a>
+                <a href="${pageContext.request.contextPath}/controller?${pageContext.request.queryString}&locale=ru" onclick="setRussian()" class="nav-link link-dark">RU</a>
             </div>
             <c:choose>
                 <c:when test="${sessionScope.user == null}">
@@ -71,6 +71,7 @@
     </header>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="${pageContext.request.contextPath}/scripts/tableLang.js"></script>
 <script>
     $('#userButton').toggleClass('d-none');
 </script>
