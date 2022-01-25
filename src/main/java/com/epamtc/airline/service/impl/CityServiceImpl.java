@@ -45,7 +45,7 @@ public class CityServiceImpl implements CityService {
     public boolean createCity(City city) throws ServiceException {
         CityValidator validator = ValidatorFactory.getInstance().getCityValidator();
         CityDao cityDao = DaoFactory.getInstance().getCityDao();
-        if (!validator.validateName(city)) {
+        if (!validator.validateName(city) || !checkUniqueness(city)) {
             return false;
         }
         try {
@@ -60,7 +60,7 @@ public class CityServiceImpl implements CityService {
     public boolean editCity(City city) throws ServiceException {
         CityValidator validator = ValidatorFactory.getInstance().getCityValidator();
         CityDao cityDao = DaoFactory.getInstance().getCityDao();
-        if (!validator.validateName(city)) {
+        if (!validator.validateName(city) || !checkUniqueness(city)) {
             return false;
         }
         try {
@@ -68,6 +68,16 @@ public class CityServiceImpl implements CityService {
         } catch (DaoException e) {
             LOGGER.error("Unable to update a new city. {}", e.getMessage());
             throw new ServiceException("Unable to update a new city.", e);
+        }
+        return true;
+    }
+
+    private boolean checkUniqueness(City current) throws ServiceException {
+        List<City> cities = takeAllCities();
+        for (City city : cities) {
+            if (city.getName().equalsIgnoreCase(current.getName())) {
+                return false;
+            }
         }
         return true;
     }
