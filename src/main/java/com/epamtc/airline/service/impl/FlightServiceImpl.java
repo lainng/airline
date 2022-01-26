@@ -131,12 +131,10 @@ public class FlightServiceImpl implements FlightService {
     public boolean cancelFlight(long flightID) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
         try {
-            Optional<Flight> flight = takeFlight(flightID);
-            if (flight.isPresent()) {
-                flightDao.cancelFlightByID(flightID);
-            } else {
+            if (isFlightCanceledOrNotExists(flightID)) {
                 return false;
             }
+            flightDao.cancelFlightByID(flightID);
         } catch (DaoException e) {
             LOGGER.error("Unable to cancel the flight. {}", e.getMessage());
             throw new ServiceException("Unable to cancel the flight.", e);
@@ -299,5 +297,15 @@ public class FlightServiceImpl implements FlightService {
     private void editFlightStatus(Flight flight, long statusID) throws ServiceException {
         flight.setFlightStatus(takeFlightStatus(statusID));
         changeFlightStatus(flight.getID(), statusID);
+    }
+
+    private boolean isFlightCanceledOrNotExists(long flightID) throws ServiceException {
+        Optional<Flight> optionalFlight = takeFlight(flightID);
+        if (!optionalFlight.isPresent()) {
+            return true;
+        }
+        Flight flight = optionalFlight.get();
+
+        return flight.getFlightStatus().getID() == FlightCondition.CANCELED;
     }
 }
