@@ -19,10 +19,10 @@
 <jsp:include page="components/header.jsp"/>
 <div class="bg-content">
     <div class="container py-3">
-        <h3 class="pt-5 pb-4 text-center"><fmt:message key="login.enter"/></h3>
+        <h3 class="pt-5 pb-4 mb-0 text-center"><fmt:message key="login.enter"/></h3>
         <form class="text-start d-flex flex-column justify-content-center m-auto w-35" method="post" id="login" action="${pageContext.request.contextPath}/controller?command=login">
             <c:if test="${requestScope.error != null}">
-                <div class="mb-2 text-center error"><fmt:message key="${requestScope.error}"/></div>
+                <div class="mb-4 text-center error"><fmt:message key="${requestScope.error}"/></div>
             </c:if>
             <input class="form-control py-2 mb-2" type="email" name="email" id="email" value="<c:if test="${requestScope.email != null}">${requestScope.email}</c:if>" placeholder="<fmt:message key="field.email"/>">
             <input class="form-control py-2 mb-2 mt-2" type="password" name="password" id="password" placeholder="<fmt:message key="field.password"/>">

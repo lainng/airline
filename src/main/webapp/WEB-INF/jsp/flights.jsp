@@ -26,10 +26,10 @@
             <h3><fmt:message key="admin.flights.mainLabel"/></h3>
             <c:choose>
                 <c:when test="${requestScope.success != null}">
-                    <div class="success text-center w-33"><fmt:message key="${requestScope.success}"/></div>
+                    <div class="success text-center w-48"><fmt:message key="${requestScope.success}"/></div>
                 </c:when>
                 <c:when test="${requestScope.error != null}">
-                    <div class="error text-center w-33"><fmt:message key="${requestScope.error}"/></div>
+                    <div class="error text-center w-48"><fmt:message key="${requestScope.error}"/></div>
                 </c:when>
             </c:choose>
             <a href="${pageContext.request.contextPath}/controller?command=flight-action-page" class="btn btn-primary btn-darkblue py-2"><fmt:message key="admin.flights.addPlane"/></a>

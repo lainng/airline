@@ -19,11 +19,11 @@
 <jsp:include page="components/header.jsp"/>
 <div class="bg-content">
     <div class="container">
-        <h3 class="pt-5 pb-4 text-center"><fmt:message key="signUp.account"/></h3>
-        <form method="post" action="${pageContext.request.contextPath}/controller?command=sign-up" id="signUp">
+        <h3 class="pt-5 pb-4 mb-0 text-center"><fmt:message key="signUp.account"/></h3>
+        <form method="post" action="${pageContext.request.contextPath}/controller?command=sign-up" id="signUp" class="mb-0">
             <div class="d-flex flex-column m-auto w-35">
                 <c:if test="${requestScope.error != null}">
-                    <div class="mb-2 text-center error"><fmt:message key="${requestScope.error}"/></div>
+                    <div class="mb-4 text-center error"><fmt:message key="${requestScope.error}"/></div>
                 </c:if>
                 <div class="d-flex flex-row justify-content-between">
                     <div class="d-flex flex-column w-48">
