@@ -120,7 +120,8 @@
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script src="${pageContext.request.contextPath}/scripts/datepickerLocalization.js"></script>
 <script src="${pageContext.request.contextPath}/scripts/changeSelectColor.js"></script>
-<script src="${pageContext.request.contextPath}/scripts/flightSearch.js"></script>
+<script src="${pageContext.request.contextPath}/scripts/datepickerInit.js"></script>
+<script src="${pageContext.request.contextPath}/scripts/cityHandler.js"></script>
 <script>
     $(document).ready(function () {
         datepickerLocalization('ru');

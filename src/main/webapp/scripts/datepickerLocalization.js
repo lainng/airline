@@ -26,7 +26,7 @@ function datepickerLocalization(lang) {
         }
         case 'en': {
             $.datepicker.setDefaults({
-                dateFormat: 'mm.dd.yy',
+                dateFormat: 'dd.mm.yy',
             });
             break;
         }
