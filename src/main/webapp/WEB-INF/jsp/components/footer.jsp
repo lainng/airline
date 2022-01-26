@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="ww" uri="WWAirlineTags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
@@ -15,7 +16,7 @@
                 </a>
             </div>
             <div class="col-auto text-white">
-                <span>&copy; 2021 White Water Airlines<br><fmt:message key="footer.rights"/></span>
+                <ww:copyrightTag year="2022" companyName="White Water Airline" statementOfRights="All rights reserved." />
             </div>
         </div>
     </div>
