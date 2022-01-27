@@ -1,7 +1,7 @@
 package com.epamtc.airline.controller.filter;
 
-import com.epamtc.airline.resource.RequestParameter;
-import com.epamtc.airline.resource.SessionAttribute;
+import com.epamtc.airline.command.RequestParameter;
+import com.epamtc.airline.command.SessionAttribute;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package com.epamtc.airline.resource;
+package com.epamtc.airline.command;
 
 public final class RequestAttribute {
 

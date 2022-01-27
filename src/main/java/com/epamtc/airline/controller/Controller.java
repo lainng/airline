@@ -2,9 +2,9 @@ package com.epamtc.airline.controller;
 
 import com.epamtc.airline.command.Command;
 import com.epamtc.airline.command.CommandResult;
+import com.epamtc.airline.command.Pages;
+import com.epamtc.airline.command.RequestParameter;
 import com.epamtc.airline.command.factory.CommandFactory;
-import com.epamtc.airline.resource.Pages;
-import com.epamtc.airline.resource.RequestParameter;
 import com.epamtc.airline.service.exception.ServiceException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

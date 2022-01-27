@@ -1,7 +1,5 @@
 package com.epamtc.airline.command;
 
-import com.epamtc.airline.resource.RequestAttribute;
-import com.epamtc.airline.resource.SessionAttribute;
 import com.epamtc.airline.service.exception.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

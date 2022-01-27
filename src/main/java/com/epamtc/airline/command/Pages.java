@@ -1,4 +1,4 @@
-package com.epamtc.airline.resource;
+package com.epamtc.airline.command;
 
 public final class Pages {
     public static final String ERROR_404 = "WEB-INF/jsp/error-404.jsp";
