@@ -16,7 +16,7 @@
                 </a>
             </div>
             <div class="col-auto text-white">
-                <ww:copyrightTag year="2022" companyName="White Water Airline" statementOfRights="All rights reserved." />
+                <ww:copyrightTag year="2022" companyName="White Water Airline" locale="${sessionScope.locale}"  bundleKeyName="footer.rights"/>
             </div>
         </div>
     </div>

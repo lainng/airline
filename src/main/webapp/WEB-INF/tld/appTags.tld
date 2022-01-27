@@ -24,7 +24,12 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-            <name>statementOfRights</name>
+            <name>bundleKeyName</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>locale</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
