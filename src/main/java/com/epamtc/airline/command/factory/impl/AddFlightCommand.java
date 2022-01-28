@@ -48,7 +48,7 @@ public class AddFlightCommand implements Command {
         try {
             flightDto.setDepartureTime(buildDepartureDateTime(deptDate, deptTime));
         } catch (ParseException e) {
-            session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_FLIGHT_PARAMETERS);
+            session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_DATE_FORMAT);
             String redirectPath = Pages.FLIGHT_ACTION_PAGE_REDIRECT;
             if(!flightID.isEmpty()) {
                 redirectPath = buildRedirectPath(flightID);
@@ -90,12 +90,8 @@ public class AddFlightCommand implements Command {
 
     private void newFlightSetup(HttpSession session, FlightDto flightDto) throws ServiceException {
         FlightService flightService = ServiceFactory.getInstance().getFlightService();
-        boolean isFlightCreated = flightService.createFlight(flightDto);
-        if (isFlightCreated) {
-            session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_ADDED_FLIGHT);
-        } else {
-            session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_FLIGHT_PARAMETERS);
-        }
+        flightService.createFlight(flightDto);
+        session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_ADDED_FLIGHT);
     }
 
     private void editFlightSetup(HttpSession session, FlightDto flightDto) throws ServiceException {

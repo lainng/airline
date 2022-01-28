@@ -79,10 +79,9 @@ public interface FlightService {
     /**
      *
      * @param flightDto
-     * @return
      * @throws ServiceException
      */
-    boolean createFlight(FlightDto flightDto) throws ServiceException;
+    void createFlight(FlightDto flightDto) throws ServiceException;
 
     /**
      *
