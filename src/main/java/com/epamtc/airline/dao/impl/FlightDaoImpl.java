@@ -59,6 +59,7 @@ public class FlightDaoImpl extends AbstractDao<FlightDto> implements FlightDao {
                 userID
         );
     }
+
     @Override
     public void confirmFlightByID(long flightID, long userID) throws DaoException {
         queryExecutor.executeUpdate(
@@ -67,6 +68,7 @@ public class FlightDaoImpl extends AbstractDao<FlightDto> implements FlightDao {
                 flightID
         );
     }
+
     @Override
     public FlightDto findFlightByID(long flightID) throws DaoException {
         return queryExecutor.executeSingleEntityQuery(
@@ -74,14 +76,17 @@ public class FlightDaoImpl extends AbstractDao<FlightDto> implements FlightDao {
                 flightID
         );
     }
+
     @Override
     public List<FlightDto> findUnassignedFlights() throws DaoException {
         return queryExecutor.executeQuery(QUERY_GET_UNASSIGNED_FLIGHTS);
     }
+
     @Override
     public List<FlightDto> findAllFlights() throws DaoException {
         return queryExecutor.executeQuery(QUERY_GET_ALL_FLIGHTS);
     }
+
     @Override
     public void updateFlightStatus(long flightID, long statusID) throws DaoException {
         queryExecutor.executeUpdate(
@@ -90,6 +95,7 @@ public class FlightDaoImpl extends AbstractDao<FlightDto> implements FlightDao {
                 flightID
         );
     }
+
     @Override
     public void cancelFlightByID(long flightID) throws DaoException {
         queryExecutor.executeUpdate(
@@ -98,9 +104,10 @@ public class FlightDaoImpl extends AbstractDao<FlightDto> implements FlightDao {
         );
         updateFlightStatus(flightID, FlightCondition.CANCELED);
     }
+
     @Override
-    public void addFlight(FlightDto flightDto) throws DaoException {
-        queryExecutor.executeUpdate(
+    public int addFlight(FlightDto flightDto) throws DaoException {
+        return queryExecutor.executeUpdate(
                 QUERY_INSERT_FLIGHT,
                 flightDto.getRouteID(),
                 flightDto.getPlaneID(),
@@ -108,6 +115,7 @@ public class FlightDaoImpl extends AbstractDao<FlightDto> implements FlightDao {
                 flightDto.getFlightStatus().getID()
         );
     }
+
     @Override
     public void updateFlight(FlightDto flightDto) throws DaoException {
         queryExecutor.executeUpdate(
@@ -118,6 +126,7 @@ public class FlightDaoImpl extends AbstractDao<FlightDto> implements FlightDao {
                 flightDto.getID()
         );
     }
+
     @Override
     public List<FlightDto> findFlightsBySearchQuery(SearchQuery searchQuery) throws DaoException {
         return queryExecutor.executeQuery(

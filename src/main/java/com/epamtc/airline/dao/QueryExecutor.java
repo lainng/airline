@@ -6,10 +6,7 @@ import com.epamtc.airline.dao.exception.DaoException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +14,8 @@ public class QueryExecutor<T> {
     private static final ConnectionPool POOL = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger();
     protected EntityBuilder<T> builder;
+    private static final int FIRST_ID = 1;
+    private static final int NO_ID = -1;
 
     public QueryExecutor(EntityBuilder<T> builder) {
         this.builder = builder;
@@ -51,16 +50,21 @@ public class QueryExecutor<T> {
                 .orElse(null);
     }
 
-    public void executeUpdate(String query, Object... parameters) throws DaoException {
+    public int executeUpdate(String query, Object... parameters) throws DaoException {
         Connection connection = POOL.getConnection();
         PreparedStatement statement = null;
+        int generatedKey = NO_ID;
         try {
             connection.setAutoCommit(false);
-            statement = connection.prepareStatement(query);
+            statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             StatementParameterSetter parameterSetter = new StatementParameterSetter(parameters);
             parameterSetter.setParametersToStatement(statement);
             statement.executeUpdate();
+            ResultSet resultSet = statement.getGeneratedKeys();
             connection.commit();
+            if (resultSet.next()) {
+                generatedKey = resultSet.getInt(FIRST_ID);
+            }
         } catch (SQLException e) {
             rollbackChanges(connection);
             LOGGER.error("Invalid SQL statement. {}", e.getMessage());
@@ -69,6 +73,7 @@ public class QueryExecutor<T> {
             switchAutoCommit(connection);
             POOL.releaseConnection(connection, statement);
         }
+        return generatedKey;
     }
 
     public void executeTransactionUpdate(AbstractQuery... queries) throws DaoException {
