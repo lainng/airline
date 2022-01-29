@@ -48,7 +48,7 @@
                     <div class="success">
                         <fmt:message key="${requestScope.success}"/><br>
                         <a href="${pageContext.request.contextPath}/controller?command=dispatcher-crews" class="text-darkblue">
-                            <fmt:message key="crewAction.goBack"/>
+                            <fmt:message key="crewAction.toCrewsList"/>
                         </a>
                     </div>
                 </c:when>
