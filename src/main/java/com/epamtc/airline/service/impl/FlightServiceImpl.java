@@ -143,12 +143,12 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public void createFlight(FlightDto flightDto) throws ServiceException {
+    public long createFlight(FlightDto flightDto) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
-        FlightStatus flightStatus = takeFlightStatus(FlightCondition.SCHEDULED);
+        FlightStatus scheduled = takeFlightStatus(FlightCondition.SCHEDULED);
         try {
-            flightDto.setFlightStatus(flightStatus);
-            flightDao.addFlight(flightDto);
+            flightDto.setFlightStatus(scheduled);
+            return flightDao.addFlight(flightDto);
         } catch (DaoException e) {
             LOGGER.error("Unable to create a new flight. {}", e.getMessage());
             throw new ServiceException("Unable to create a new flight.", e);
