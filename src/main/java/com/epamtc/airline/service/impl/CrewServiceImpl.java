@@ -57,6 +57,19 @@ public class CrewServiceImpl implements CrewService {
     @Override
     public void editCrew(CrewCreationDto crewCreationDto) throws ServiceException {
         CrewDao crewDao = DaoFactory.getInstance().getCrewDao();
+        FlightService flightService = ServiceFactory.getInstance().getFlightService();
+        Optional<Crew> optionalOldCrew = takeCrewByID(crewCreationDto.getID());
+        if (!optionalOldCrew.isPresent()) {
+            LOGGER.error("Unable to get the crew by its ID.");
+            throw new ServiceException("Unable to get the crew by its ID.");
+        }
+        Crew oldCrew = optionalOldCrew.get();
+        long oldFlightID = oldCrew.getAssignedFlight().getID();
+        long newFlightID = crewCreationDto.getAssignedFlightID();
+        if (newFlightID != oldFlightID) {
+            flightService.changeFlightStatus(oldFlightID, FlightCondition.SCHEDULED);
+            flightService.changeFlightStatus(newFlightID, FlightCondition.READY);
+        }
         try {
             crewDao.updateCrew(crewCreationDto);
         } catch (DaoException e) {
