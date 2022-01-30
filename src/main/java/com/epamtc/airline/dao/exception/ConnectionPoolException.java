@@ -1,7 +1,7 @@
 package com.epamtc.airline.dao.exception;
 
 public class ConnectionPoolException extends RuntimeException{
-    private static final long serialVersionUID = 2550322384818833199L;
+    private static final long serialVersionUID = 1L;
 
     public ConnectionPoolException() {
         super();
