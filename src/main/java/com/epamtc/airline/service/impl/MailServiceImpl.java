@@ -39,6 +39,8 @@ public class MailServiceImpl implements MailService {
     private static final String CHANGE_CREW_SUBJECT = "changeCrew.subject";
     private static final String DELETE_EMPL_FROM_CREW_CONTENT = "deleteEmployeeFromCrew.content";
     private static final String NEW_EMPL_IN_CREW_CONTENT = "newEmplInCrew.content";
+    private static final String CANCEL_FLIGHT_SUBJECT = "cancelFlight.subject";
+    private static final String CANCEL_FLIGHT_CONTENT = "cancelFlight.content";
 
     @Override
     public void sendNewFlightMail(long flightID, String locale) throws ServiceException {
@@ -149,6 +151,26 @@ public class MailServiceImpl implements MailService {
                         employee.getEmail()
                 );
             }
+        }
+    }
+
+    @Override
+    public void sendCancelFlightMail(long flightID, String locale) throws ServiceException {
+        MimeMessage mimeMessage = createMessage(loadMailSettingsProperties());
+        ResourceBundle mailContentBundle = takeMailContentBundle(locale);
+        String subject = mailContentBundle.getString(CANCEL_FLIGHT_SUBJECT);
+        subject = String.format(subject, flightID);
+        String content = mailContentBundle.getString(CANCEL_FLIGHT_CONTENT);
+        content = String.format(content, flightID);
+
+        List<User> dispatchers = takeDispatchers();
+        for (User dispatcher : dispatchers) {
+            sendMessage(
+                    mimeMessage,
+                    subject,
+                    content,
+                    dispatcher.getEmail()
+            );
         }
     }
 

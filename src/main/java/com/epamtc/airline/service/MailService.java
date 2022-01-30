@@ -14,4 +14,6 @@ public interface MailService {
 
     void sendEditCrewMail(CrewCreationDto dto, String locale) throws ServiceException;
 
+    void sendCancelFlightMail(long flightID, String locale) throws ServiceException;
+
 }
