@@ -26,7 +26,7 @@ public interface UserDao {
 
     /**
      * Updates the user password.
-     * @param userID User ID in data source.
+     * @param userID The user ID in the data source.
      * @param password New password.
      * @throws DaoException if a data source access error or other errors.
      */
@@ -48,7 +48,7 @@ public interface UserDao {
     Optional<User> findUserByID(long userID) throws DaoException;
 
     /**
-     * Update user information
+     * Update user information.
      * @param userCreationDto An {@link UserCreationDto} instance that contains changing information.
      * @throws DaoException if a data source access error or other errors.
      */

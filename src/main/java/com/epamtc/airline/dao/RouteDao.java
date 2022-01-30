@@ -9,7 +9,7 @@ public interface RouteDao {
 
     /**
      * Fetches a route DTO by its ID.
-     * @param routeID Route ID in the data source.
+     * @param routeID The route ID in the data source.
      * @return An {@link RouteDto} instance that contains raw information of route.
      * @throws DaoException if a data source access error or other errors.
      */
