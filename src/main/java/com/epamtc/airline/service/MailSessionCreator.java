@@ -9,6 +9,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Properties;
 
+/**
+ * This class is required for mail session creation.
+ */
 public class MailSessionCreator {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final String USERNAME_KEY = "mail.user.name";

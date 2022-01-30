@@ -5,6 +5,9 @@ import com.epamtc.airline.service.validation.impl.PlaneEntityValidator;
 import com.epamtc.airline.service.validation.impl.RouteDtoValidator;
 import com.epamtc.airline.service.validation.impl.UserFormDataValidator;
 
+/**
+ * This class provides the entities of all implementations of the validations interfaces.
+ */
 public class ValidatorFactory {
     private final UserValidator userValidator = new UserFormDataValidator();
     private final PlaneValidator planeValidator = new PlaneEntityValidator();

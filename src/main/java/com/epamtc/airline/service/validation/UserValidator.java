@@ -12,23 +12,23 @@ public interface UserValidator {
     boolean loginValidate(String email, char[] password);
 
     /**
-     *
-     * @param dto
-     * @return
+     * Validates sign up form data.
+     * @param dto An {@link UserCreationDto} entity that contains user data.
+     * @return {@code true} if data is valid otherwise returns {@code false}.
      */
     boolean signUpValidate(UserCreationDto dto);
 
     /**
-     *
-     * @param dto
-     * @return
+     * Validates passwords.
+     * @param dto An {@link UserCreationDto} entity that contains passwords.
+     * @return {@code true} if passwords is valid otherwise returns {@code false}.
      */
     boolean changingPasswordValidate(UserCreationDto dto);
 
     /**
-     *
-     * @param dto
-     * @return
+     * Validates the user's first and last name.
+     * @param dto An {@link UserCreationDto} entity that contains user data.
+     * @return {@code true} if data is valid otherwise returns {@code false}.
      */
     boolean changingUserInfoValidate(UserCreationDto dto);
 }

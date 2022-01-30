@@ -2,6 +2,9 @@ package com.epamtc.airline.service;
 
 import com.epamtc.airline.service.impl.*;
 
+/**
+ * This class provides the entities of all implementations of the interfaces of the Service layer.
+ */
 public class ServiceFactory {
     private final UserService userService = new UserServiceImpl();
     private final FlightService flightService = new FlightServiceImpl();
