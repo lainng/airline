@@ -34,13 +34,17 @@ public class UserFormDataValidator implements UserValidator {
     }
 
     @Override
-    public boolean changingPasswordValidate(String password, String confirmPassword) {
+    public boolean changingPasswordValidate(UserCreationDto dto) {
+        String password = dto.getPassword();
+        String confirmPassword = dto.getPasswordConfirmation();
         if (!checkParameters(password, confirmPassword)) return false;
         return validatePasswords(password, confirmPassword);
     }
 
     @Override
-    public boolean changingUserInfoValidate(String firstName, String lastName) {
+    public boolean changingUserInfoValidate(UserCreationDto dto) {
+        String firstName = dto.getFirstName();
+        String lastName = dto.getLastName();
         if (!checkParameters(firstName, lastName)) return false;
         return Pattern.matches(NAME_REGEXP, firstName) && Pattern.matches(NAME_REGEXP, lastName);
     }
