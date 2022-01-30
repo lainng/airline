@@ -11,7 +11,7 @@ public interface UserDao {
 
     /**
      * Adds the created {@link User} instance to the data source.
-     * @param userCreationDto
+     * @param userCreationDto An {@link UserCreationDto} instance that contains user information.
      * @throws DaoException if a data source access error or other errors.
      */
     void addUser(UserCreationDto userCreationDto) throws DaoException;
@@ -25,32 +25,32 @@ public interface UserDao {
     Optional<User> findUserByEmail(String email) throws DaoException;
 
     /**
-     * Updates user password.
-     * @param userID
+     * Updates the user password.
+     * @param userID User ID in data source.
      * @param password New password.
      * @throws DaoException if a data source access error or other errors.
      */
     void updateUserPassword(long userID, String password) throws DaoException;
 
     /**
-     *
-     * @return
-     * @throws DaoException
+     * Fetches all users.
+     * @return The {@link List} of the {@link User} that contains in the data source.
+     * @throws DaoException if a data source access error or other errors.
      */
     List<User> findAllUsers() throws DaoException;
 
     /**
-     *
-     * @param userID
-     * @return
-     * @throws DaoException
+     * Fetches user by its ID.
+     * @param userID User ID in data source.
+     * @return An {@link User} instance that linked with specified ID.
+     * @throws DaoException if a data source access error or other errors.
      */
     Optional<User> findUserByID(long userID) throws DaoException;
 
     /**
-     *
-     * @param userCreationDto
-     * @throws DaoException
+     * Update user information
+     * @param userCreationDto An {@link UserCreationDto} instance that contains changing information.
+     * @throws DaoException if a data source access error or other errors.
      */
     void updateUser(UserCreationDto userCreationDto) throws DaoException;
 }
