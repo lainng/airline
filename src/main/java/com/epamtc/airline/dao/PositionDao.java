@@ -8,7 +8,7 @@ import java.util.List;
 public interface PositionDao {
 
     /**
-     * Fetches {@link List} of {@link Position} entities that user can occupy.
+     * Fetches a list of positions that user can occupy.
      * @return {@link List} of {@link Position} entities that user can occupy, or empty {@link List} if positions are not found.
      * @throws DaoException if a data source access error or other errors.
      */
