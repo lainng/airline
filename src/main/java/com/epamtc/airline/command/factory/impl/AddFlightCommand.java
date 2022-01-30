@@ -3,6 +3,7 @@ package com.epamtc.airline.command.factory.impl;
 import com.epamtc.airline.command.*;
 import com.epamtc.airline.entity.dto.FlightDto;
 import com.epamtc.airline.service.FlightService;
+import com.epamtc.airline.service.MailService;
 import com.epamtc.airline.service.ServiceFactory;
 import com.epamtc.airline.service.exception.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -89,8 +90,13 @@ public class AddFlightCommand implements Command {
     }
 
     private void newFlightSetup(HttpSession session, FlightDto flightDto) throws ServiceException {
-        FlightService flightService = ServiceFactory.getInstance().getFlightService();
-        flightService.createFlight(flightDto);
+        ServiceFactory factory = ServiceFactory.getInstance();
+        FlightService flightService = factory.getFlightService();
+        MailService mailService = factory.getMailService();
+        String locale = (String) session.getAttribute(SessionAttribute.LOCALE);
+
+        long newFlightID = flightService.createFlight(flightDto);
+        mailService.sendNewFlightMail(newFlightID, locale);
         session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_ADDED_FLIGHT);
     }
 

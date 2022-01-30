@@ -3,6 +3,7 @@ package com.epamtc.airline.command.factory.impl;
 import com.epamtc.airline.command.*;
 import com.epamtc.airline.entity.dto.CrewCreationDto;
 import com.epamtc.airline.service.CrewService;
+import com.epamtc.airline.service.MailService;
 import com.epamtc.airline.service.ServiceFactory;
 import com.epamtc.airline.service.exception.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -85,8 +86,11 @@ public class AddCrewCommand implements Command {
 
     private void newCrewSetup(HttpSession session, CrewCreationDto dto) throws ServiceException {
         CrewService crewService = ServiceFactory.getInstance().getCrewService();
+        MailService mailService = ServiceFactory.getInstance().getMailService();
+        String locale = (String) session.getAttribute(SessionAttribute.LOCALE);
         boolean isCreated = crewService.createCrew(dto);
         if (isCreated) {
+            mailService.sendNewCrewMail(dto.getAssignedFlightID(), locale);
             session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_ADDED_CREW);
         } else {
             session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_FLIGHT_ALREADY_ASSIGNED);
