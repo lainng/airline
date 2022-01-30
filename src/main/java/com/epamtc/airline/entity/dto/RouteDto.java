@@ -7,7 +7,6 @@ import java.util.Objects;
 public class RouteDto implements Serializable {
     private static final long serialVersionUID = 1L;
     private long ID;
-    private String number;
     private long departureID;
     private long destinationID;
     private int distance;
@@ -19,14 +18,6 @@ public class RouteDto implements Serializable {
 
     public void setID(long ID) {
         this.ID = ID;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public long getDepartureID() {
@@ -70,13 +61,12 @@ public class RouteDto implements Serializable {
                 && departureID == routeDto.departureID
                 && destinationID == routeDto.destinationID
                 && distance == routeDto.distance
-                && Objects.equals(number, routeDto.number)
                 && Objects.equals(duration, routeDto.duration);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, number, departureID, destinationID, distance, duration);
+        return Objects.hash(ID, departureID, destinationID, distance, duration);
     }
 
     @Override
