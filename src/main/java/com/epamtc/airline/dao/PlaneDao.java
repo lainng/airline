@@ -10,14 +10,14 @@ public interface PlaneDao {
     /**
      * Fetches the plane by its ID.
      * @param planeID The plane ID in the data source.
-     * @return An {@link Plane} instance that linked with specified ID.
+     * @return An {@link Plane} instance that linked with specified ID or {@code null} if no plane are found.
      * @throws DaoException if a data source access error or other errors.
      */
     Plane findPlaneByID(long planeID) throws DaoException;
 
     /**
      * Fetches the list of all planes.
-     * @return The {@link List} of the {@link Plane} that contains in the data source.
+     * @return The {@link List} of the {@link Plane} that contains in the data source or an empty {@link List} if there are no planes.
      * @throws DaoException if a data source access error or other errors.
      */
     List<Plane> findAllPlanes() throws DaoException;

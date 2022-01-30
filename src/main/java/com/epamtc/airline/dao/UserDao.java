@@ -34,7 +34,7 @@ public interface UserDao {
 
     /**
      * Fetches all users.
-     * @return The {@link List} of the {@link User} that contains in the data source.
+     * @return The {@link List} of the {@link User} that contains in the data source or an empty {@link List} if there are no users.
      * @throws DaoException if a data source access error or other errors.
      */
     List<User> findAllUsers() throws DaoException;
@@ -42,7 +42,7 @@ public interface UserDao {
     /**
      * Fetches user by its ID.
      * @param userID User ID in data source.
-     * @return An {@link User} instance that linked with specified ID.
+     * @return An {@link Optional} describing a {@link User} instance that linked with specified ID or an empty {@link Optional} if the user is not found.
      * @throws DaoException if a data source access error or other errors.
      */
     Optional<User> findUserByID(long userID) throws DaoException;

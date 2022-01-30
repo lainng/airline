@@ -10,14 +10,14 @@ public interface RouteDao {
     /**
      * Fetches a route DTO by its ID.
      * @param routeID The route ID in the data source.
-     * @return An {@link RouteDto} instance that contains raw information of route.
+     * @return An {@link RouteDto} instance that contains raw information of route or {@code null} if no route are found.
      * @throws DaoException if a data source access error or other errors.
      */
     RouteDto findRouteByID(long routeID) throws DaoException;
 
     /**
      * Fetches all routes DTOs
-     * @return The {@link List} of the {@link RouteDto} that contains in the data source.
+     * @return The {@link List} of the {@link RouteDto} that contains in the data source or an empty {@link List} if there are no routes.
      * @throws DaoException if a data source access error or other errors.
      */
     List<RouteDto> findAllRoutes() throws DaoException;
