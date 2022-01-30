@@ -20,7 +20,6 @@ public class EditEmployeeCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession();
-        UserService userService = ServiceFactory.getInstance().getUserService();
         Map<String, String[]> parameterMap = request.getParameterMap();
 
         UserCreationDto dto = new UserCreationDto();
@@ -28,16 +27,13 @@ public class EditEmployeeCommand implements Command {
         dto.setID(Long.parseLong(userID));
 
         boolean isParametersValid = checkRequestParameters(parameterMap);
-        if (isParametersValid) {
-            setParametersToDto(parameterMap, dto);
-        } else {
+        if (!isParametersValid) {
             String redirectPath = buildRedirectPath(dto);
             session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_EMPLOYEE_DATA);
             return new CommandResult(redirectPath, RouteType.REDIRECT);
         }
-
-        userService.editUser(dto);
-        session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_UPDATED_EMPLOYEE);
+        setParametersToDto(parameterMap, dto);
+        editEmployeeSetup(session, dto);
         return new CommandResult(Pages.STAFF_PAGE_REDIRECT, RouteType.REDIRECT);
     }
 
@@ -62,6 +58,16 @@ public class EditEmployeeCommand implements Command {
         dto.setFirstName(firstName);
         dto.setLastName(lastName);
         dto.setPositionID(positionID);
+    }
+
+    private void editEmployeeSetup(HttpSession session, UserCreationDto dto) throws ServiceException {
+        UserService userService = ServiceFactory.getInstance().getUserService();
+        boolean isEdited = userService.editUser(dto);
+        if (isEdited) {
+            session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_UPDATED_EMPLOYEE);
+        } else {
+            session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_EMPLOYEE_DATA);
+        }
     }
 
     private String buildRedirectPath(UserCreationDto dto) {

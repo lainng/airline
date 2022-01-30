@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
         UserValidator userValidator = ValidatorFactory.getInstance().getUserValidator();
         UserDao userDao = DaoFactory.getInstance().getUserDao();
 
-        boolean isPasswordsValid = userValidator.changingPasswordValidate(dto.getPassword(), dto.getPasswordConfirmation());
+        boolean isPasswordsValid = userValidator.changingPasswordValidate(dto);
         if (!isPasswordsValid) {
             return false;
         }
@@ -120,10 +120,15 @@ public class UserServiceImpl implements UserService {
         return optionalUser;
     }
     @Override
-    public void editUser(UserCreationDto userCreationDto) throws ServiceException {
+    public boolean editUser(UserCreationDto userCreationDto) throws ServiceException {
         UserDao userDao = DaoFactory.getInstance().getUserDao();
+        UserValidator validator = ValidatorFactory.getInstance().getUserValidator();
+        if (!validator.changingUserInfoValidate(userCreationDto)) {
+            return false;
+        }
         try {
             userDao.updateUser(userCreationDto);
+            return true;
         } catch (DaoException e) {
             LOGGER.error("Unable to update user information. {}", e.getMessage());
             throw new ServiceException("Unable to update user information.", e);

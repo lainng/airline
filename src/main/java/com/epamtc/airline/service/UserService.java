@@ -62,5 +62,5 @@ public interface UserService {
      * @param userCreationDto
      * @throws ServiceException
      */
-    void editUser(UserCreationDto userCreationDto) throws ServiceException;
+    boolean editUser(UserCreationDto userCreationDto) throws ServiceException;
 }
