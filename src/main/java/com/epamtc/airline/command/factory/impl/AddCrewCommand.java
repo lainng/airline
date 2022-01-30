@@ -99,7 +99,10 @@ public class AddCrewCommand implements Command {
 
     private void editCrewSetup(HttpSession session, CrewCreationDto dto) throws ServiceException {
         CrewService crewService = ServiceFactory.getInstance().getCrewService();
+        MailService mailService = ServiceFactory.getInstance().getMailService();
+        String locale = (String) session.getAttribute(SessionAttribute.LOCALE);
         crewService.editCrew(dto);
+        mailService.sendEditCrewMail(dto, locale);
         session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_UPDATED_CREW);
     }
 }
