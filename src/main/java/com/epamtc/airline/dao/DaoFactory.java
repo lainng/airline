@@ -2,6 +2,9 @@ package com.epamtc.airline.dao;
 
 import com.epamtc.airline.dao.impl.*;
 
+/**
+ * This class provides the entities of all implementations of the interfaces of the DAO layer.
+ */
 public class DaoFactory {
     private final UserDao userDao = new UserDaoImpl();
     private final PlaneDao planeDao = new PlaneDaoImpl();

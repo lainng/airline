@@ -10,6 +10,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class provides methods of execution SQL queries.
+ * @param <T> The type of the entities that may be fetched from data source.
+ */
 public class QueryExecutor<T> {
     private static final ConnectionPool POOL = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger();

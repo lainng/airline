@@ -8,6 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * This class is required for storing and processing parameters of database queries.
+ */
 public class StatementParameterSetter {
     private static final Logger LOGGER = LogManager.getLogger();
     private Object[] parameters;

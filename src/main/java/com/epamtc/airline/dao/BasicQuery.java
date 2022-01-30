@@ -1,5 +1,8 @@
 package com.epamtc.airline.dao;
 
+/**
+ * This class is required for storing and processing regular database queries.
+ */
 public class BasicQuery extends AbstractQuery{
     private final Object[] parameters;
 
