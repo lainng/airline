@@ -2,7 +2,7 @@ package com.epamtc.airline.dao.impl;
 
 import com.epamtc.airline.dao.AbstractDao;
 import com.epamtc.airline.dao.CityDao;
-import com.epamtc.airline.dao.builder.impl.CityBuilder;
+import com.epamtc.airline.dao.builder.EntityBuilderFactory;
 import com.epamtc.airline.dao.exception.DaoException;
 import com.epamtc.airline.entity.City;
 
@@ -15,7 +15,7 @@ public class CityDaoImpl extends AbstractDao<City> implements CityDao {
     private static final String QUERY_UPDATE_CITY = "UPDATE city SET name = ? WHERE city_id = ?;";
 
     public CityDaoImpl() {
-        super(new CityBuilder());
+        super(EntityBuilderFactory.getInstance().getCityBuilder());
     }
 
     @Override
