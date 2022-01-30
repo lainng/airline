@@ -9,6 +9,7 @@ public class ServiceFactory {
     private final PlaneService planeService = new PlaneServiceImpl();
     private final CityService cityService = new CityServiceImpl();
     private final CrewService crewService = new CrewServiceImpl();
+    private final MailService mailService = new MailServiceImpl();
 
     private static class Holder{
         static final ServiceFactory INSTANCE = new ServiceFactory();
@@ -37,5 +38,8 @@ public class ServiceFactory {
     }
     public CrewService getCrewService() {
         return crewService;
+    }
+    public MailService getMailService() {
+        return mailService;
     }
 }
