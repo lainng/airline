@@ -11,6 +11,9 @@ import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * This class is required to store and work with a database connections.
+ */
 public class ConnectionPool {
     private static final Logger LOGGER = LogManager.getLogger();
     private Properties properties;

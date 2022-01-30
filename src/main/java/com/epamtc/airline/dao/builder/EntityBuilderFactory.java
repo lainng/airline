@@ -3,6 +3,9 @@ package com.epamtc.airline.dao.builder;
 
 import com.epamtc.airline.dao.builder.impl.*;
 
+/**
+ *  This class provides the entities of all implementations of the entity builder interfaces of the DAO layer.
+ */
 public class EntityBuilderFactory {
     private final CityBuilder cityBuilder = new CityBuilder();
     private final FlightDtoBuilder flightDtoBuilder = new FlightDtoBuilder();

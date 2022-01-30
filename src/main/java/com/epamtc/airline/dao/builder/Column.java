@@ -1,5 +1,8 @@
 package com.epamtc.airline.dao.builder;
 
+/**
+ * This class provides names of tables columns in database.
+ */
 public final class Column {
     public static final String CREW_FLIGHT_ID = "flight_id";
 
@@ -8,7 +11,6 @@ public final class Column {
     public static final String EMPLOYEE_PASSWORD = "password";
     public static final String EMPLOYEE_FIRST_NAME = "first_name";
     public static final String EMPLOYEE_LAST_NAME = "last_name";
-    public static final String EMPLOYEE_POSITION_ID = "position_id";
 
     public static final String POSITION_ID = "position_id";
     public static final String POSITION_NAME = "name";
@@ -21,7 +23,6 @@ public final class Column {
     public static final String PLANE_FLIGHT_RANGE = "flight_range";
 
     public static final String ROUTE_ID = "route_id";
-    public static final String ROUTE_NUMBER = "number";
     public static final String ROUTE_DEPARTURE_ID = "departure_city_id";
     public static final String ROUTE_DESTINATION_ID = "destination_city_id";
     public static final String ROUTE_DISTANCE = "distance";
