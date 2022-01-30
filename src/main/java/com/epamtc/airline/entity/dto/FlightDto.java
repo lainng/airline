@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+/**
+ * This class represents the flight DTO from the database.
+ */
 public class FlightDto implements Serializable {
     private static final long serialVersionUID = 1L;
     private long ID;

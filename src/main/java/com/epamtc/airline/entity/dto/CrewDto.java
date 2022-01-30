@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This class represents the crew DTO from the database.
+ */
 public class CrewDto implements Serializable {
     private static final long serialVersionUID = 1L;
     private long ID;

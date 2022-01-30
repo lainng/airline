@@ -3,6 +3,9 @@ package com.epamtc.airline.entity.dto;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+/**
+ * This class represents the search query DTO.
+ */
 public class SearchQuery implements Serializable {
     private static final long serialVersionUID = 1L;
     private Timestamp deptDate;

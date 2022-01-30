@@ -3,6 +3,9 @@ package com.epamtc.airline.entity.dto;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * This class represents a user creation DTO.
+ */
 public class UserCreationDto implements Serializable {
     private static final long serialVersionUID = 1L;
     private long ID;

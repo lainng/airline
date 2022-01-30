@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+/**
+ * This class represents a Flight entity.
+ */
 public class Flight implements Serializable {
     private static final long serialVersionUID = 1L;
     private long ID;

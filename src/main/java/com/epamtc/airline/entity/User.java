@@ -3,6 +3,9 @@ package com.epamtc.airline.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * This class represents a User entity.
+ */
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     private long ID;

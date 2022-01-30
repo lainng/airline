@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.util.Objects;
 
+/**
+ * This class represents the route DTO from the database.
+ */
 public class RouteDto implements Serializable {
     private static final long serialVersionUID = 1L;
     private long ID;

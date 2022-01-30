@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * This class represents a crew creation DTO.
+ */
 public class CrewCreationDto implements Serializable {
     private static final long serialVersionUID = 1L;
     private long ID;

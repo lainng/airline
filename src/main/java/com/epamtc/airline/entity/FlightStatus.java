@@ -3,16 +3,15 @@ package com.epamtc.airline.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * This class represents a Flight Status entity.
+ */
 public class FlightStatus implements Serializable {
     private static final long serialVersionUID = 1L;
     private long ID;
     private String name;
 
     public FlightStatus() {}
-
-    public FlightStatus(long ID) {
-        this.ID = ID;
-    }
 
     public long getID() {
         return ID;

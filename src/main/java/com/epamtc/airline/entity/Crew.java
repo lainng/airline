@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This class represents a Crew entity.
+ */
 public class Crew implements Serializable {
     private static final long serialVersionUID = 1L;
     private long ID;

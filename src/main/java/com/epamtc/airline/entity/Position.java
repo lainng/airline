@@ -3,6 +3,9 @@ package com.epamtc.airline.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * This class represents a Position entity.
+ */
 public class Position implements Serializable {
     private static final long serialVersionUID = 1L;
     private long ID;

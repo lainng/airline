@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.util.Objects;
 
+/**
+ * This class represents a Route entity.
+ */
 public class Route implements Serializable {
     private static final long serialVersionUID = 1L;
     private long ID;
