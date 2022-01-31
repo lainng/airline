@@ -21,7 +21,7 @@ public interface UserService {
 
     /**
      * Registers new user in system.
-     * @param dto
+     * @param dto A {@link UserCreationDto} entity that contains the raw information about user creating.
      * @return {@code true} if user is registered, {@code false} otherwise.
      * @throws ServiceException if registering is impossible.
      */
@@ -36,31 +36,31 @@ public interface UserService {
 
     /**
      * Changes a user password.
-     * @param
+     * @param dto A {@link UserCreationDto} entity that contains user passwords.
      * @return {@code true} if password is changed, {@code false} otherwise.
-     * @throws ServiceException if changing is impossible;
+     * @throws ServiceException if changing is impossible.
      */
     boolean editUserPassword(UserCreationDto dto) throws ServiceException;
 
     /**
-     *
-     * @return
-     * @throws ServiceException
+     * Retrieves all users.
+     * @return The {@link List} of user or the empty {@link List} if users is not found.
+     * @throws ServiceException if retrieving of the user's list is impossible.
      */
     List<User> takeAllUsers() throws ServiceException;
 
     /**
-     *
-     * @param userID
-     * @return
-     * @throws ServiceException
+     * Retrieves a user entity by a specified ID.
+     * @param userID The ID of the user.
+     * @return A {@link Optional} describing user entity, or an empty {@link Optional} if the user is not found.
+     * @throws ServiceException if retrieving of the user's entity is impossible.
      */
     Optional<User> takeUser(long userID) throws ServiceException;
 
     /**
-     *
-     * @param userCreationDto
-     * @throws ServiceException
+     * Edited user's entity from the data source.
+     * @param userCreationDto A {@link UserCreationDto} entity that contains changing information.
+     * @throws ServiceException if editing a user's entity is impossible.
      */
     boolean editUser(UserCreationDto userCreationDto) throws ServiceException;
 }
