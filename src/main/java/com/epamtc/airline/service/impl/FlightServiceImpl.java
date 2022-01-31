@@ -34,7 +34,7 @@ public class FlightServiceImpl implements FlightService {
             flights = toEntityList(flightDtoList);
         } catch (DaoException e) {
             LOGGER.error("Unable to get the list of user's flights. {}", e.getMessage());
-            throw new ServiceException(e);
+            throw new ServiceException("Unable to get the list of user's flights.", e);
         }
         return flights;
     }
@@ -49,7 +49,7 @@ public class FlightServiceImpl implements FlightService {
             flightDao.confirmFlightByID(flightID, user.getID());
         } catch (DaoException e) {
             LOGGER.error("Unable to confirm user flight. {}", e.getMessage());
-            throw new ServiceException(e);
+            throw new ServiceException("Unable to confirm user flight.", e);
         }
         return true;
     }
