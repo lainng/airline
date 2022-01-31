@@ -67,11 +67,19 @@
                                     </h2>
                                     <div id="flush-collapse${crew.ID}" class="accordion-collapse collapse" aria-labelledby="flush-heading${crew.ID}" data-bs-parent="#accordionFlush${crew.ID}">
                                         <div class="accordion-body">
-                                            <p>
-                                                <c:forEach items="${crew.members}" var="employee">
-                                                    <strong>${employee.position.name}</strong> - ${employee.firstName} ${employee.lastName}<br>
-                                                </c:forEach>
-                                            </p>
+                                            <c:forEach items="${crew.members}" var="employee">
+                                                <div class="d-flex flex-row justify-content-between">
+                                                    <div>
+                                                        <strong>${employee.position.name}</strong> - ${employee.firstName} ${employee.lastName}
+                                                    </div>
+                                                    <c:if test="${employee.confirmedAssignedFlight}">
+                                                        <div data-toggle="tooltip" title="<fmt:message key="tooltip.confirmed"/>"><i class="bi bi-check-circle text-success"></i></div>
+                                                    </c:if>
+                                                    <c:if test="${!employee.confirmedAssignedFlight}">
+                                                        <div data-toggle="tooltip" title="<fmt:message key="tooltip.notConfirmed"/>"><i class="bi bi-x-circle text-danger"></i></div>
+                                                    </c:if>
+                                                </div>
+                                            </c:forEach>
                                         </div>
                                     </div>
                                 </div>
