@@ -1,5 +1,8 @@
 package com.epamtc.airline.command;
 
+/**
+ * This class contains the attributes of session parameters.
+ */
 public final class SessionAttribute {
     public static final String ROLE_ID = "roleId";
     public static final String USER = "user";

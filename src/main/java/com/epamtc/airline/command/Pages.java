@@ -1,6 +1,10 @@
 package com.epamtc.airline.command;
 
+/**
+ * This class contains the paths of JSP pages.
+ */
 public final class Pages {
+
     public static final String ERROR_404 = "WEB-INF/jsp/error-404.jsp";
     public static final String ERROR_404_REDIRECT = "controller?command=error404";
     public static final String ERROR_500 = "WEB-INF/jsp/error-500.jsp";

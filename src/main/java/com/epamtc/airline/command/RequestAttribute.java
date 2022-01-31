@@ -1,5 +1,8 @@
 package com.epamtc.airline.command;
 
+/**
+ * This class contains the attributes of request parameters.
+ */
 public final class RequestAttribute {
 
     public static final String CREW_PAGE_KEY = "crewPageKey";
@@ -29,5 +32,4 @@ public final class RequestAttribute {
     public static final String FLIGHT_STATUS = "flightStatus";
     public static final String SEARCHING_QUERY = "searchingQuery";
 
-    private RequestAttribute() {}
 }

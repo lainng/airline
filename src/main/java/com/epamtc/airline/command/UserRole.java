@@ -1,5 +1,8 @@
 package com.epamtc.airline.command;
 
+/**
+ * This class contains the IDs of user roles.
+ */
 public final class UserRole {
     public static long GUEST = 0L;
     public static long USER = 1L;

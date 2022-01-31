@@ -1,5 +1,8 @@
 package com.epamtc.airline.command;
 
+/**
+ * This class represents the holder of the page path and request routing type.
+ */
 public class CommandResult {
     private final String pagePath;
     private final RouteType type;

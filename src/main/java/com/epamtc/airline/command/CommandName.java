@@ -1,6 +1,10 @@
 package com.epamtc.airline.command;
 
+/**
+ * This class contains the names of used commands.
+ */
 public final class CommandName {
+
     public static final String LOGIN_COMMAND = "login";
     public static final String LOGIN_PAGE_COMMAND = "login-page";
     public static final String SIGN_UP_COMMAND = "sign-up";

@@ -1,5 +1,8 @@
 package com.epamtc.airline.command;
 
+/**
+ * This class contains the names of request parameters.
+ */
 public final class RequestParameter {
     public static final String EMAIL = "email";
     public static final String PASSWORD = "password";

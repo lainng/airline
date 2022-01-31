@@ -1,6 +1,10 @@
 package com.epamtc.airline.command;
 
+/**
+ * This class contains the keys of labels bundle.
+ */
 public final class InfoKey {
+
     public static final String ERROR_INCORRECT_SEARCH_QUERY_PARAMETERS = "error.incorrectSearchingQueryParameters";
     public static final String ERROR_INCORRECT_DATE_FORMAT = "error.incorrectDateFormat";
 

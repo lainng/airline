@@ -7,6 +7,9 @@ import com.epamtc.airline.command.factory.impl.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class provides the entities of implementations of the command interface.
+ */
 public class CommandFactory {
     private final Map<String, Command> commandMap = new HashMap<>();
 

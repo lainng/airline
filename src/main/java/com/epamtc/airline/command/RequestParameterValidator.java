@@ -2,6 +2,9 @@ package com.epamtc.airline.command;
 
 import java.util.regex.Pattern;
 
+/**
+ * This class provides a request parameters validator.
+ */
 public class RequestParameterValidator {
     private static final String NUMBER_PATTERN = "-?\\d+(\\.\\d+)?";
     private static final String DATE_PATTERN = "^([0-2][0-9]|(3)[0-1])(\\.)(((0)[0-9])|((1)[0-2]))(\\.)\\d{4}$";
