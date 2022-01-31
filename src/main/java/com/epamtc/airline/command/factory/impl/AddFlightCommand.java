@@ -102,12 +102,8 @@ public class AddFlightCommand implements Command {
 
     private void editFlightSetup(HttpSession session, FlightDto flightDto) throws ServiceException {
         FlightService flightService = ServiceFactory.getInstance().getFlightService();
-        boolean isFlightUpdated = flightService.editFlight(flightDto);
-        if (isFlightUpdated) {
-            session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_UPDATED_FLIGHT);
-        } else {
-            session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_FLIGHT_PARAMETERS);
-        }
+        flightService.editFlight(flightDto);
+        session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_UPDATED_FLIGHT);
     }
 
     private String buildRedirectPath(String flightID) {

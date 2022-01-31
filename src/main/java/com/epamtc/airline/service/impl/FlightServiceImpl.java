@@ -156,7 +156,7 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public boolean editFlight(FlightDto flightDto) throws ServiceException {
+    public void editFlight(FlightDto flightDto) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
         try {
             flightDao.updateFlight(flightDto);
@@ -164,7 +164,6 @@ public class FlightServiceImpl implements FlightService {
             LOGGER.error("Unable to update the flight. {}", e.getMessage());
             throw new ServiceException("Unable to update the flight.", e);
         }
-        return true;
     }
 
     @Override
