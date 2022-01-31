@@ -11,6 +11,9 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+/**
+ * This class provides a copyright JSP tag handler.
+ */
 public class CopyrightTag extends TagSupport {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final long serialVersionUID = 1L;

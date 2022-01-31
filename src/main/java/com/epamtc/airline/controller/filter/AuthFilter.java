@@ -12,7 +12,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * This class provides a web filter that handles authentication of user.
+ */
 public class AuthFilter implements Filter {
     private final Map<Long, List<String>> authorizedCommands = new HashMap<>();
 

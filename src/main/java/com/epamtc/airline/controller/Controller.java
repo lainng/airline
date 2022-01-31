@@ -15,6 +15,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
+/**
+ * This class provides HTTP requests handler.
+ */
 public class Controller extends HttpServlet {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final long serialVersionUID = 1L;

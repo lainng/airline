@@ -8,6 +8,9 @@ import jakarta.servlet.annotation.WebListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * This class provides a web listener that initialized the pool of database connections.
+ */
 @WebListener
 public class ConnectionPoolListener implements ServletContextListener {
     private static final Logger LOGGER = LogManager.getLogger();

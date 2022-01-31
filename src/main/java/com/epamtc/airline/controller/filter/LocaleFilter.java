@@ -12,6 +12,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+/**
+ * This class provides a web filter that handles the language of the requested page.
+ */
 public class LocaleFilter implements Filter {
     private static final String DEFAULT_LOCALE_PARAM = "defaultLocale";
 
