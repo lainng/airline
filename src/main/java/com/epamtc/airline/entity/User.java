@@ -14,6 +14,7 @@ public class User implements Serializable {
     private Position position;
     private String email;
     private String password;
+    private boolean isConfirmedAssignedFlight;
 
     public User() {}
 
@@ -65,6 +66,14 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public boolean isConfirmedAssignedFlight() {
+        return isConfirmedAssignedFlight;
+    }
+
+    public void setConfirmedAssignedFlight(boolean confirmedAssignedFlight) {
+        isConfirmedAssignedFlight = confirmedAssignedFlight;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,28 +81,29 @@ public class User implements Serializable {
         User user = (User) o;
         return ID == user.ID
                 && Objects.equals(firstName, user.firstName)
-                && Objects.equals(lastName, user.lastName) &&
-                Objects.equals(position, user.position) &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(password, user.password);
+                && Objects.equals(lastName, user.lastName)
+                && Objects.equals(position, user.position)
+                && Objects.equals(email, user.email)
+                && Objects.equals(password, user.password)
+                && isConfirmedAssignedFlight == user.isConfirmedAssignedFlight;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, firstName, lastName, position, email, password);
+        return Objects.hash(ID, firstName, lastName, position, email, password, isConfirmedAssignedFlight);
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(getClass().getName()).append("@");
-        builder.append("ID = ").append(ID);
-        builder.append(", firstName=").append(firstName);
-        builder.append(", lastName=").append(lastName);
-        builder.append(", position=").append(position);
-        builder.append(", email=").append(email);
-        builder.append(", password=").append(password);
-
+        builder.append("ID = ").append(ID)
+                .append(", firstName=").append(firstName)
+                .append(", lastName=").append(lastName)
+                .append(", position=").append(position)
+                .append(", email=").append(email)
+                .append(", password=").append(password)
+                .append(" , isConfirmedAssignedFlight=").append(isConfirmedAssignedFlight);
         return builder.toString();
     }
 }
