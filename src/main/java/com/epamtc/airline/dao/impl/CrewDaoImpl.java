@@ -13,13 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CrewDaoImpl extends AbstractDao<CrewDto> implements CrewDao {
-    private static final String QUERY_GET_CREW_BY_FLIGHT = "SELECT C.flight_id, EC.crew_id, E.employee_id, E.first_name, E.last_name, P.position_id, P.name, E.email, E.password, P.role_id " +
+    private static final String QUERY_GET_CREW_BY_FLIGHT_ID = "SELECT C.flight_id, EC.crew_id, E.employee_id, E.first_name, E.last_name, P.position_id, P.name, E.email, E.password, P.role_id " +
             "FROM employee E " +
             "JOIN position P on P.position_id = E.position_id " +
             "JOIN employee_in_crew EC on E.employee_id = EC.employee_id " +
             "JOIN crew C on C.crew_id = EC.crew_id " +
             "WHERE flight_id = ?;";
-    private static final String QUERY_GET_ALL_FLIGHTS_WITH_CREWS = "SELECT C.flight_id, EC.crew_id, E.employee_id, E.first_name, E.last_name, P.position_id, P.name, E.email, E.password, P.role_id " +
+    private static final String QUERY_GET_ALL_CREWS = "SELECT C.flight_id, EC.crew_id, E.employee_id, E.first_name, E.last_name, P.position_id, P.name, E.email, E.password, P.role_id, EC.employee_confirmation " +
             "FROM employee E " +
             "JOIN position P on P.position_id = E.position_id " +
             "JOIN employee_in_crew EC on E.employee_id = EC.employee_id " +
@@ -44,7 +44,7 @@ public class CrewDaoImpl extends AbstractDao<CrewDto> implements CrewDao {
     @Override
     public CrewDto findCrewByFlightID(long flightID) throws DaoException {
         return queryExecutor.executeSingleEntityQuery(
-                QUERY_GET_CREW_BY_FLIGHT,
+                QUERY_GET_CREW_BY_FLIGHT_ID,
                 flightID
         );
     }
@@ -59,7 +59,7 @@ public class CrewDaoImpl extends AbstractDao<CrewDto> implements CrewDao {
 
     public List<CrewDto> findAllCrews() throws DaoException {
         return queryExecutor.executeQuery(
-                QUERY_GET_ALL_FLIGHTS_WITH_CREWS
+                QUERY_GET_ALL_CREWS
         );
     }
     @Override
