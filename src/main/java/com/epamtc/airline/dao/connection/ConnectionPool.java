@@ -60,7 +60,7 @@ public class ConnectionPool {
         return ConnectionPoolHolder.INSTANCE;
     }
 
-    public Connection getConnection() throws ConnectionPoolException {
+    public Connection takeConnection() throws ConnectionPoolException {
         Connection connection;
         try {
             connection = freeConnections.take();

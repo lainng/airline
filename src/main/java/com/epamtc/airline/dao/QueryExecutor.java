@@ -27,7 +27,7 @@ public class QueryExecutor<T> {
 
     public List<T> executeQuery(String query, Object... parameters) throws DaoException {
         List<T> result = new ArrayList<>();
-        Connection connection = POOL.getConnection();
+        Connection connection = POOL.takeConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
@@ -55,7 +55,7 @@ public class QueryExecutor<T> {
     }
 
     public int executeUpdate(String query, Object... parameters) throws DaoException {
-        Connection connection = POOL.getConnection();
+        Connection connection = POOL.takeConnection();
         PreparedStatement statement = null;
         int generatedKey = NO_ID;
         try {
@@ -81,7 +81,7 @@ public class QueryExecutor<T> {
     }
 
     public void executeTransactionUpdate(AbstractQuery... queries) throws DaoException {
-        Connection connection = POOL.getConnection();
+        Connection connection = POOL.takeConnection();
         try {
             connection.setAutoCommit(false);
             for (AbstractQuery query : queries) {
