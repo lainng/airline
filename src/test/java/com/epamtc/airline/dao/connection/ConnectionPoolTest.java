@@ -17,7 +17,7 @@ public class ConnectionPoolTest {
     }
 
     @AfterAll
-    static void tearDow() {
+    static void tearDown() {
         ConnectionPool.getInstance().terminate();
     }
 
