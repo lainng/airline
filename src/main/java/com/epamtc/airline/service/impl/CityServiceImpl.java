@@ -27,8 +27,9 @@ public class CityServiceImpl implements CityService {
             LOGGER.error("Unable to get a city by its ID. {}", e.getMessage());
             throw new ServiceException("Unable to get a city by its ID.", e);
         }
-        return Optional.of(city);
+        return Optional.ofNullable(city);
     }
+
     @Override
     public List<City> takeAllCities() throws ServiceException {
         CityDao cityDao = DaoFactory.getInstance().getCityDao();
@@ -41,6 +42,7 @@ public class CityServiceImpl implements CityService {
         }
         return cities;
     }
+
     @Override
     public boolean createCity(City city) throws ServiceException {
         CityValidator validator = ValidatorFactory.getInstance().getCityValidator();
@@ -56,6 +58,7 @@ public class CityServiceImpl implements CityService {
         }
         return true;
     }
+
     @Override
     public boolean editCity(City city) throws ServiceException {
         CityValidator validator = ValidatorFactory.getInstance().getCityValidator();
