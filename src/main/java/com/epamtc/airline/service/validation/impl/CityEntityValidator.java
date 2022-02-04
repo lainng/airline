@@ -11,7 +11,6 @@ public class CityEntityValidator implements CityValidator {
     @Override
     public boolean validate(City city) {
         Pattern pattern = Pattern.compile(NAME_REGEXP);
-        return pattern.matcher(city.getName()).matches()
-                && city.getID() > 0;
+        return pattern.matcher(city.getName()).matches();
     }
 }
