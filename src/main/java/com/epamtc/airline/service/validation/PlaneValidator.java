@@ -4,9 +4,9 @@ import com.epamtc.airline.entity.Plane;
 
 public interface PlaneValidator {
     /**
-     * Validates plane entity.
+     * Validates plane's entity.
      * @param plane An {@link Plane} entity.
-     * @return {@code true} if plane entity is valid otherwise returns {@code false}.
+     * @return {@code true} if plane's entity is valid otherwise returns {@code false}.
      */
-    boolean validatePlaneEntity(Plane plane);
+    boolean validate(Plane plane);
 }

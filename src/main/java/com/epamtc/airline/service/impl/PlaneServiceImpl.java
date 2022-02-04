@@ -46,7 +46,7 @@ public class PlaneServiceImpl implements PlaneService {
     @Override
     public boolean createPlane(Plane plane) throws ServiceException {
         PlaneValidator validator = ValidatorFactory.getInstance().getPlaneValidator();
-        if (!validator.validatePlaneEntity(plane)) {
+        if (!validator.validate(plane)) {
             return false;
         }
         PlaneDao planeDao = DaoFactory.getInstance().getPlaneDao();
@@ -62,7 +62,7 @@ public class PlaneServiceImpl implements PlaneService {
     @Override
     public boolean editPlane(Plane plane) throws ServiceException {
         PlaneValidator validator = ValidatorFactory.getInstance().getPlaneValidator();
-        if (!validator.validatePlaneEntity(plane)) {
+        if (!validator.validate(plane)) {
             return false;
         }
         PlaneDao planeDao = DaoFactory.getInstance().getPlaneDao();
