@@ -53,8 +53,8 @@ public class RouteServiceImpl implements RouteService {
     @Override
     public boolean createRoute(RouteDto routeDto) throws ServiceException {
         RouteValidator routeValidator = ValidatorFactory.getInstance().getRouteDtoValidator();
-        boolean isEntityValid = routeValidator.validateDto(routeDto);
-        if (!isEntityValid && !checkUniqueness(routeDto)) {
+        boolean isDtoValid = routeValidator.validateDto(routeDto);
+        if (!isDtoValid && !checkUniqueness(routeDto)) {
             return false;
         }
         RouteDao routeDao = DaoFactory.getInstance().getRouteDao();
@@ -69,8 +69,8 @@ public class RouteServiceImpl implements RouteService {
     @Override
     public boolean editRoute(RouteDto routeDto) throws ServiceException {
         RouteValidator routeValidator = ValidatorFactory.getInstance().getRouteDtoValidator();
-        boolean isEntityValid = routeValidator.validateDto(routeDto);
-        if (!isEntityValid || !checkUniqueness(routeDto)) {
+        boolean isDtoValid = routeValidator.validateDto(routeDto);
+        if (!isDtoValid || !checkUniqueness(routeDto)) {
             return false;
         }
         RouteDao routeDao = DaoFactory.getInstance().getRouteDao();

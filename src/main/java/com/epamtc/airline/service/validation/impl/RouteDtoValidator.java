@@ -6,10 +6,9 @@ import com.epamtc.airline.service.validation.RouteValidator;
 public class RouteDtoValidator implements RouteValidator {
     @Override
     public boolean validateDto(RouteDto routeDto) {
-        return isGreaterZero(routeDto.getDistance());
+        return routeDto.getDistance() > 0
+                && routeDto.getDepartureID() > 0
+                && routeDto.getDestinationID() > 0;
     }
 
-    private boolean isGreaterZero(int value) {
-        return value > 0;
-    }
 }
