@@ -45,7 +45,7 @@ public class CityServiceImpl implements CityService {
     public boolean createCity(City city) throws ServiceException {
         CityValidator validator = ValidatorFactory.getInstance().getCityValidator();
         CityDao cityDao = DaoFactory.getInstance().getCityDao();
-        if (!validator.validateName(city) || !checkUniqueness(city)) {
+        if (!validator.validate(city) || !checkUniqueness(city)) {
             return false;
         }
         try {
@@ -60,7 +60,7 @@ public class CityServiceImpl implements CityService {
     public boolean editCity(City city) throws ServiceException {
         CityValidator validator = ValidatorFactory.getInstance().getCityValidator();
         CityDao cityDao = DaoFactory.getInstance().getCityDao();
-        if (!validator.validateName(city) || !checkUniqueness(city)) {
+        if (!validator.validate(city) || !checkUniqueness(city)) {
             return false;
         }
         try {
