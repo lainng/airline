@@ -1,6 +1,5 @@
 package com.epamtc.airline.dao.connection;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +13,6 @@ public class ConnectionPoolTest {
     @BeforeAll
     static void setUp() {
         ConnectionPool.getInstance().init();
-    }
-
-    @AfterAll
-    static void tearDown() {
-        ConnectionPool.getInstance().terminate();
     }
 
     @Test

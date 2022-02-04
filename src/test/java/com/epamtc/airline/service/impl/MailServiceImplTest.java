@@ -9,18 +9,12 @@ import com.epamtc.airline.service.ServiceFactory;
 import com.epamtc.airline.service.exception.ServiceException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
 public class MailServiceImplTest {
     private final MailService mailService = new MailServiceImpl();
-
-    @BeforeAll
-    static void setUp() {
-        ConnectionPool.getInstance().init();
-    }
 
     @AfterAll
     static void tearDown() {
