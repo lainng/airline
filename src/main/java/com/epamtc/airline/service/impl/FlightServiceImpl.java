@@ -28,21 +28,24 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public List<Flight> takeUserFlights(User user) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
-        List<Flight> flights;
+        List<Flight> flights = new ArrayList<>();
+        if (user == null) {
+            return flights;
+        }
         try {
             List<FlightDto> flightDtoList = flightDao.findUserFlights(user.getID());
             flights = toEntityList(flightDtoList);
+            return flights;
         } catch (DaoException e) {
             LOGGER.error("Unable to get the list of user's flights. {}", e.getMessage());
             throw new ServiceException("Unable to get the list of user's flights.", e);
         }
-        return flights;
     }
 
     @Override
     public boolean confirmFlight(long flightID, User user) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
-        if (!isFlightAssignedEmployee(user, flightID)) {
+        if (user == null || !isFlightAssignedEmployee(user, flightID)) {
             return false;
         }
         try {
@@ -58,17 +61,17 @@ public class FlightServiceImpl implements FlightService {
     public Optional<Flight> takeUserFlight(long flightID, User user) throws ServiceException {
         FlightDao flightDao = DaoFactory.getInstance().getFlightDao();
         Optional<Flight> optionalFlight = Optional.empty();
-        if (!isFlightAssignedEmployee(user, flightID)) {
+        if (user == null || !isFlightAssignedEmployee(user, flightID)) {
             return optionalFlight;
         }
         try {
             FlightDto flightDto = flightDao.findFlightByID(flightID);
             optionalFlight = Optional.ofNullable(toEntity(flightDto));
+            return optionalFlight;
         } catch (DaoException e) {
             LOGGER.error("Unable to get the flight by ID. {}", e.getMessage());
             throw new ServiceException("Unable to get the flight by ID.", e);
         }
-        return optionalFlight;
     }
 
     @Override
