@@ -67,5 +67,4 @@ The application has next roles:
 - Search for available company flights
 
 ## Database schema
-
-![](https://imgur.com/a/0E63L7w "DB Schema")
+![](https://i.imgur.com/pVxRfK7.png)
