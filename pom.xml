@@ -17,6 +17,7 @@
     </properties>
 
     <dependencies>
+
         <!-- Jakarta EE -->
         <dependency>
             <groupId>jakarta.servlet</groupId>
@@ -32,6 +33,7 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Jakarta Mail -->
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>jakarta.mail</artifactId>
@@ -73,6 +75,7 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
