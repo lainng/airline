@@ -1,19 +1,16 @@
 package com.epamtc.airline.dao.connection;
 
-import org.junit.jupiter.api.BeforeAll;
+import com.epamtc.airline.ConnectionPoolExtension;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@ExtendWith(ConnectionPoolExtension.class)
 public class ConnectionPoolTest {
-
-    @BeforeAll
-    static void setUp() {
-        ConnectionPool.getInstance().init();
-    }
 
     @Test
     void takeConnectionTest() throws SQLException {

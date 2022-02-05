@@ -1,13 +1,16 @@
 package com.epamtc.airline.service.impl;
 
+import com.epamtc.airline.ConnectionPoolExtension;
 import com.epamtc.airline.entity.City;
 import com.epamtc.airline.service.CityService;
 import com.epamtc.airline.service.exception.ServiceException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Optional;
 
+@ExtendWith(ConnectionPoolExtension.class)
 public class CityServiceImplTest {
     private final CityService cityService = new CityServiceImpl();
     private static final long EXISTING_CITY_ID = 11L;

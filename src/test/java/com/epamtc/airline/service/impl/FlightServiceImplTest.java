@@ -1,14 +1,17 @@
 package com.epamtc.airline.service.impl;
 
+import com.epamtc.airline.ConnectionPoolExtension;
 import com.epamtc.airline.entity.Flight;
 import com.epamtc.airline.entity.FlightStatus;
 import com.epamtc.airline.service.FlightService;
 import com.epamtc.airline.service.exception.ServiceException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Optional;
 
+@ExtendWith(ConnectionPoolExtension.class)
 public class FlightServiceImplTest {
     private final FlightService flightService = new FlightServiceImpl();
     private static final long EXISTING_FLIGHT_ID = 24L;

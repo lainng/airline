@@ -1,13 +1,16 @@
 package com.epamtc.airline.service.impl;
 
+import com.epamtc.airline.ConnectionPoolExtension;
 import com.epamtc.airline.entity.User;
 import com.epamtc.airline.service.UserService;
 import com.epamtc.airline.service.exception.ServiceException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Optional;
 
+@ExtendWith(ConnectionPoolExtension.class)
 public class UserServiceImplTest {
     private final UserService userService = new UserServiceImpl();
     private static final String USER_EMAIL = "test@mail.com";
