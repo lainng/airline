@@ -1,6 +1,6 @@
 # White Water Airline
 
-An application that simulates the work of a real airline. The final project of EPAM Java Web Development training.
+An application that simulates the operation of the system for registering flights and assigning crews in an airline. The final project of the EPAM Java Web Development training.
 
 ## Table of contents
 
@@ -11,6 +11,7 @@ An application that simulates the work of a real airline. The final project of E
 
 ## Introduction
 
+This application is a system for creating flights and assigning crews to them.  
 The application has several roles: Administrator, Manager and User.  
 The administrator can create and cancel flights, add new and edit existing aircraft and routes. Also edit user information (name and surname).  
 The dispatcher can assign a crew to a flight, change it and remove it if necessary.  
