@@ -68,4 +68,4 @@ The application has next roles:
 - Search for available company flights
 
 ## Database schema
-![](https://i.imgur.com/pVxRfK7.png)
+![](https://i.imgur.com/qWUX5ik.png)
