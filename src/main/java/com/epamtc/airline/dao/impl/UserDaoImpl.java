@@ -20,7 +20,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     private static final String QUERY_GET_USER_BY_ID = "SELECT E.employee_id, E.first_name, E.last_name, P.position_id, P.name, P.role_id, E.email, E.password " +
             "FROM employee E JOIN position P on P.position_id = E.position_id " +
             "WHERE E.employee_id = ?;";
-    private static final String QUERY_UPDATE_USER = "UPDATE employee SET first_name = ?, last_name = ?, position_id = ? WHERE employee_id = ?;";
+    private static final String QUERY_UPDATE_USER = "UPDATE employee SET first_name = ?, last_name = ? WHERE employee_id = ?;";
     private static final String QUERY_UPDATE_PASSWORD_BY_EMAIL = "UPDATE employee SET password = ? WHERE employee_id = ?;";
     private static final String QUERY_GET_ALL_USERS = "SELECT E.employee_id, E.first_name, E.last_name, P.position_id, P.name, P.role_id, E.email, E.password " +
             "FROM employee E JOIN position P on P.position_id = E.position_id;";
@@ -80,7 +80,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
                 QUERY_UPDATE_USER,
                 userCreationDto.getFirstName(),
                 userCreationDto.getLastName(),
-                userCreationDto.getPositionID(),
                 userCreationDto.getID()
         );
     }
