@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.util.Map;
-import java.util.Optional;
 
 public class EditEmployeeCommand implements Command {
     private static final int FIRST_PARAMETER_VALUE = 0;
@@ -39,25 +38,17 @@ public class EditEmployeeCommand implements Command {
 
     private boolean checkRequestParameters(Map<String, String[]> parameterMap) {
         RequestParameterValidator validator = new RequestParameterValidator();
-        Optional<String[]> optionalPositionID = Optional.ofNullable(parameterMap.get(RequestParameter.POSITION_ID));
-        if (!optionalPositionID.isPresent()) {
-            return false;
-        }
-        String positionID = optionalPositionID.get()[FIRST_PARAMETER_VALUE];
 
-        return validator.isValidID(positionID)
-                && !validator.isEmpty(parameterMap.get(RequestParameter.FIRST_NAME)[FIRST_PARAMETER_VALUE])
+        return !validator.isEmpty(parameterMap.get(RequestParameter.FIRST_NAME)[FIRST_PARAMETER_VALUE])
                 && !validator.isEmpty(parameterMap.get(RequestParameter.LAST_NAME)[FIRST_PARAMETER_VALUE]);
     }
 
     private void setParametersToDto(Map<String, String[]> parameterMap, UserCreationDto dto) {
         String firstName = parameterMap.get(RequestParameter.FIRST_NAME)[FIRST_PARAMETER_VALUE];
         String lastName = parameterMap.get(RequestParameter.LAST_NAME)[FIRST_PARAMETER_VALUE];
-        long positionID = Long.parseLong(parameterMap.get(RequestParameter.POSITION_ID)[FIRST_PARAMETER_VALUE]);
 
         dto.setFirstName(firstName);
         dto.setLastName(lastName);
-        dto.setPositionID(positionID);
     }
 
     private void editEmployeeSetup(HttpSession session, UserCreationDto dto) throws ServiceException {
