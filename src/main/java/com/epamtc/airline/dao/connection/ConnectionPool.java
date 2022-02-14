@@ -44,13 +44,13 @@ public class ConnectionPool {
                 freeConnections.add(connection);
             }
         } catch (IOException e) {
-            LOGGER.error("Unable to load database properties.", e);
+            LOGGER.fatal("Unable to load database properties.", e);
             throw new ConnectionPoolException("Unable to load database properties.", e);
         } catch (SQLException e) {
-            LOGGER.error("Unable to connect to database.", e);
+            LOGGER.fatal("Unable to connect to database.", e);
             throw new ConnectionPoolException("Unable to connect to database.", e);
         } catch (ClassNotFoundException e) {
-            LOGGER.error("MySQL JDBC driver not found.", e);
+            LOGGER.fatal("MySQL JDBC driver not found.", e);
             throw new ConnectionPoolException("MySQL JDBC driver not found.", e);
         }
         LOGGER.info("Connection pool is initialized.");
@@ -66,7 +66,7 @@ public class ConnectionPool {
             connection = freeConnections.take();
             usedConnections.put(connection);
         } catch (InterruptedException e) {
-            LOGGER.error("Unable to connect to data source.", e);
+            LOGGER.fatal("Unable to connect to data source.", e);
             throw new ConnectionPoolException("Unable to connect to data source.", e);
         }
         return connection;
