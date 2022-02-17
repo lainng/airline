@@ -20,7 +20,7 @@ public class ConnectionPoolListener implements ServletContextListener {
         try {
             ConnectionPool.getInstance().init();
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Unable to initialize connection pool.");
+            LOGGER.fatal("Unable to initialize connection pool.");
             throw new RuntimeException("Unable to initialize connection pool.", e);
         }
     }
@@ -30,7 +30,7 @@ public class ConnectionPoolListener implements ServletContextListener {
         try {
             ConnectionPool.getInstance().terminate();
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Unable to terminate connection pool.");
+            LOGGER.fatal("Unable to terminate connection pool.");
             throw new RuntimeException("Unable to terminate connection pool.", e);
         }
     }
