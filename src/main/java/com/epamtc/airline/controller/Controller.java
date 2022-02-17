@@ -16,7 +16,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 
 /**
- * This class provides HTTP requests handler.
+ * This class provides HTTP requests and responses servlet.
  */
 public class Controller extends HttpServlet {
     private static final Logger LOGGER = LogManager.getLogger();
