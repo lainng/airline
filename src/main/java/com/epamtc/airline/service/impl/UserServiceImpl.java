@@ -44,6 +44,7 @@ public class UserServiceImpl implements UserService {
         }
         return optionalUser;
     }
+
     @Override
     public boolean signUp(UserCreationDto userCreationDto) throws ServiceException {
         UserDao userDao = DaoFactory.getInstance().getUserDao();
@@ -54,6 +55,8 @@ public class UserServiceImpl implements UserService {
         try {
             Optional<User> optionalUserFromDB = userDao.findUserByEmail(userCreationDto.getEmail());
             if (!optionalUserFromDB.isPresent()) {
+                String hashedPassword = DigestUtils.md5Hex(userCreationDto.getPassword());
+                userCreationDto.setPassword(hashedPassword);
                 userDao.addUser(userCreationDto);
                 return true;
             }
@@ -63,6 +66,7 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
+
     @Override
     public List<Position> takePositions() throws ServiceException {
         PositionDao positionDao = DaoFactory.getInstance().getPositionDao();
