@@ -43,10 +43,13 @@ public class Controller extends HttpServlet {
         if(command != null) {
             try {
                 commandResult = command.execute(request, response);
+                String encodedURL;
                 if(commandResult.isForward()) {
-                    request.getRequestDispatcher(commandResult.getPagePath()).forward(request, response);
-                } else if (commandResult.isRedirect()) {
-                    response.sendRedirect(commandResult.getPagePath());
+                    encodedURL = response.encodeURL(commandResult.getPagePath());
+                    request.getRequestDispatcher(encodedURL).forward(request, response);
+                } else {
+                    encodedURL = response.encodeRedirectURL(commandResult.getPagePath());
+                    response.sendRedirect(encodedURL);
                 }
             } catch (ServiceException e) {
                 LOGGER.error("Unable to execute the command " + commandName, e);
