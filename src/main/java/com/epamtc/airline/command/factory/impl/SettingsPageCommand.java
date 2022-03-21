@@ -7,14 +7,10 @@ import com.epamtc.airline.command.RouteType;
 import com.epamtc.airline.service.exception.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 public class SettingsPageCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-        HttpSession session = request.getSession();
-        putInfoKeyToRequest(session, request);
-
         return new CommandResult(Pages.SETTINGS_PAGE, RouteType.FORWARD);
     }
 }

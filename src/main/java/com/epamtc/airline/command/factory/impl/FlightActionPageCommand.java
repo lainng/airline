@@ -11,7 +11,6 @@ import com.epamtc.airline.service.ServiceFactory;
 import com.epamtc.airline.service.exception.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,9 +19,6 @@ public class FlightActionPageCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-        HttpSession session = request.getSession();
-        putInfoKeyToRequest(session, request);
-
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         RouteService routeService = serviceFactory.getRouteService();
         PlaneService planeService = serviceFactory.getPlaneService();

@@ -19,7 +19,6 @@ public class StaffActionPageCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         UserService userService = ServiceFactory.getInstance().getUserService();
-        putInfoKeyToRequest(request.getSession(), request);
 
         boolean isValidID = checkRequestParameter(request.getParameterMap());
         if (!isValidID) {
