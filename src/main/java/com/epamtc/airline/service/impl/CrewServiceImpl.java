@@ -104,8 +104,13 @@ public class CrewServiceImpl implements CrewService {
             if (!optionalCrew.isPresent()) {
                 return false;
             }
-            crewDao.deleteCrew(crewID);
+
             Flight assignedFlight = optionalCrew.get().getAssignedFlight();
+            if (assignedFlight.getFlightStatus().getID() == FlightCondition.CANCELED) {
+                return false;
+            }
+
+            crewDao.deleteCrew(crewID);
             flightService.changeFlightStatus(assignedFlight.getID(), FlightCondition.SCHEDULED);
         } catch (DaoException e) {
             LOGGER.error("Unable to delete a crew. {}", e.getMessage());

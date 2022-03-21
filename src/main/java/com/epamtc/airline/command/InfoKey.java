@@ -34,7 +34,7 @@ public final class InfoKey {
     public static final String SUCCESS_ADDED_CREW = "success.newCrew";
     public static final String SUCCESS_UPDATED_CREW = "success.updateCrew";
     public static final String SUCCESS_DELETED_CREW = "success.deletingCrew";
-    public static final String ERROR_NO_SUCH_CREW = "error.noSuchCrew";
+    public static final String ERROR_NO_SUCH_CREW_OR_FLIGHT_CANCELED = "error.noSuchCrewOrFlightCanceled";
     public static final String ERROR_INCORRECT_CREW_PARAMETERS = "error.incorrectCrewParameters";
     public static final String ERROR_FLIGHT_ALREADY_ASSIGNED = "error.flightAlreadyAssigned";
     public static final String NOT_ASSIGNED_CREW = "flightInfo.crew.notAssigned";

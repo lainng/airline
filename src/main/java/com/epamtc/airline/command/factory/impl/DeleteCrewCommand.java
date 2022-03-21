@@ -44,7 +44,7 @@ public class DeleteCrewCommand implements Command {
             mailService.sendDeleteCrewMail(optionalCrew.get(), locale);
             session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_DELETED_CREW);
         } else {
-            session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_NO_SUCH_CREW);
+            session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_NO_SUCH_CREW_OR_FLIGHT_CANCELED);
         }
     }
 }
