@@ -37,7 +37,6 @@ public class FlightDaoImpl extends AbstractDao<FlightDto> implements FlightDao {
             "FROM flight F " +
             "JOIN status S ON F.status_id = S.status_id;";
     private static final String QUERY_UPDATE_FLIGHT_STATUS = "UPDATE flight SET status_id = ? WHERE flight_id = ?;";
-    private static final String QUERY_REMOVE_FLIGHT_FROM_CREW = "DELETE FROM crew WHERE flight_id = ?";
     private static final String QUERY_INSERT_FLIGHT = "INSERT INTO flight (route_id, plane_id, departure_time, status_id) VALUES (?, ?, ?, ?);";
     private static final String QUERY_UPDATE_FLIGHT_BY_ID = "UPDATE flight SET route_id = ?, plane_id = ?, departure_time = ? WHERE flight_id = ?;";
     private static final String QUERY_GET_FLIGHTS_BY_SEARCH_QUERY = "SELECT F.flight_id, F.route_id, F.plane_id, F.departure_time, " +
@@ -98,10 +97,6 @@ public class FlightDaoImpl extends AbstractDao<FlightDto> implements FlightDao {
 
     @Override
     public void cancelFlightByID(long flightID) throws DaoException {
-        queryExecutor.executeUpdate(
-                QUERY_REMOVE_FLIGHT_FROM_CREW,
-                flightID
-        );
         updateFlightStatus(flightID, FlightCondition.CANCELED);
     }
 
