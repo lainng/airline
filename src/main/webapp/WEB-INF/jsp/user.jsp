@@ -32,6 +32,9 @@
                 <fmt:message key="noscript.label"/>
             </div>
         </noscript>
+        <c:if test="${requestScope.error != null}">
+            <div class="error text-center mb-4"><fmt:message key="${requestScope.error}"/></div>
+        </c:if>
         <table id="flights" class="display text-center">
             <thead>
             <tr>

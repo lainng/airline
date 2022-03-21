@@ -29,7 +29,11 @@ public class ConfirmFlightCommand implements Command {
         String flightID = request.getParameter(RequestParameter.FLIGHT_ID);
         boolean isConfirmed = flightService.confirmFlight(Long.parseLong(flightID), currentUser);
         if (!isConfirmed) {
-            return new CommandResult(Pages.ERROR_404, RouteType.FORWARD);
+            if (currentUser.getPosition().getRoleID() == UserRole.USER) {
+                session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_NO_SUCH_CREW_OR_FLIGHT_CANCELED);
+            } else {
+                return new CommandResult(Pages.ERROR_404, RouteType.FORWARD);
+            }
         }
         return new CommandResult(Pages.USER_PAGE_REDIRECT, RouteType.REDIRECT);
     }
