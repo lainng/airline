@@ -20,7 +20,7 @@ When a new flight is created, canceled or crews are created, the application sen
 
 ## Technologies
 
-- Java 9
+- Java 8
 - Jakarta EE 9
 - Bootstrap 5.0.2
 - JQuery 3.6.0
