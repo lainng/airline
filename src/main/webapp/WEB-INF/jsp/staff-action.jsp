@@ -28,12 +28,6 @@
                 <input type="hidden" name="user-id" value="${requestScope.employee.ID}">
                 <input type="text" class="form-control mb-2 py-2" id="lastName" name="lastName" placeholder="<fmt:message key="staffAction.lastName"/>" value="${requestScope.employee.lastName}" autocomplete="off">
                 <input type="text" class="form-control my-2 py-2" id="firstName" name="firstName" placeholder="<fmt:message key="staffAction.firstName"/>" value="${requestScope.employee.firstName}" autocomplete="off">
-                <%--<select class="form-select my-2 py-2" id="position" name="position-id">
-                    <option selected disabled value=""><fmt:message key="staffAction.choosePosition"/></option>
-                    <c:forEach var="position" items="${requestScope.positions}">
-                        <option value="${position.ID}" <c:if test="${requestScope.employee.position.ID == position.ID}">selected</c:if> >${position.name}</option>
-                    </c:forEach>
-                </select>--%>
             </div>
             <div class="d-flex flex-row justify-content-between m-auto w-35 py-5">
                 <a class="btn btn-primary btn-darkblue w-35 py-2" type="button" href="${pageContext.request.contextPath}/controller?command=staff-page"><fmt:message key="button.goBack"/></a>
