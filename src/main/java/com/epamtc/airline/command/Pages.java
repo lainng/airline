@@ -33,6 +33,7 @@ public final class Pages {
     public static final String SETTINGS_PAGE_REDIRECT = "controller?command=settings";
 
     public static final String SIGN_UP_PAGE = "WEB-INF/jsp/sign-up.jsp";
+    public static final String SIGN_UP_PAGE_REDIRECT = "controller?command=sign-up-page";
     public static final String LOGIN_PAGE = "WEB-INF/jsp/login.jsp";
     public static final String LOGIN_PAGE_REDIRECT = "controller?command=login-page";
 

@@ -7,6 +7,7 @@ import com.epamtc.airline.service.UserService;
 import com.epamtc.airline.service.exception.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.util.Map;
 import java.util.Optional;
@@ -18,20 +19,21 @@ public class SignUpCommand implements Command {
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         Map<String, String[]> parameterMap = request.getParameterMap();
         UserCreationDto dto = new UserCreationDto();
+        HttpSession session = request.getSession();
 
         boolean isParametersValid = checkRequestParameters(parameterMap);
         if (!isParametersValid) {
-            request.setAttribute(RequestAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_SIGN_UP_DATA);
-            return new CommandResult(Pages.SIGN_UP_PAGE, RouteType.FORWARD);
+            session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_INCORRECT_SIGN_UP_DATA);
+            return new CommandResult(Pages.SIGN_UP_PAGE_REDIRECT, RouteType.REDIRECT);
         }
         setRequestParametersToDto(parameterMap, dto);
 
         UserService userService = ServiceFactory.getInstance().getUserService();
         boolean isRegistered = userService.signUp(dto);
         if(!isRegistered) {
-            request.setAttribute(RequestAttribute.ERROR_KEY, InfoKey.ERROR_NOT_REGISTERED);
-            setIncorrectParametersToRequest(request, dto);
-            return new CommandResult(Pages.SIGN_UP_PAGE, RouteType.FORWARD);
+            session.setAttribute(SessionAttribute.ERROR_KEY, InfoKey.ERROR_NOT_REGISTERED);
+            session.setAttribute(SessionAttribute.SIGN_UP_DTO, dto);
+            return new CommandResult(Pages.SIGN_UP_PAGE_REDIRECT, RouteType.REDIRECT);
         }
         return new CommandResult(Pages.REGISTERED_PAGE_REDIRECT, RouteType.REDIRECT);
     }
@@ -71,12 +73,5 @@ public class SignUpCommand implements Command {
         dto.setPassword(password);
         dto.setPasswordConfirmation(confirmPassword);
         dto.setPositionID(Long.parseLong(positionID));
-    }
-
-    private void setIncorrectParametersToRequest(HttpServletRequest request, UserCreationDto dto) {
-        request.setAttribute(RequestAttribute.LAST_NAME, dto.getLastName());
-        request.setAttribute(RequestAttribute.FIRST_NAME, dto.getFirstName());
-        request.setAttribute(RequestAttribute.EMAIL, dto.getEmail());
-        request.setAttribute(RequestAttribute.POSITION, dto.getPositionID());
     }
 }

@@ -27,19 +27,19 @@
                 </c:if>
                 <div class="d-flex flex-row justify-content-between">
                     <div class="d-flex flex-column w-48">
-                        <input class=" mb-2 ps-2 py-2 form-control" type="text" name="lastName" id="lastName" value="<c:if test="${requestScope.lastName != null}">${requestScope.lastName}</c:if>" placeholder="<fmt:message key="signUp.lastName"/>">
+                        <input class=" mb-2 ps-2 py-2 form-control" type="text" name="lastName" id="lastName" value="<c:if test="${requestScope.signUpDto.lastName != null}">${requestScope.signUpDto.lastName}</c:if>" placeholder="<fmt:message key="signUp.lastName"/>">
                     </div>
                     <div class="d-flex flex-column w-48">
-                        <input class=" mb-2 ps-2 py-2 form-control" type="text" name="firstName" id="firstName" value="<c:if test="${requestScope.firstName != null}">${requestScope.firstName}</c:if>" placeholder="<fmt:message key="signUp.firstName"/>">
+                        <input class=" mb-2 ps-2 py-2 form-control" type="text" name="firstName" id="firstName" value="<c:if test="${requestScope.signUpDto.firstName != null}">${requestScope.signUpDto.firstName}</c:if>" placeholder="<fmt:message key="signUp.firstName"/>">
                     </div>
                 </div>
                 <select class="mb-2 mt-2 ps-2 py-2 form-select" name="position-id" id="position">
                     <option disabled selected value=""><fmt:message key="signUp.position"/></option>
                     <c:forEach var="position" items="${requestScope.positions}">
-                        <option value="${position.ID}" <c:if test="${requestScope.position == position.ID}">selected</c:if> >${position.name}</option>
+                        <option value="${position.ID}" <c:if test="${requestScope.signUpDto.positionID == position.ID}">selected</c:if> >${position.name}</option>
                     </c:forEach>
                 </select>
-                <input class="mb-2 mt-2 ps-2 py-2 form-control" type="email" name="email" id="email" value="<c:if test="${requestScope.email != null}">${requestScope.email}</c:if>" placeholder="<fmt:message key="field.email"/>">
+                <input class="mb-2 mt-2 ps-2 py-2 form-control" type="email" name="email" id="email" value="<c:if test="${requestScope.signUpDto.email != null}">${requestScope.signUpDto.email}</c:if>" placeholder="<fmt:message key="field.email"/>">
                 <input class="mb-2 mt-2 ps-2 py-2 form-control" type="password" name="password" id="password" placeholder="<fmt:message key="field.password"/>">
                 <input class="mb-2 mt-2 ps-2 py-2 form-control" type="password" name="confirmPassword" id="confirmPassword" placeholder="<fmt:message key="field.confirmPass"/>">
             </div>
