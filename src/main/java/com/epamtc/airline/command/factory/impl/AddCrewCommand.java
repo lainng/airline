@@ -77,7 +77,7 @@ public class AddCrewCommand implements Command {
     }
 
     private String buildRedirectPath(String flightID) {
-        return Pages.STAFF_ACTION_PAGE_REDIRECT
+        return Pages.CREW_ACTION_PAGE_REDIRECT
                 + AMPERSAND
                 + RequestParameter.FLIGHT_ID
                 + EQUAL
@@ -101,8 +101,8 @@ public class AddCrewCommand implements Command {
         CrewService crewService = ServiceFactory.getInstance().getCrewService();
         MailService mailService = ServiceFactory.getInstance().getMailService();
         String locale = (String) session.getAttribute(SessionAttribute.LOCALE);
-        crewService.editCrew(dto);
         mailService.sendEditCrewMail(dto, locale);
+        crewService.editCrew(dto);
         session.setAttribute(SessionAttribute.SUCCESS_KEY, InfoKey.SUCCESS_UPDATED_CREW);
     }
 }
