@@ -27,12 +27,12 @@
     </servlet-mapping>
 
     <filter>
-        <filter-name>locale</filter-name>
-        <filter-class>com.epamtc.airline.controller.filter.LocaleFilter</filter-class>
+        <filter-name>auth</filter-name>
+        <filter-class>com.epamtc.airline.controller.filter.AuthFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>locale</filter-name>
-        <url-pattern>*</url-pattern>
+        <filter-name>auth</filter-name>
+        <url-pattern>/controller</url-pattern>
     </filter-mapping>
 
     <filter>
@@ -45,19 +45,20 @@
     </filter-mapping>
 
     <filter>
-        <filter-name>auth</filter-name>
-        <filter-class>com.epamtc.airline.controller.filter.AuthFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>auth</filter-name>
-        <url-pattern>/controller</url-pattern>
-    </filter-mapping>
-    <filter>
         <filter-name>info-key</filter-name>
         <filter-class>com.epamtc.airline.controller.filter.InfoKeyFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>info-key</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>locale</filter-name>
+        <filter-class>com.epamtc.airline.controller.filter.LocaleFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>locale</filter-name>
         <url-pattern>*</url-pattern>
     </filter-mapping>
 
