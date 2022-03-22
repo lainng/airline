@@ -54,6 +54,7 @@ public class CommandFactory {
         commandMap.put(CommandName.CANCEL_FLIGHT_COMMAND, new CancelFlightCommand());
         commandMap.put(CommandName.ADD_FLIGHT_COMMAND, new AddFlightCommand());
         commandMap.put(CommandName.SEARCHING_FLIGHT_COMMAND, new SearchingFlightCommand());
+        commandMap.put(CommandName.ERROR_404_COMMAND, new Error404PageCommand());
     }
 
     public static CommandFactory getInstance() {
